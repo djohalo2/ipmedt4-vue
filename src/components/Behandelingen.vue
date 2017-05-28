@@ -4,7 +4,7 @@
         <div class="layout-view">
             <div class="layout-padding">
                 <p class="page-title">Openstaande behandelingen</p>
-                <behandeling-card v-for="behandeling in testBehandelingen" :id="behandeling.id" :title="behandeling.title" :content="behandeling.description" :date="behandeling.date"></behandeling-card>
+                <behandeling-card v-for="behandeling in behandelingen" :id="behandeling.id" :title="behandeling.title" :content="behandeling.description" :date="behandeling.date"></behandeling-card>
             </div>
         </div>
     </div>
@@ -20,22 +20,9 @@ export default {
         BehandelingCard,
         Navigation
     },
-    data() {
-        return {
-            testBehandelingen: [
-                {
-                    id: "botbreuk-been",
-                    title: "Botbreuk been",
-                    description: "Een botbreuk in het been opgelopen.",
-                    date: "26-05-2017"
-                },
-                {
-                    id: "blaasontsteking",
-                    title: "Blaasontsteking",
-                    description: "Een blaasontsteking naar aanleiding van bacterie.",
-                    date: "07-03-2017"
-                }
-            ]
+    computed: {
+        behandelingen(){
+            return this.$store.getters.totalBehandelingen
         }
     }
 }
