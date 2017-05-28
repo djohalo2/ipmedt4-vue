@@ -1,19 +1,24 @@
 <template>
-    <div class="layout-view">
-        <div class="layout-padding">
-            <p class="page-title">Openstaande behandelingen</p>
-            <behandeling-card v-for="behandeling in testBehandelingen" :id="behandeling.id" :title="behandeling.title" :content="behandeling.description" :date="behandeling.date"></behandeling-card>
+    <div>
+        <navigation></navigation>
+        <div class="layout-view">
+            <div class="layout-padding">
+                <p class="page-title">Openstaande behandelingen</p>
+                <behandeling-card v-for="behandeling in testBehandelingen" :id="behandeling.id" :title="behandeling.title" :content="behandeling.description" :date="behandeling.date"></behandeling-card>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import BehandelingCard from './BehandelingCard.vue';
+import Navigation from './Navigation.vue';
 
 export default {
     name: 'behandelingen',
     components: {
-        BehandelingCard
+        BehandelingCard,
+        Navigation
     },
     data() {
         return {
