@@ -1,6 +1,6 @@
 <template>
     <div>
-        <li v-on:click="completed = !completed">
+        <li v-on:click="toggleTodo">
             <q-checkbox v-model="completed"></q-checkbox>
             <p v-bind:class="{completed: completed}">{{name}}</p>
             <p class="todo-date">{{date}}</p>
@@ -12,7 +12,13 @@
 <script>
 export default {
     name: 'todo',
-    props: ['name', 'date', 'completed']
+    props: ['name', 'date', 'completed'],
+    methods: {
+        toggleTodo() {
+            this.$store.commit('TOGGLE_TODO', this.name);
+        }
+    }
+
 }
 </script>
 

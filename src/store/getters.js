@@ -4,5 +4,8 @@ export default {
     },
     getBehandeling(state, id) {
         return state.currentBehandeling;
+    },
+    getPatientInfo(state) {
+        return state.patientInfo;
     }
 }

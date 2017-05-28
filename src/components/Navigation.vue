@@ -1,13 +1,10 @@
 <template>
-    <q-tabs slot="navigation" :refs="$refs" default-tab="tab-1">
-        <q-tab name="tab-1">
+    <q-tabs slot="navigation" :refs="$refs" default-tab="tab-1" >
+        <q-tab name="tab-1" route="/">
             Overzicht
         </q-tab>
-        <q-tab name="tab-2">
+        <q-tab name="tab-2" route="/patientinformatie">
             Informatie
-        </q-tab>
-        <q-tab name="tab-3">
-            Tab 3
         </q-tab>
     </q-tabs>
 </template>

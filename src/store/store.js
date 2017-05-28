@@ -11,6 +11,15 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         currentBehandeling: {},
+        patientInfo: {
+            id: 12345,
+            voornaam: "Bassie",
+            achternaam: "Adriaan",
+            email: "bassie@adriaan.nl",
+            telefoon: "0615022236",
+            geboortedatum: "02/02/1992",
+            foto: "https://i0.wp.com/devilsworkshop.org/files/2013/01/small-facebook-profile-picture.jpg?w=160"
+        },
         behandelingen: [
             {
                 id: "botbreuk-been",

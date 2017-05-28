@@ -22,6 +22,7 @@ export default new VueRouter({
 
   routes: [
     { path: '/', component: load('Behandelingen') }, // Default
+    { path: '/patientinformatie', component: load('PatientInformatie') },
     { path: '/behandeling/:typeBehandeling', component: load('BehandelingPage') },
     { path: '*', component: load('Error404') } // Not found
   ]
