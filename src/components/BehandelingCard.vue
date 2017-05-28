@@ -14,12 +14,14 @@
 </template>
 
 <script>
+import router from 'vue-router';
+
 export default {
     name: 'behandeling-card',
-    props: ['title', 'content', 'date'],
+    props: ['id', 'title', 'content', 'date'],
     methods: {
         cardClick() {
-            alert("has been clicked!");
+            this.$router.push({path: 'behandeling/' + this.id});
         }
     }
 }
