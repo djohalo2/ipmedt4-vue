@@ -10,7 +10,7 @@
                     <p class="no-entries-msg" v-if="behandeling.medicatie.length === 0">
                         Er zijn geen medicijnen aanwezig in deze behandeling.
                     </p>
-                    <span class="chip label bg-primary" v-for="medicijn in behandeling.medicatie">
+                    <span class="label bg-primary" v-for="medicijn in behandeling.medicatie">
                         {{medicijn.title}}
                     </span>
                 </div>
@@ -22,7 +22,7 @@
                     <p class="no-entries-msg" v-if="behandeling.oefeningen.length === 0">
                         Er zijn geen oefeningen aanwezig in deze behandeling.
                     </p>
-                    <span class="chip label bg-primary" v-for="oefening in behandeling.oefeningen">
+                    <span class="label bg-primary" v-for="oefening in behandeling.oefeningen">
                         {{oefening.title}}
                     </span>
                 </div>
@@ -67,5 +67,7 @@ export default {
     span {
         color: #fff;
         margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 13px;
     }
 </style>

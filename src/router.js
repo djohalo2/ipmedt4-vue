@@ -25,6 +25,7 @@ export default new VueRouter({
     { path: '/login', component: load('Login') },
     { path: '/patientinformatie', component: load('PatientInformatie') },
     { path: '/behandeling/:typeBehandeling', component: load('BehandelingPage') },
+    { path: '/behandeling/:typeBehandeling/notities', component: load('NotitiesPage') },
     { path: '/behandeling/:typeBehandeling/medicatie', component: load('Medicatie') },
     { path: '/behandeling/:typeBehandeling/medicatie/:typeMedicijn', component: load('MedicatiePage') },
     { path: '*', component: load('Error404') } // Not found

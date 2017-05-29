@@ -53,6 +53,7 @@ export default {
         text-align: center;
         font-weight: 600;
         font-size: 1.1rem;
+        margin-top: 1rem;
     }
     .profile-img {
         width: 80px;

@@ -71,6 +71,26 @@ export const store = new Vuex.Store({
                       setLengte: 3,
                       dagaantal: 1
                   }
+              ],
+              notities: [
+                  {
+                      id: 1,
+                      title: "Doe dit",
+                      content: "Doe dit nou is even man",
+                      date: "29-05-2017"
+                  },
+                  {
+                      id: 2,
+                      title: "Tweede doe dit",
+                      content: "Doe dit nou is even man",
+                      date: "29-05-2017"
+                  },
+                  {
+                      id: 3,
+                      title: "Laatste notitie",
+                      content: "Doe dit nou is even man",
+                      date: "29-05-2017"
+                  }
               ]
             },
             {
@@ -100,6 +120,9 @@ export const store = new Vuex.Store({
 
                 ],
                 oefeningen: [
+
+                ],
+                notities: [
 
                 ]
             }
