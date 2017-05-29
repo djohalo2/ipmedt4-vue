@@ -4,7 +4,7 @@
         <div class="layout-view">
             <div class="layout-padding">
                 <p class="page-title">Openstaande behandelingen</p>
-                <behandeling-card v-for="behandeling in behandelingen" :id="behandeling.id" :title="behandeling.title" :content="behandeling.description" :date="behandeling.date"></behandeling-card>
+                <behandeling-card v-for="behandeling in behandelingen" :id="behandeling.id" :title="behandeling.title" :content="behandeling.description" :category="behandeling.category" :date="behandeling.date"></behandeling-card>
             </div>
         </div>
     </div>

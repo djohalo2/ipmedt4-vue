@@ -3,6 +3,9 @@
         <div class="layout-padding">
             <p class="page-title">{{behandeling.title}}</p>
             <todo-list></todo-list>
+            <button class="primary" @click="clickLink()">
+              Test
+            </button>
         </div>
     </div>
 </template>
@@ -16,6 +19,11 @@ export default {
     name: 'behandeling-page',
     components: {
         TodoList
+    },
+    methods: {
+        clickLink() {
+            this.$router.push({path: this.behandeling.id + '/medicatie'});
+        }
     },
     created() {
             this.$store.commit('CHANGE_CURRENT_BEHANDELING', this.$route.params.typeBehandeling);

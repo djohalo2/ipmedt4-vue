@@ -1,6 +1,5 @@
 <template>
     <div>
-        <navigation></navigation>
         <div class="layout-view">
             <div class="layout-padding">
                 <p class="page-title">Openstaande medicatie</p>

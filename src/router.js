@@ -21,12 +21,12 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/', component: load('Behandelingen') }, // Default
+    { path: '/behandeling', component: load('Behandelingen') }, // Default
     { path: '/login', component: load('Login') },
     { path: '/patientinformatie', component: load('PatientInformatie') },
     { path: '/behandeling/:typeBehandeling', component: load('BehandelingPage') },
-    { path: '/medicatie', component: load('Medicatie') },
-    { path: '/medicatie/:typeMedicijn', component: load('MedicatiePage') },
+    { path: '/behandeling/:typeBehandeling/medicatie', component: load('Medicatie') },
+    { path: '/behandeling/:typeBehandeling/medicatie/:typeMedicijn', component: load('MedicatiePage') },
     { path: '*', component: load('Error404') } // Not found
   ]
 })

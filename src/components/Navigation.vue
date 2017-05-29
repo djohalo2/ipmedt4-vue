@@ -1,6 +1,6 @@
 <template>
     <q-tabs slot="navigation" :refs="$refs" default-tab="tab-1" >
-        <q-tab name="tab-1" route="/">
+        <q-tab name="tab-1" route="/behandeling">
             Overzicht
         </q-tab>
         <q-tab name="tab-2" route="/patientinformatie">

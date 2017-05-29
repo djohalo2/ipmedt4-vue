@@ -1,5 +1,9 @@
 <template>
         <div class="card" v-on:click="cardClick">
+            <span class="chip label bg-primary text-white float-right">
+                <i>group</i>
+                {{category}}
+            </span>
             <div class="card-title">
                 {{title}}
             </div>
@@ -18,7 +22,7 @@ import router from 'vue-router';
 
 export default {
     name: 'behandeling-card',
-    props: ['id', 'title', 'content', 'date'],
+    props: ['id', 'title', 'content', 'category', 'date'],
     methods: {
         cardClick() {
             this.$router.push({path: 'behandeling/' + this.id});
@@ -27,9 +31,19 @@ export default {
 }
 </script>
 
-<style lang="styl">
+<style lang="scss">
     .card-title, .card-content {
         padding: 0.7rem 0rem;
+    }
+
+    .chip.label {
+        margin-top: 0.7rem;
+        font-size: 0.8rem;
+        height: 26px;
+
+        i {
+            margin-right: 0.5rem;
+        }
     }
 
     .card-title {

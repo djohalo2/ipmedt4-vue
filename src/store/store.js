@@ -21,25 +21,12 @@ export const store = new Vuex.Store({
             geboortedatum: "02/02/1992",
             foto: "https://i0.wp.com/devilsworkshop.org/files/2013/01/small-facebook-profile-picture.jpg?w=160"
         },
-        medicatie: [
-          {
-            id: "paracetamol",
-            title: "Paracetamol 500mg",
-            description: "Goed tegen pijn en griep.",
-            date: "26-05-2017"
-          },
-          {
-            id: "ibuprofen",
-            title: "Ibuprofen",
-            description: "Goed tegen pijn en griep maar dan nog beter.",
-            date: "16-05-2017"
-          }
-        ],
         behandelingen: [
             {
                 id: "botbreuk-been",
                 title: "Botbreuk been",
                 description: "Een botbreuk in het been opgelopen.",
+                category: "been",
                 date: "26-05-2017",
                 todos: [
                     {
@@ -52,12 +39,27 @@ export const store = new Vuex.Store({
                         date: "28-05-2017",
                         completed: false
                     }
+                ],
+                medicatie: [
+                  {
+                    id: "paracetamol",
+                    title: "Paracetamol 500mg",
+                    description: "Goed tegen pijn en griep.",
+                    date: "26-05-2017"
+                  },
+                  {
+                    id: "ibuprofen",
+                    title: "Ibuprofen",
+                    description: "Goed tegen pijn en griep maar dan nog beter.",
+                    date: "16-05-2017"
+                  }
                 ]
             },
             {
                 id: "blaasontsteking",
                 title: "Blaasontsteking",
                 description: "Een blaasontsteking naar aanleiding van bacterie.",
+                category: "blaas",
                 date: "07-03-2017",
                 todos: [
                     {
@@ -75,6 +77,14 @@ export const store = new Vuex.Store({
                         date: "28-05-2017",
                         completed: false
                     }
+                ],
+                medicatie: [
+                  {
+                    id: "paracetamol",
+                    title: "Paracetamol 500mg",
+                    description: "Goed tegen pijn en griep.",
+                    date: "26-05-2017"
+                  }
                 ]
             }
         ]
