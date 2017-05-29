@@ -1,5 +1,5 @@
 <template>
-    <div slot="header" class="toolbar">
+    <div class="toolbar">
         <drawer></drawer>
 
         <q-toolbar-title>

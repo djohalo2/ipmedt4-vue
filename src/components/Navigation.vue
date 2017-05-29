@@ -1,5 +1,5 @@
 <template>
-    <q-tabs slot="navigation" :refs="$refs" default-tab="tab-1" >
+    <q-tabs :refs="$refs" default-tab="tab-1" >
         <q-tab name="tab-1" route="/behandeling">
             Overzicht
         </q-tab>
@@ -11,12 +11,7 @@
 
 <script>
 export default {
-    name: 'navigation',
-    methods: {
-        setActiveTab(name){
-
-        }
-    }
+    name: 'navigation'
 }
 </script>
 

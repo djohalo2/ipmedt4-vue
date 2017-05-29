@@ -53,7 +53,25 @@ export const store = new Vuex.Store({
                     description: "Goed tegen pijn en griep maar dan nog beter.",
                     date: "16-05-2017"
                   }
-                ]
+              ],
+              oefeningen: [
+                  {
+                      id: "step-up-trap",
+                      title: "Step up trap",
+                      description: "Ga op de onderste traptrede staan met uw gezicht richting de trap. Uw aangedane blijft staan en met de hak van uw andere been tikt uw de grond aan en komt weer met beide voeten op de traptrede staan. Let op dat uw knie niet naar binnen beweegt bij het zakken en dat uw heupen op gelijke hoogte blijven van elkaar.",
+                      aantalSetjes: 20,
+                      setLengte: 3,
+                      dagaantal: 1
+                  },
+                  {
+                      id: "bovenbeenspier-aanspannen",
+                      title: "Bovenbeenspier aanspannen",
+                      description: "Span uw bovenbeenspier aan in 2-3 seconden (knieschijf optrekken) en ontspan uw bovenbeenspier weer in 2-3 seconden (knieschijf laten zakken)",
+                      aantalSetjes: 20,
+                      setLengte: 3,
+                      dagaantal: 1
+                  }
+              ]
             },
             {
                 id: "blaasontsteking",
@@ -79,12 +97,10 @@ export const store = new Vuex.Store({
                     }
                 ],
                 medicatie: [
-                  {
-                    id: "paracetamol",
-                    title: "Paracetamol 500mg",
-                    description: "Goed tegen pijn en griep.",
-                    date: "26-05-2017"
-                  }
+
+                ],
+                oefeningen: [
+
                 ]
             }
         ]

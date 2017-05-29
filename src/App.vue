@@ -1,18 +1,27 @@
 <template>
     <div id="q-app">
-            <top-header></top-header>
+        <q-layout>
+            <top-header slot="header"></top-header>
+            <navigation slot="navigation"></navigation>
             <router-view></router-view>
+        </q-layout>
     </div>
 </template>
 
 <script>
 import TopHeader from 'components/Header.vue';
+import Navigation from 'components/Navigation.vue';
 
 export default {
     components: {
-        TopHeader
+        TopHeader,
+        Navigation
     }
 }
 </script>
 
-<style></style>
+<style>
+    .layout-padding {
+        padding-top: 0;
+    }
+</style>

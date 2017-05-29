@@ -3,9 +3,30 @@
         <div class="layout-padding">
             <p class="page-title">{{behandeling.title}}</p>
             <todo-list></todo-list>
-            <button class="primary" @click="clickLink()">
-              Test
-            </button>
+
+            <div class="card">
+                <div class="card-title">
+                    <p class="text-primary">MEDICATIE</p>
+                    <p class="no-entries-msg" v-if="behandeling.medicatie.length === 0">
+                        Er zijn geen medicijnen aanwezig in deze behandeling.
+                    </p>
+                    <span class="chip label bg-primary" v-for="medicijn in behandeling.medicatie">
+                        {{medicijn.title}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <p class="text-primary">OEFENINGEN</p>
+                    <p class="no-entries-msg" v-if="behandeling.oefeningen.length === 0">
+                        Er zijn geen oefeningen aanwezig in deze behandeling.
+                    </p>
+                    <span class="chip label bg-primary" v-for="oefening in behandeling.oefeningen">
+                        {{oefening.title}}
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -36,6 +57,15 @@ export default {
 }
 </script>
 
-<style lang="styl" scoped>
+<style lang="scss" scoped>
+    .no-entries-msg {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #a8a8a8;
+    }
 
+    span {
+        color: #fff;
+        margin-right: 0.5rem;
+    }
 </style>

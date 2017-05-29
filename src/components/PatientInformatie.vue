@@ -1,36 +1,33 @@
 <template>
-    <div>
-        <navigation></navigation>
-        <div class="layout-view">
-            <div class="layout-padding">
-                <p class="profile-name">{{patient.voornaam}} {{patient.achternaam}}</p>
-                <img class="profile-img" :src="patient.foto">
-                <div class="card">
-                    <div class="card-title">
-                        <p class="text-primary">GEGEVENS</p>
-                        <ul>
-                            <li>
-                                <i>person</i>
-                                <p>{{patient.voornaam}} {{patient.achternaam}}</p>
-                            </li>
+    <div class="layout-view">
+        <div class="layout-padding">
+            <p class="profile-name">{{patient.voornaam}} {{patient.achternaam}}</p>
+            <img class="profile-img" :src="patient.foto">
+            <div class="card">
+                <div class="card-title">
+                    <p class="text-primary">GEGEVENS</p>
+                    <ul>
+                        <li>
+                            <i>person</i>
+                            <p>{{patient.voornaam}} {{patient.achternaam}}</p>
+                        </li>
 
-                            <li>
-                                <i>email</i>
-                                <p>{{patient.email}}</p>
-                            </li>
+                        <li>
+                            <i>email</i>
+                            <p>{{patient.email}}</p>
+                        </li>
 
-                            <li>
-                                <i>smartphone</i>
-                                <p>{{patient.telefoon}}</p>
-                            </li>
+                        <li>
+                            <i>smartphone</i>
+                            <p>{{patient.telefoon}}</p>
+                        </li>
 
-                            <li>
-                                <i>today</i>
-                                <p>{{patient.geboortedatum}}</p>
-                            </li>
-                        </ul>
+                        <li>
+                            <i>today</i>
+                            <p>{{patient.geboortedatum}}</p>
+                        </li>
+                    </ul>
 
-                    </div>
                 </div>
             </div>
         </div>
@@ -38,13 +35,8 @@
 </template>
 
 <script>
-import Navigation from './Navigation.vue';
-
 export default {
     name: 'patient-informatie',
-    components: {
-        Navigation
-    },
     computed: {
         patient() {
             return this.$store.getters.getPatientInfo
