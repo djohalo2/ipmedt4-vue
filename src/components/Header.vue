@@ -1,6 +1,16 @@
 <template>
     <div slot="header" class="toolbar">
-        <button class="hide-on-drawer-visible">
+        <q-drawer id="drawer" ref="drawer">
+          <div class="list platform-delimiter">
+            <div class="list-header">
+              Djo&amp;Co.
+            </div>
+            <q-drawer-link icon="mail" to="/medicatie">Account</q-drawer-link>
+            <q-drawer-link icon="alarm" to="/patientinformatie">Alarms</q-drawer-link>
+          </div>
+        </q-drawer>
+
+        <button class="hide-on-drawer-visible" @click="$refs.drawer.open()">
             <i>menu</i>
         </button>
 
@@ -25,5 +35,9 @@ export default {
 </script>
 
 <style lang="styl">
+
+  #drawer {
+    color: #333;
+  }
 
 </style>
