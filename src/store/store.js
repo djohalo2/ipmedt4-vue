@@ -11,6 +11,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         currentBehandeling: {},
+        currentMedicijn: {},
         patientInfo: {
             id: 12345,
             voornaam: "Bassie",
@@ -20,6 +21,20 @@ export const store = new Vuex.Store({
             geboortedatum: "02/02/1992",
             foto: "https://i0.wp.com/devilsworkshop.org/files/2013/01/small-facebook-profile-picture.jpg?w=160"
         },
+        medicatie: [
+          {
+            id: "paracetamol",
+            title: "Paracetamol 500mg",
+            description: "Goed tegen pijn en griep.",
+            date: "26-05-2017"
+          },
+          {
+            id: "ibuprofen",
+            title: "Ibuprofen",
+            description: "Goed tegen pijn en griep maar dan nog beter.",
+            date: "16-05-2017"
+          }
+        ],
         behandelingen: [
             {
                 id: "botbreuk-been",
