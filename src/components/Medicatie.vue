@@ -1,7 +1,7 @@
 <template>
     <div class="layout-view">
         <div class="layout-padding">
-            <p class="page-title">Openstaande medicatie</p>
+            <p class="page-title">MEDICATIE</p>
             <p class="no-entries-msg" v-if="medicatie.length === 0">Er is geen medicatie gevonden.</p>
             <medicijn-card v-for="medicijn in medicatie" :id="medicijn.id" :title="medicijn.title" :content="medicijn.description" :date="medicijn.date"></medicijn-card>
         </div>

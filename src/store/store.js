@@ -75,20 +75,20 @@ export const store = new Vuex.Store({
               notities: [
                   {
                       id: 1,
-                      title: "Doe dit",
-                      content: "Doe dit nou is even man",
+                      title: "Eerste notitie",
+                      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit tortor, egestas at dapibus nec, semper quis arcu. In lacinia facilisis rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla pulvinar eros sem, sit amet egestas metus pulvinar sit amet.",
                       date: "29-05-2017"
                   },
                   {
                       id: 2,
-                      title: "Tweede doe dit",
-                      content: "Doe dit nou is even man",
+                      title: "Tweede notitie",
+                      content: "Morbi at dui et est egestas rhoncus. Sed commodo turpis non ante auctor iaculis id in nibh. Mauris a eleifend purus. Vivamus a efficitur odio.",
                       date: "29-05-2017"
                   },
                   {
                       id: 3,
                       title: "Laatste notitie",
-                      content: "Doe dit nou is even man",
+                      content: "Aliquam volutpat ac nisl eget pellentesque. Duis viverra tellus neque, sodales ornare magna mollis in. Proin et luctus justo. Curabitur ut elit eget lacus auctor fringilla.",
                       date: "29-05-2017"
                   }
               ]

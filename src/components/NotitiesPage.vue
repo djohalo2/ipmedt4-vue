@@ -6,7 +6,7 @@
                 Er zijn geen notities gevonden.
             </p>
             <div v-if="notities.length > 0" class="list item-delimiter">
-                <q-collapsible v-for="notitie in notities" :label="notitie.title">
+                <q-collapsible group="notities" v-for="notitie in notities" :label="notitie.title">
                     <div>
                         <p>{{notitie.content}}</p>
                     </div>
@@ -19,7 +19,7 @@
                 <p>Notitie toevoegen</p>
                 <input v-model="noteTitle" placeholder="Title">
                 <textarea v-model="noteContent" class="notitie-content" placeholder="Notitie"></textarea>
-                <button @click="addNote" class="primary">Toevoegen</button>
+                <button @click="addNote" class="primary" v-bind:class="{disabled: noteTitle === '' || noteContent === ''}">Toevoegen</button>
             </q-modal>
         </div>
     </div>
@@ -31,7 +31,7 @@ export default {
     data() {
         return {
             noteTitle: "",
-            noteContent: ""
+            noteContent: "",
         }
     },
     methods: {
