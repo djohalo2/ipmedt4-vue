@@ -14,6 +14,7 @@
             <div class="card-content">
                 {{content}}
             </div>
+            <button class="primary clear">Bekijk</button>
         </div>
 </template>
 
@@ -46,23 +47,27 @@ export default {
         }
     }
 
-    .card-title {
-        font-size: 1rem;
-    }
-
-    .card-content {
-        font-size:0.9rem;
-    }
-
-    .card-date {
-        color: grey;
-        font-size: 0.8rem;
-    }
-
     .card {
         padding: 0rem 1rem;
         box-shadow: 0 1px 3px rgba(0,0,0,0.22), 0 3px 2px rgba(0,0,0,0.05);
         background-color: #fff;
+
+        .card-title {
+            font-size: 1rem;
+        }
+
+        .card-content {
+            font-size:0.9rem;
+        }
+
+        .card-date {
+            color: grey;
+            font-size: 0.8rem;
+        }
+
+        button {
+            padding: 0;
+        }
     }
 
 </style>

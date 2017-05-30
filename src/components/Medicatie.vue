@@ -2,6 +2,7 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">Openstaande medicatie</p>
+            <p class="no-entries-msg" v-if="medicatie.length === 0">Er is geen medicatie gevonden.</p>
             <medicijn-card v-for="medicijn in medicatie" :id="medicijn.id" :title="medicijn.title" :content="medicijn.description" :date="medicijn.date"></medicijn-card>
         </div>
     </div>
@@ -25,7 +26,10 @@ export default {
 }
 </script>
 
-<style lang="styl">
+<style lang="scss">
+    .no-entries-msg {
+        color: #a8a8a8;
+    }
     .layout-view {
         background-color: #F6F6F6;
     }

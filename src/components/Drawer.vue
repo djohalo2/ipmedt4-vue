@@ -19,13 +19,13 @@
               <q-drawer-link icon="assignment" :to="'/behandeling/' + behandelingType + '/medicatie'">
                 Medicatie
               </q-drawer-link>
-              <q-drawer-link icon="accessibility" :to="'/behandeling/' + behandelingType + '/oefeningen'">
-                Oefeningen
-              </q-drawer-link>
               <q-drawer-link icon="insert_drive_file" :to="'/behandeling/' + behandelingType + '/notities'">
                 Notities
               </q-drawer-link>
-              <q-drawer-link icon="info" :to="'/behandeling/' + behandelingType + '/informatie'">
+              <q-drawer-link disabled icon="accessibility" :to="'/behandeling/' + behandelingType + '/oefeningen'">
+                Oefeningen
+              </q-drawer-link>
+              <q-drawer-link disabled icon="info" :to="'/behandeling/' + behandelingType + '/informatie'">
                 Informatie
               </q-drawer-link>
             </div>

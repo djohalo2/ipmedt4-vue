@@ -4,7 +4,7 @@
             Overzicht
         </q-tab>
         <q-tab name="tab-2" route="/patientinformatie">
-            Informatie
+            Gegevens
         </q-tab>
     </q-tabs>
 </template>
