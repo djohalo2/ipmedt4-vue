@@ -4,17 +4,8 @@
             <p class="page-title">{{behandeling.title}}</p>
             <todo-list :todoType="'behandeling'"></todo-list>
 
-            <div class="card">
-                <div class="card-title">
-                    <p class="text-primary">MEDICATIE</p>
-                    <p class="no-entries-msg" v-if="behandeling.medicatie.length === 0">
-                        Er zijn geen medicijnen aanwezig in deze behandeling.
-                    </p>
-                    <span class="label bg-primary" v-for="medicijn in behandeling.medicatie">
-                        {{medicijn.title}}
-                    </span>
-                </div>
-            </div>
+            <medicatie-list :medicatie="behandeling.medicatie"></medicatie-list>
+
 
             <div class="card">
                 <div class="card-title">
@@ -35,11 +26,13 @@
 import router from 'vue-router';
 
 import TodoList from './TodoList.vue';
+import MedicatieList from './MedicatieList.vue';
 
 export default {
     name: 'behandeling-page',
     components: {
-        TodoList
+        TodoList,
+        MedicatieList
     },
     methods: {
         clickLink() {

@@ -6,7 +6,11 @@ export default {
         state.currentBehandeling = state.behandelingen.filter(behandeling => behandeling.id === id)[0];
     },
     [CHANGE_CURRENT_MEDICIJN](state, id) {
-        state.currentMedicijn = state.medicatie.filter(medicijn => medicijn.id === id)[0];
+        state.behandelingen.map(behandeling => {
+            if(_.filter(behandeling.medicatie, ['id', id])[0]){
+                state.currentMedicijn = _.filter(behandeling.medicatie, ['id', id])[0];
+            }
+        });
     },
     [TOGGLE_TODO](state, id){
         state.behandelingen.map(behandeling => {

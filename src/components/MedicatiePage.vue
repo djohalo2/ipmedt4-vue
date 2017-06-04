@@ -9,15 +9,11 @@
 <script>
 import router from 'vue-router';
 
-import TodoList from './TodoList.vue';
-
 export default {
     name: 'medicatie-page',
-    components: {
-        TodoList
-    },
     created() {
-            this.$store.commit('CHANGE_CURRENT_MEDICIJN', this.$route.params.typeMedicijn);
+        console.log("hello");
+        this.$store.commit('CHANGE_CURRENT_MEDICIJN', this.$route.params.typeMedicijn);
     },
     computed: {
         medicijn() {

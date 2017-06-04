@@ -18,9 +18,16 @@ export default {
                 todos.push(todo);
             });
         });
-
-        console.log(todos);
         return todos;
+    },
+    getAllMedicatie(state) {
+        let medicatie = [];
+        state.behandelingen.map(behandeling => {
+            behandeling.medicatie.map(medicijn =>{
+                medicatie.push(medicijn);
+            });
+        });
+        return medicatie;
     },
     getNotities(state) {
         return state.currentBehandeling.notities;

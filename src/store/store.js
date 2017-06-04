@@ -14,12 +14,12 @@ export const store = new Vuex.Store({
         currentMedicijn: {},
         patientInfo: {
             id: 12345,
-            voornaam: "Bassie",
-            achternaam: "Adriaan",
-            email: "bassie@adriaan.nl",
-            telefoon: "0615022236",
-            geboortedatum: "02/02/1992",
-            foto: "https://i0.wp.com/devilsworkshop.org/files/2013/01/small-facebook-profile-picture.jpg?w=160"
+            voornaam: "Jeroen",
+            achternaam: "de Meij",
+            email: "jeroen@gmail.nl",
+            telefoon: "06-12345678",
+            geboortedatum: "02/02/1990",
+            foto: "http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png"
         },
         behandelingen: [
             {
@@ -43,12 +43,14 @@ export const store = new Vuex.Store({
                 medicatie: [
                   {
                     id: "paracetamol",
+                    behandeling: "botbreuk-been",
                     title: "Paracetamol 500mg",
                     description: "Goed tegen pijn en griep.",
                     date: "26-05-2017"
                   },
                   {
                     id: "ibuprofen",
+                    behandeling: "botbreuk-been",
                     title: "Ibuprofen",
                     description: "Goed tegen pijn en griep maar dan nog beter.",
                     date: "16-05-2017"

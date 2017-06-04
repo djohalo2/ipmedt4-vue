@@ -6,23 +6,38 @@
             IPMEDT4
         </q-toolbar-title>
 
-        <button class="hide-on-drawer-visible">
+        <q-search v-on-clickaway="closeSearch" v-if="searching" v-model="searchText" placeholder="Zoeken"></q-search>
+
+        <button v-if="!searching" v-on:click="searching = !searching" class="hide-on-drawer-visible">
             <i>search</i>
         </button>
 
-        <button class="hide-on-drawer-visible">
+        <!-- <button class="hide-on-drawer-visible">
             <i>more_vert</i>
-        </button>
+        </button> -->
     </div>
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
 import Drawer from './Drawer.vue';
 
 export default {
     name: 'top-header',
     components: {
         Drawer
+    },
+    mixins: [ clickaway ],
+    data() {
+        return {
+            searching: false,
+            searchText: ""
+        }
+    },
+    methods: {
+        closeSearch(){
+            this.searching = false;
+        }
     }
 }
 </script>
