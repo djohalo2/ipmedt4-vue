@@ -29,6 +29,15 @@ export default {
         });
         return medicatie;
     },
+    getAllNotities(state) {
+        let notities = [];
+        state.behandelingen.map(behandeling => {
+            behandeling.notities.map(notitie =>{
+                notities.push(notitie);
+            });
+        });
+        return notities;
+    },
     getNotities(state) {
         return state.currentBehandeling.notities;
     },

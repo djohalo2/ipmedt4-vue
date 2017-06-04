@@ -1,6 +1,7 @@
 <template>
     <div class="toolbar">
-        <drawer v-if="this.$route.path !== '/behandeling' && this.$route.path !== '/patientinformatie' && this.$route.path !== '/'"></drawer>
+        <!-- v-if="this.$route.path !== '/behandeling' && this.$route.path !== '/patientinformatie' && this.$route.path !== '/'" -->
+        <drawer></drawer>
 
         <q-toolbar-title>
             IPMEDT4

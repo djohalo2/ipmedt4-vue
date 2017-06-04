@@ -5,7 +5,7 @@
             <img class="profile-img" :src="patient.foto">
             <div class="card">
                 <div class="card-title">
-                    <p class="text-primary">GEGEVENS</p>
+                    <p class="text-primary">MIJN GEGEVENS</p>
                     <ul>
                         <li>
                             <i>person</i>

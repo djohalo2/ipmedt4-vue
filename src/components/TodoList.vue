@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-title">
-            <p class="text-primary">TODO</p>
+            <p class="text-primary">TODOS VANDAAG</p>
 
             <ul>
                 <todo v-if="todoType === 'behandeling'" v-for="todo in behandeling.todos" :name="todo.naam" :date="todo.date" :completed="todo.completed"></todo>

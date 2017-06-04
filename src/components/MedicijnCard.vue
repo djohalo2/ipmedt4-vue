@@ -5,10 +5,12 @@
             </div>
             <div class="card-date">
                 <i>access_time</i>
-                Medicijn loopt vanaf {{date}}
+                Medicijn genomen sinds {{date}}
             </div>
             <div class="card-content">
-                {{content}}
+                <span class="chip label bg-primary text-white">
+                    {{aantal}}x per dag innemen
+                </span>
             </div>
         </div>
 </template>
@@ -18,10 +20,10 @@ import router from 'vue-router';
 
 export default {
     name: 'medicijn-card',
-    props: ['id', 'title', 'content', 'date'],
+    props: ['id', 'behandeling', 'title', 'aantal', 'date'],
     methods: {
         cardClick() {
-            this.$router.push({path: 'medicatie/' + this.id});
+            this.$router.push({path: '/behandeling/' + this.behandeling + '/medicatie/' + this.id});
         }
     }
 }

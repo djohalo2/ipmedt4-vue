@@ -8,18 +8,18 @@
             </div>
 
             <div class="list no-border platform-delimiter">
-              <q-drawer-link icon="home" to="/behandeling" exact>
-                Behandelingen
+              <q-drawer-link icon="home" to="/" exact>
+                Home
               </q-drawer-link>
               <hr>
-              <div class="list-label">Behandeling</div>
-              <q-drawer-link icon="view_list" :to="'/behandeling/' + behandelingType">
+              <div class="list-label">Behandelingen</div>
+              <!-- <q-drawer-link icon="view_list" :to="'/behandeling/' + behandelingType">
                 Overzicht
-              </q-drawer-link>
-              <q-drawer-link icon="assignment" :to="'/behandeling/' + behandelingType + '/medicatie'">
+              </q-drawer-link> -->
+              <q-drawer-link icon="assignment" :to="'/medicatie'">
                 Medicatie
               </q-drawer-link>
-              <q-drawer-link icon="insert_drive_file" :to="'/behandeling/' + behandelingType + '/notities'">
+              <q-drawer-link icon="insert_drive_file" :to="'/notities'">
                 Notities
               </q-drawer-link>
               <q-drawer-link disabled icon="accessibility" :to="'/behandeling/' + behandelingType + '/oefeningen'">

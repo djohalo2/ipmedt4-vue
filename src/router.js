@@ -21,8 +21,10 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/', component: load('Overzicht') }, 
+    { path: '/', component: load('Overzicht') },
     { path: '/behandeling', component: load('Behandelingen') },
+    { path: '/medicatie', component: load('Medicatie') },
+    { path: '/notities', component: load('NotitiesPage') },
     { path: '/login', component: load('Login') },
     { path: '/patientinformatie', component: load('PatientInformatie') },
     { path: '/behandeling/:typeBehandeling', component: load('BehandelingPage') },

@@ -1,10 +1,17 @@
 <template>
     <div class="layout-view">
         <div class="layout-padding">
+            <q-select
+              class="float-right"
+              type="radio"
+              v-model="noteTypeSelect"
+              :options="selectOptions"
+            ></q-select>
             <p class="page-title">NOTITIES</p>
             <p class="no-entries-msg" v-if="notities.length === 0">
                 Er zijn geen notities gevonden.
             </p>
+
             <div v-if="notities.length > 0" class="list item-delimiter">
                 <q-collapsible group="notities" v-for="notitie in notities" :label="notitie.title">
                     <div>
@@ -32,6 +39,17 @@ export default {
         return {
             noteTitle: "",
             noteContent: "",
+            noteTypeSelect: "patient",
+            selectOptions: [
+                {
+                    label: 'Patient',
+                    value: 'patient'
+                },
+                {
+                    label: 'Arts',
+                    value: 'arts'
+                }
+            ]
         }
     },
     methods: {
@@ -45,7 +63,7 @@ export default {
     },
     computed: {
         notities() {
-            return this.$store.getters.getNotities
+            return this.$store.getters.getAllNotities
         }
     }
 }
@@ -54,6 +72,7 @@ export default {
 <style lang="scss" scoped>
     .list {
         background-color: #fff;
+        margin-top: 1.2rem;
     }
 
     button {

@@ -46,14 +46,16 @@ export const store = new Vuex.Store({
                     behandeling: "botbreuk-been",
                     title: "Paracetamol 500mg",
                     description: "Goed tegen pijn en griep.",
-                    date: "26-05-2017"
+                    date: "26-05-2017",
+                    aantal: 3
                   },
                   {
                     id: "ibuprofen",
                     behandeling: "botbreuk-been",
                     title: "Ibuprofen",
                     description: "Goed tegen pijn en griep maar dan nog beter.",
-                    date: "16-05-2017"
+                    date: "16-05-2017",
+                    aantal: 1
                   }
               ],
               oefeningen: [
@@ -103,23 +105,20 @@ export const store = new Vuex.Store({
                 date: "07-03-2017",
                 todos: [
                     {
-                        naam: "Antibiotica innemen",
-                        date: "28-05-2017",
-                        completed: false
-                    },
-                    {
                         naam: "Afspraak maken",
                         date: "28-05-2017",
                         completed: true
-                    },
-                    {
-                        naam: "Pijnstillers nemen",
-                        date: "28-05-2017",
-                        completed: false
                     }
                 ],
                 medicatie: [
-
+                    {
+                      id: "amoxicilline",
+                      behandeling: "blaasontsteking",
+                      title: "Amoxicilline",
+                      description: "Goed tegen pijn en griep.",
+                      date: "26-05-2017",
+                      aantal: 2
+                    }
                 ],
                 oefeningen: [
 

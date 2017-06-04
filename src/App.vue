@@ -24,4 +24,8 @@ export default {
     .layout-padding {
         padding-top: 0;
     }
+
+    .card {
+        margin-bottom: 15px;
+    }
 </style>
