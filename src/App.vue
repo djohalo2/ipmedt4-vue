@@ -2,7 +2,7 @@
     <div id="q-app">
         <q-layout>
             <top-header slot="header"></top-header>
-            <navigation v-if="this.$route.path === '/behandeling' || this.$route.path === '/patientinformatie'" slot="navigation"></navigation>
+            <navigation v-if="this.$route.path === '/behandeling' || this.$route.path === '/patientinformatie' || this.$route.path === '/'" slot="navigation"></navigation>
             <router-view></router-view>
         </q-layout>
     </div>

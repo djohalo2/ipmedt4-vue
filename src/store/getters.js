@@ -11,6 +11,17 @@ export default {
     getMedicatie(state) {
         return state.currentBehandeling.medicatie;
     },
+    getAllTodos(state) {
+        let todos = [];
+        state.behandelingen.map(behandeling => {
+            behandeling.todos.map(todo =>{
+                todos.push(todo);
+            });
+        });
+
+        console.log(todos);
+        return todos;
+    },
     getNotities(state) {
         return state.currentBehandeling.notities;
     },

@@ -4,7 +4,8 @@
             <p class="text-primary">TODO</p>
 
             <ul>
-                <todo v-for="todo in behandeling.todos" :name="todo.naam" :date="todo.date" :completed="todo.completed"></todo>
+                <todo v-if="todoType === 'behandeling'" v-for="todo in behandeling.todos" :name="todo.naam" :date="todo.date" :completed="todo.completed"></todo>
+                <todo v-if="todoType === 'overzicht'" v-for="todo in behandeling" :name="todo.naam" :date="todo.date" :completed="todo.completed"></todo>
             </ul>
 
             <q-progress
@@ -23,16 +24,30 @@ import Todo from './Todo.vue';
 
 export default {
     name: 'todo-list',
+    props: ['todoType'],
     components: {
         Todo
     },
     computed: {
         behandeling() {
-            return this.$store.getters.getBehandeling
+            if(this.todoType === "behandeling"){
+                return this.$store.getters.getBehandeling;
+            } else {
+                return this.$store.getters.getAllTodos;
+            }
+
         },
         todoProgress() {
-            let totalTodos = this.behandeling.todos.length;
-            let completedTodos = _.filter(this.behandeling.todos, ['completed', true]).length;
+            let totalTodos = 0;
+            let completedTodos = 0;
+
+            if(this.todoType === "behandeling"){
+                totalTodos = this.behandeling.todos.length;
+                completedTodos = _.filter(this.behandeling.todos, ['completed', true]).length;
+            } else {
+                totalTodos = this.behandeling.length;
+                completedTodos = _.filter(this.behandeling, ['completed', true]).length;
+            }
 
             return (completedTodos / totalTodos) * 100;
         }

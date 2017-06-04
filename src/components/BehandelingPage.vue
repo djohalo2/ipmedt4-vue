@@ -2,7 +2,7 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">{{behandeling.title}}</p>
-            <todo-list></todo-list>
+            <todo-list :todoType="'behandeling'"></todo-list>
 
             <div class="card">
                 <div class="card-title">

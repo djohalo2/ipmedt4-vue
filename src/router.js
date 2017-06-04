@@ -21,7 +21,8 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/behandeling', component: load('Behandelingen') }, // Default
+    { path: '/', component: load('Overzicht') }, 
+    { path: '/behandeling', component: load('Behandelingen') },
     { path: '/login', component: load('Login') },
     { path: '/patientinformatie', component: load('PatientInformatie') },
     { path: '/behandeling/:typeBehandeling', component: load('BehandelingPage') },

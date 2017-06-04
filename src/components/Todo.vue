@@ -1,7 +1,7 @@
 <template>
     <div>
         <li v-on:click="toggleTodo">
-            <q-checkbox v-model="completed"></q-checkbox>
+            <q-checkbox v-model="completed" @input="toggleTodo"></q-checkbox>
             <p v-bind:class="{completed: completed}">{{name}}</p>
             <p class="todo-date">{{date}}</p>
         </li>
