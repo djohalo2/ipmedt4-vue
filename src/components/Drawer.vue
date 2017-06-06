@@ -22,11 +22,11 @@
               <q-drawer-link icon="insert_drive_file" :to="'/notities'">
                 Notities
               </q-drawer-link>
-              <q-drawer-link disabled icon="accessibility" :to="'/behandeling/' + behandelingType + '/oefeningen'">
+              <q-drawer-link icon="accessibility" :to="'/oefeningen'">
                 Oefeningen
               </q-drawer-link>
-              <q-drawer-link disabled icon="info" :to="'/behandeling/' + behandelingType + '/informatie'">
-                Informatie
+              <q-drawer-link disabled icon="subdirectory_arrow_right" :to="'/verwijzingen'">
+                Verwijzingen
               </q-drawer-link>
             </div>
         </q-drawer>
