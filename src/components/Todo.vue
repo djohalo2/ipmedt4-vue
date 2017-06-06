@@ -2,7 +2,7 @@
     <div>
         <li v-on:click="toggleTodo">
             <q-checkbox v-model="completed" @input="toggleTodo"></q-checkbox>
-            <p v-bind:class="{completed: completed}">{{name}}</p>
+            <p class="todo-name" v-bind:class="{completed: completed}">{{name}}</p>
             <p class="todo-date">{{date}}</p>
         </li>
         <hr>
@@ -54,6 +54,10 @@ export default {
         background: #e3e3e3;
         font-size: 0;
         border: 0;
+    }
+
+    .todo-name {
+        font-size: 14px;
     }
 
 </style>

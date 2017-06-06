@@ -2,6 +2,12 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">{{medicijn.title}}</p>
+            <div class="card alert-box bg-warning text-white">
+                <div class="card-content">
+                    <p><i>warning</i>{{medicijn.aantal}}x per dag innemen om de 4 uur.</p>
+                </div>
+            </div>
+            
             <div class="card">
                 <div class="card-title">
                     {{medicijn.title}}
@@ -31,12 +37,6 @@
                           </ul>
                       </div>
                   </q-collapsible>
-                </div>
-            </div>
-
-            <div class="card alert-box bg-warning text-white">
-                <div class="card-content">
-                    <p><i>warning</i>{{medicijn.aantal}}x per dag innemen om de 4 uur.</p>
                 </div>
             </div>
         </div>

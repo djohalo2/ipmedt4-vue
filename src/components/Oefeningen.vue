@@ -2,12 +2,14 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">Oefeningen</p>
-        </div>
-        <div class="list">
-            <div class="item" v-for="oefening in oefeningen">
-                <hr>
-                <div class="item-content">
+
+            <div class="card" v-for="oefening in oefeningen">
+                <div class="card-title">
                     {{oefening.title}}
+                </div>
+                <div class="card-content">
+                    <button class="button outline text-primary float-right">Bekijk</button>
+                    <p>Aantal setjes: {{oefening.aantalSetjes}}</p>
                 </div>
             </div>
         </div>
@@ -26,11 +28,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .list {
-        background-color: #fff;
+    .card {
 
-        .item:first-child hr {
-            visibility: hidden;
+        .card-content {
+            padding: 0;
+
+            p {
+                font-size: 14px;
+            }
         }
     }
+
+
 </style>

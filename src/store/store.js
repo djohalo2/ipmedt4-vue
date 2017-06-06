@@ -31,12 +31,12 @@ export const store = new Vuex.Store({
                 date: "26-05-2017",
                 todos: [
                     {
-                        naam: "Medicijn nemen",
+                        naam: "Paracetamol, Amoxicilline nemen",
                         date: "28-05-2017",
                         completed: true
                     },
                     {
-                        naam: "Oefening doen",
+                        naam: "Been en knie oefeningen doen",
                         date: "28-05-2017",
                         completed: false
                     }
@@ -88,6 +88,7 @@ export const store = new Vuex.Store({
                   {
                       id: "step-up-trap",
                       title: "Step up trap",
+                      image: "./../assets/stepup.JPG",
                       description: "Ga op de onderste traptrede staan met uw gezicht richting de trap. Uw aangedane blijft staan en met de hak van uw andere been tikt uw de grond aan en komt weer met beide voeten op de traptrede staan. Let op dat uw knie niet naar binnen beweegt bij het zakken en dat uw heupen op gelijke hoogte blijven van elkaar.",
                       aantalSetjes: 20,
                       setLengte: 3,
@@ -96,6 +97,7 @@ export const store = new Vuex.Store({
                   {
                       id: "bovenbeenspier-aanspannen",
                       title: "Bovenbeenspier aanspannen",
+                      image: "./../assets/stepup.JPG",
                       description: "Span uw bovenbeenspier aan in 2-3 seconden (knieschijf optrekken) en ontspan uw bovenbeenspier weer in 2-3 seconden (knieschijf laten zakken)",
                       aantalSetjes: 20,
                       setLengte: 3,
@@ -104,6 +106,7 @@ export const store = new Vuex.Store({
                   {
                       id: "bovenbeenspier-aanspannen",
                       title: "Bovenbeenspier aanspannen",
+                      image: "./../assets/stepup.JPG",
                       description: "Span uw bovenbeenspier aan in 2-3 seconden (knieschijf optrekken) en ontspan uw bovenbeenspier weer in 2-3 seconden (knieschijf laten zakken)",
                       aantalSetjes: 20,
                       setLengte: 3,
@@ -149,9 +152,19 @@ export const store = new Vuex.Store({
                       id: "amoxicilline",
                       behandeling: "blaasontsteking",
                       title: "Amoxicilline",
-                      description: "Goed tegen pijn en griep.",
+                      description: "Amoxicilline is een antibioticum. Het wordt gebruikt bij infecties, zoals luchtweginfecties, oorontsteking en blaasontsteking.",
                       date: "26-05-2017",
-                      aantal: 2
+                      aantal: 2,
+                      belangrijkeInformatie: [
+                          "Amoxicilline doodt bacteriën (antibioticum). Werkt binnen enkele dagen.",
+                          "Bij infecties van longen, luchtpijp, keel, bijholtes, middenoor, blaas, maag en darmen. En bij geslachtsziekten (chlamydia, gonorroe), de ziekte van Lyme en hersenvliesontsteking.",
+                          "Een kuur duurt meestal 5 tot 10 dagen, soms langer. Maak de hele kuur af. Ook als de infectie genezen lijkt, want misschien zijn er nog bacteriën over."
+                      ],
+                      mogelijkeBijwerkingen: [
+                          "Maagdarmklachten, zoals diarree of slappe ontlasting en lichte buikkrampen. Dit gaat vanzelf over binnen enkele dagen.",
+                          "Huiduitslag met rode vlekjes en bultjes. Dit kan ook nog enkele dagen na afloop van de kuur ontstaan."
+                      ],
+                      hoeGebruiken: "Capsules: innemen met een half glas water of andere drank."
                     }
                 ],
                 oefeningen: [
