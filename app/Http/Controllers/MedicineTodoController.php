@@ -10,11 +10,11 @@ class MedicineTodoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function index()
     {
-        //
+        return Medicine_todo::all();
     }
 
     /**
@@ -42,11 +42,11 @@ class MedicineTodoController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Medicine_todo  $medicine_todo
-     * @return \Illuminate\Http\Response
+     * @return Medicine_todo
      */
     public function show(Medicine_todo $medicine_todo)
     {
-        //
+        return $medicine_todo;
     }
 
     /**

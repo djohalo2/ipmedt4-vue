@@ -10,11 +10,11 @@ class ExcerciseTodoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function index()
     {
-        //
+        return Excercise_todo::all();
     }
 
     /**
@@ -42,11 +42,11 @@ class ExcerciseTodoController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Excercise_todo  $excercise_todo
-     * @return \Illuminate\Http\Response
+     * @return Excercise_todo
      */
     public function show(Excercise_todo $excercise_todo)
     {
-        //
+        return $excercise_todo;
     }
 
     /**

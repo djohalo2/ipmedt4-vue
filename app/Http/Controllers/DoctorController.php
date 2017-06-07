@@ -10,11 +10,11 @@ class DoctorController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function index()
     {
-        //
+        return Doctor::all();
     }
 
     /**
@@ -42,11 +42,11 @@ class DoctorController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
+     * @return Doctor
      */
     public function show(Doctor $doctor)
     {
-        //
+        return $doctor;
     }
 
     /**

@@ -10,11 +10,11 @@ class DepartmentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function index()
     {
-        //
+        return Department::all();
     }
 
     /**
@@ -42,11 +42,11 @@ class DepartmentController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Department  $department
-     * @return \Illuminate\Http\Response
+     * @return Department
      */
     public function show(Department $department)
     {
-        //
+        return $department;
     }
 
     /**

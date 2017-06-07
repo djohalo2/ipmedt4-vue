@@ -8,7 +8,7 @@ class Therapy extends Model
 {
     public $fillable = ['name', 'patient_id', 'start_date', 'end_date', 'created_by', 'last_update_by'];
 
-//    protected $with = ['patient', 'created_by', 'last_update_by', 'notes', 'excercises', 'bodyparts'];
+    protected $with = ['created_by', 'last_update_by', 'notes', 'excercises', 'bodyparts', 'medicines', 'medicine_todo', 'excercise_todo'];
 
     public function patient()
     {
@@ -27,12 +27,7 @@ class Therapy extends Model
 
     public function notes()
     {
-        return $this->hasMany('App\Note', 'therapy_id', 'id');
-    }
-
-    public function medications()
-    {
-        return $this->hasMany('App\Medication', 'therapy_id', 'id');
+        return $this->hasMany('App\Doctor_note', 'therapy_id', 'id');
     }
 
     public function excercises()
@@ -40,9 +35,24 @@ class Therapy extends Model
         return $this->belongsToMany('App\Excercise', 'therapy_excercise', 'therapy_id', 'excercise_id');
     }
 
+    public function medicines()
+    {
+        return $this->belongsToMany('App\Medicine', 'therapy_medicine', 'therapy_id', 'medicine_id');
+    }
+
     public function bodyparts()
     {
         return $this->belongsToMany('App\Bodypart', 'therapy_bodypart', 'therapy_id', 'bodypart_id');
+    }
+
+    public function medicine_todo()
+    {
+        return $this->hasMany('App\Medicine_todo', 'therapy_id', 'id');
+    }
+
+    public function excercise_todo()
+    {
+        return $this->hasMany('App\Excercise_todo', 'therapy_id', 'id');
     }
 
 

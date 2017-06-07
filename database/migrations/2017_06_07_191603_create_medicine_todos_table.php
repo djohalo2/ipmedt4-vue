@@ -20,7 +20,7 @@ class CreateMedicineTodosTable extends Migration
             $table->string('amount');
             $table->dateTime('time_date');
             $table->boolean('done');
-            $table->dateTime('completion');
+            $table->dateTime('complete_date')->nullable();
             $table->timestamps();
 
             $table->foreign('therapy_id')->references('id')->on('therapies');
