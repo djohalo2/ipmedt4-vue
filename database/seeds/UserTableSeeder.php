@@ -20,9 +20,20 @@ class UserTableSeeder extends Seeder
                 'name'          => 'Bas van Bovene',
                 'email'         => 's1096181@student.hsleiden.nl',
                 'password'      => Hash::make(env('USER_PASSWORD', 'secret')),
+                'type'          => 'doctor',
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now()
+            ],
+            [
+                'username'      => 'bas',
+                'name'          => 'Bas van Bovene',
+                'email'         => 'bas@bovene.nl',
+                'password'      => Hash::make(env('USER_PASSWORD', 'secret')),
+                'type'          => 'patient',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now()
             ]
+
         ]);
     }
 }

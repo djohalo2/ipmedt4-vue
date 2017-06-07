@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Medication;
+use App\Department;
 use Illuminate\Http\Request;
 
-class MedicationController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MedicationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Medication  $medication
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show(Medication $medication)
+    public function show(Department $department)
     {
         //
     }
@@ -52,10 +52,10 @@ class MedicationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Medication  $medication
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medication $medication)
+    public function edit(Department $department)
     {
         //
     }
@@ -64,10 +64,10 @@ class MedicationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Medication  $medication
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Medication $medication)
+    public function update(Request $request, Department $department)
     {
         //
     }
@@ -75,10 +75,10 @@ class MedicationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Medication  $medication
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Medication $medication)
+    public function destroy(Department $department)
     {
         //
     }
