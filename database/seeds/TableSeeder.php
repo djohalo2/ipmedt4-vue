@@ -28,7 +28,7 @@ class TableSeeder extends Seeder
      */
     public function run()
     {
-        $doctor_user = User::firstOrCreate([
+        $doctor_user = User::insert([
             'username'      => 'boris_reuk',
             'name'          => 'Boris Reuk',
             'email'         => 'boris_reuk@lumc.nl',
@@ -38,7 +38,7 @@ class TableSeeder extends Seeder
             'updated_at'    => Carbon::now()
         ]);
 
-        $patient_user = User::firstOrCreate([
+        $patient_user = User::insert([
             'username'      => 'bas',
             'name'          => 'Bas van Bovene',
             'email'         => 'bas@bovene.nl',
