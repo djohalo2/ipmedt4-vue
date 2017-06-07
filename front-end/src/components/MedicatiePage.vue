@@ -7,7 +7,7 @@
                     <p><i>warning</i>{{medicijn.aantal}}x per dag innemen om de 4 uur.</p>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-title">
                     {{medicijn.title}}
