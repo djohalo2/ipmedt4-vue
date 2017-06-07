@@ -14,7 +14,7 @@
             <div class="card-content">
                 {{content}}
             </div>
-            <button class="primary clear">Bekijk</button>
+            <!-- <button class="primary clear">Bekijk</button> -->
         </div>
 </template>
 

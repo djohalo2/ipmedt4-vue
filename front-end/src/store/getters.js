@@ -38,6 +38,15 @@ export default {
         });
         return notities;
     },
+    getAllOefeningen(state){
+        let oefeningen = [];
+        state.behandelingen.map(behandeling => {
+            behandeling.oefeningen.map(oefening =>{
+                oefeningen.push(oefening);
+            });
+        });
+        return oefeningen;
+    },
     getNotities(state) {
         return state.currentBehandeling.notities;
     },
