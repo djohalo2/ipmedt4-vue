@@ -8,7 +8,7 @@ class Excercise extends Model
 {
     public $fillable = ['title', 'description', 'video_id'];
 
-    protected $with = ['types', 'video', 'therapies'];
+    protected $with = ['types', 'video'];
 
     public function types()
     {

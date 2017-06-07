@@ -12,6 +12,6 @@ class Medicine_todo extends Model
 
     public function medicine()
     {
-        return $this->hasOne('App\Medicine', 'medicine_id', 'id');
+        return $this->hasOne('App\Medicine', 'id', 'medicine_id');
     }
 }

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
 
-    protected $fillable = ['firstname', 'lastname', 'email', 'phone', 'birthday', 'street', 'street_number', 'postal_code', 'city', 'user_id'];
+    public $fillable = ['firstname', 'lastname', 'email', 'phone', 'birthday', 'street', 'street_number', 'postal_code', 'city', 'user_id'];
 
-    public $with = ['therapy', 'notes'];
+    protected $with = ['therapys', 'notes'];
 
-    public function therapy()
+    public function therapys()
     {
-        return $this->hasMany('App\Therapy', 'patient_id', 'id');
+        return $this->hasMany('App\Therapy');
     }
 
     public function notes()

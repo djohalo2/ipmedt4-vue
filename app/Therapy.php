@@ -8,24 +8,24 @@ class Therapy extends Model
 {
     public $fillable = ['name', 'patient_id', 'start_date', 'end_date', 'created_by', 'last_update_by'];
 
-    protected $with = ['created_by', 'last_update_by', 'notes', 'excercises', 'bodyparts', 'medicines', 'medicine_todo', 'excercise_todo'];
+    protected $with = ['created_by', 'last_update_by', 'doctor_notes', 'excercises', 'bodyparts', 'medicines', 'medicine_todo', 'excercise_todo'];
 
     public function patient()
     {
-        return $this->hasOne('App\Patient', 'id', 'patient_id');
+        return $this->belongsTo('App\Patient', 'patient_id');
     }
 
     public function created_by()
     {
-        return $this->hasOne('App\User', 'id', 'created_by');
+        return $this->hasOne('App\Doctor', 'id', 'created_by');
     }
 
     public function last_update_by()
     {
-        return $this->hasOne('App\User', 'id', 'last_update_by');
+        return $this->hasOne('App\Doctor', 'id', 'last_update_by');
     }
 
-    public function notes()
+    public function doctor_notes()
     {
         return $this->hasMany('App\Doctor_note', 'therapy_id', 'id');
     }

@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Medicine extends Model
 {
-    public $fillable = ['name'];
+    public $fillable = ['name', 'important', 'side_effects', 'usage'];
+
+
 }

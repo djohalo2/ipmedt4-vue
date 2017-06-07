@@ -12,6 +12,6 @@ class Excercise_todo extends Model
 
     public function excercise()
     {
-        return $this->hasOne('App\Excercise', 'excercise_id', 'id');
+        return $this->hasOne('App\Excercise', 'id', 'excercise_id');
     }
 }

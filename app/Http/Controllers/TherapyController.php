@@ -41,15 +41,16 @@ class TherapyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param Therapy $therapy
      * @return Therapy
+     * @internal param $id
      * @internal param Therapy $therapy
      * @internal param $id
      * @internal param Therapy $therapy
      */
-    public function show($id)
+    public function show(Therapy $therapy)
     {
-        return Therapy::find($id)->with('medications', 'patient', 'notes')->get();
+        return $therapy;
     }
 
     /**
