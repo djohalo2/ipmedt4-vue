@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export default {
     [CHANGE_CURRENT_BEHANDELING](state, id) {
-        state.currentBehandeling = state.behandelingen.filter(behandeling => behandeling.id === id)[0];
+        state.currentBehandeling = state.patientData.therapys.filter(behandeling => behandeling.id === id)[0];
     },
     [CHANGE_CURRENT_MEDICIJN](state, id) {
         state.behandelingen.map(behandeling => {

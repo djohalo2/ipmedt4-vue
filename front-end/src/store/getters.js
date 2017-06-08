@@ -1,6 +1,6 @@
 export default {
     totalBehandelingen(state) {
-        return state.behandelingen;
+        return state.patientData.therapys;
     },
     getCurrentBehandelingType(state){
         return state.currentBehandeling.id;
@@ -13,30 +13,37 @@ export default {
     },
     getAllTodos(state) {
         let todos = [];
-        state.behandelingen.map(behandeling => {
-            behandeling.todos.map(todo =>{
+        state.patientData.therapys.map(behandeling => {
+            behandeling.medicine_todo.map(todo =>{
                 todos.push(todo);
             });
+
+            // behandeling.excercise_todo.map(todo => {
+            //     todos.push(todo);
+            // });
         });
         return todos;
     },
     getAllMedicatie(state) {
         let medicatie = [];
-        state.behandelingen.map(behandeling => {
-            behandeling.medicatie.map(medicijn =>{
+        state.patientData.therapys.map(behandeling => {
+            behandeling.medicines.map(medicijn =>{
                 medicatie.push(medicijn);
             });
         });
         return medicatie;
     },
-    getAllNotities(state) {
+    getArtsNotities(state) {
         let notities = [];
-        state.behandelingen.map(behandeling => {
-            behandeling.notities.map(notitie =>{
+        state.patientData.therapys.map(behandeling => {
+            behandeling.doctor_notes.map(notitie =>{
                 notities.push(notitie);
             });
         });
         return notities;
+    },
+    getPatientNotities(state) {
+        return state.patientData.notes;
     },
     getAllOefeningen(state){
         let oefeningen = [];
@@ -54,6 +61,13 @@ export default {
       return state.currentMedicijn;
     },
     getPatientInfo(state) {
-        return state.patientInfo;
+        return {
+            name: state.patientData.gender + " " + state.patientData.firstname + " " + state.patientData.lastname,
+            email: state.patientData.email,
+            phone: state.patientData.phone,
+            address: state.patientData.street + " " + state.patientData.street_number,
+            city: state.patientData.postal_code + " " + state.patientData.city,
+            birthday: state.patientData.birthday
+        };
     }
 }

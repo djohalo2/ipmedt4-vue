@@ -1,15 +1,15 @@
 <template>
     <div class="layout-view">
         <div class="layout-padding">
-            <p class="profile-name">{{patient.voornaam}} {{patient.achternaam}}</p>
-            <img class="profile-img" :src="patient.foto">
+            <p class="profile-name">{{patient.name}}</p>
+            <!-- <img class="profile-img" :src="patient.foto"> -->
             <div class="card">
                 <div class="card-title">
                     <p class="text-primary">MIJN GEGEVENS</p>
                     <ul>
                         <li>
                             <i>person</i>
-                            <p>{{patient.voornaam}} {{patient.achternaam}}</p>
+                            <p>{{patient.name}}</p>
                         </li>
 
                         <li>
@@ -19,12 +19,22 @@
 
                         <li>
                             <i>smartphone</i>
-                            <p>{{patient.telefoon}}</p>
+                            <p>{{patient.phone}}</p>
                         </li>
 
                         <li>
                             <i>today</i>
-                            <p>{{patient.geboortedatum}}</p>
+                            <p>{{patient.birthday}}</p>
+                        </li>
+
+                        <li>
+                            <i>today</i>
+                            <p>{{patient.address}}</p>
+                        </li>
+
+                        <li>
+                            <i>today</i>
+                            <p>{{patient.city}}</p>
                         </li>
                     </ul>
 

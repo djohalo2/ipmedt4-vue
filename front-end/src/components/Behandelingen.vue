@@ -2,7 +2,7 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">Openstaande behandelingen</p>
-            <behandeling-card v-for="behandeling in behandelingen" :id="behandeling.id" :title="behandeling.title" :content="behandeling.description" :category="behandeling.category" :date="behandeling.date"></behandeling-card>
+            <behandeling-card v-for="behandeling in behandelingen" :id="behandeling.id" :title="behandeling.name" :bodyparts="behandeling.bodyparts[0].name" :date="behandeling.start_date"></behandeling-card>
         </div>
     </div>
 </template>

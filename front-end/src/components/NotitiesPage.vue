@@ -8,14 +8,14 @@
               :options="selectOptions"
             ></q-select>
             <p class="page-title">NOTITIES</p>
-            <p class="no-entries-msg" v-if="notities.length === 0">
+            <p class="no-entries-msg" v-if="artsNotities.length === 0">
                 Er zijn geen notities gevonden.
             </p>
 
-            <div v-if="notities.length > 0" class="list item-delimiter">
-                <q-collapsible group="notities" v-for="notitie in notities" :label="notitie.title">
+            <div v-if="artsNotities.length > 0" class="list item-delimiter">
+                <q-collapsible group="notities" v-for="notitie in artsNotities" :label="notitie.note">
                     <div>
-                        <p>{{notitie.content}}</p>
+                        <p>{{notitie.note}}</p>
                     </div>
                 </q-collapsible>
             </div>
@@ -39,15 +39,15 @@ export default {
         return {
             noteTitle: "",
             noteContent: "",
-            noteTypeSelect: "patient",
+            noteTypeSelect: "arts",
             selectOptions: [
-                {
-                    label: 'Patient',
-                    value: 'patient'
-                },
                 {
                     label: 'Arts',
                     value: 'arts'
+                },
+                {
+                    label: 'Patient',
+                    value: 'patient'
                 }
             ]
         }
@@ -62,9 +62,13 @@ export default {
         }
     },
     computed: {
-        notities() {
-            return this.$store.getters.getAllNotities
+        artsNotities() {
+            return this.$store.getters.getArtsNotities
+        },
+        patientNotities() {
+            return this.$store.getters.getPatientNotities
         }
+
     }
 }
 </script>

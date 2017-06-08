@@ -6,7 +6,7 @@
                 Er zijn geen medicijnen aanwezig in deze behandeling.
             </p>
             <span v-on:click="labelClick('/behandeling/' + medicijn.behandeling + '/medicatie/' + medicijn.id, medicijn.behandeling)" class="label bg-primary" v-for="medicijn in medicatie">
-                {{medicijn.title}}
+                {{medicijn.name}}
             </span>
         </div>
     </div>

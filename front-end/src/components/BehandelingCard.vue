@@ -2,7 +2,7 @@
         <div class="card" v-on:click="cardClick">
             <span class="chip label bg-primary text-white float-right">
                 <i>group</i>
-                {{category}}
+                {{bodyparts}}
             </span>
             <div class="card-title">
                 {{title}}
@@ -12,7 +12,7 @@
                 Behandeling loopt vanaf {{date}}
             </div>
             <div class="card-content">
-                {{content}}
+                
             </div>
             <!-- <button class="primary clear">Bekijk</button> -->
         </div>
@@ -23,7 +23,7 @@ import router from 'vue-router';
 
 export default {
     name: 'behandeling-card',
-    props: ['id', 'title', 'content', 'category', 'date'],
+    props: ['id', 'title', 'bodyparts', 'date'],
     methods: {
         cardClick() {
             this.$router.push({path: 'behandeling/' + this.id});
