@@ -1,4 +1,4 @@
-import { CHANGE_CURRENT_BEHANDELING, CHANGE_CURRENT_MEDICIJN, TOGGLE_TODO, ADD_NOTE } from './mutation-types';
+import { CHANGE_CURRENT_BEHANDELING, CHANGE_CURRENT_MEDICIJN, TOGGLE_TODO, ADD_NOTE, FETCH_PATIENT } from './mutation-types';
 import _ from 'lodash';
 
 export default {
@@ -21,5 +21,8 @@ export default {
     },
     [ADD_NOTE](state, payload) {
 
+    },
+    [FETCH_PATIENT](state, payload) {
+        state.patientData = payload;
     }
 }

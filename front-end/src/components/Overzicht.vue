@@ -12,6 +12,8 @@
 import TodoList from './TodoList.vue';
 import MedicatieList from './MedicatieList';
 
+import { mapActions } from 'vuex';
+
 export default {
     name: 'overzicht',
     components: {
@@ -21,6 +23,14 @@ export default {
     computed: {
         medicatie() {
             return this.$store.getters.getAllMedicatie;
+        }
+    },
+    created() {
+        this.fetchPatientData();
+    },
+    methods: {
+        fetchPatientData() {
+            this.$store.dispatch('FETCH_PATIENT');
         }
     }
 }
