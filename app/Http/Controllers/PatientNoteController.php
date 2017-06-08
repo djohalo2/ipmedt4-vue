@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Patient_note;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PatientNoteController extends Controller
@@ -31,11 +32,23 @@ class PatientNoteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->title;
+        $patient_id = $request->patient_id;
+        $note = $request->note;
+
+        Patient_note::insert([
+            'title' => $title,
+            'patient_id' => $patient_id,
+            'note' => $note,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        return ['success' => 1];
     }
 
     /**
