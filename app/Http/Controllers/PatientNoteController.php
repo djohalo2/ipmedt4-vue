@@ -76,13 +76,29 @@ class PatientNoteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Patient_note  $patient_note
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param $id
+     * @return array
+     * @internal param Patient_note $patient_note
      */
-    public function update(Request $request, Patient_note $patient_note)
+    public function update(Request $request, $id)
     {
-        //
+        $patient_note = Patient_note::where('id', '=', $id)->first();
+
+        $title = $request->input('title');
+        $note = $request->input('note');
+
+        $patient_note->title = $title;
+        $patient_note->note = $note;
+
+        $save = $patient_note->save();
+
+        if ($save) {
+            return ['success' => 1];
+        } else {
+            return ['success' => 0];
+        }
+
     }
 
     /**
