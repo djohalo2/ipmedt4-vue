@@ -15,7 +15,8 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('gender');
+            $table->string('avatar')->default('http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png');
+            $table->string('gender')->nullable();
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');

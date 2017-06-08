@@ -15,6 +15,7 @@ class CreatePatientNotesTable extends Migration
     {
         Schema::create('patient_notes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
             $table->integer('patient_id')->unsigned();
             $table->longText('note');
             $table->timestamps();
