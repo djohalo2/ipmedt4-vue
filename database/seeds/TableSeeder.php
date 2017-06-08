@@ -206,5 +206,13 @@ class TableSeeder extends Seeder
             'time_date' => '2017-06-07 12:30:00',
             'done' => false
         ]);
+        Medicine_todo::firstOrCreate([
+            'therapy_id' => $therapy1->id,
+            'medicine_id' => $medicine->id,
+            'amount' => '2 stuks',
+            'time_date' => '2017-06-08 12:30:00',
+            'done' => false
+        ]);
+
     }
 }

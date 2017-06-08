@@ -82,4 +82,9 @@ class PatientController extends Controller
     {
         //
     }
+
+    public function patient_user_id($user_id)
+    {
+        return Patient::where('user_id', '=', $user_id)->first();
+    }
 }

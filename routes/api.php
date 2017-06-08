@@ -36,6 +36,8 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
         $api->resource('doctor', \App\Http\Controllers\DoctorController::class, $except);
         $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class, $except);
 
+
+        $api->get('patient/user/{user_id}',              ['as' => 'patient.user_id',  'uses' => '\App\Http\Controllers\PatientController@patient_user_id']);
     });
 
 
