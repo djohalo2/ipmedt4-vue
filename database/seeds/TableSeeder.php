@@ -129,7 +129,7 @@ class TableSeeder extends Seeder
                 'bodypart_id' => $bodypart1->id
             ],
             [
-                'therapy_id' => $therapy1->id,
+                'therapy_id' => $therapy2->id,
                 'bodypart_id' => $bodypart2->id
             ],
         ]);
