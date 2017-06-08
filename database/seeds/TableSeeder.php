@@ -28,7 +28,7 @@ class TableSeeder extends Seeder
      */
     public function run()
     {
-        $doctor_user = User::firstOrCreate([
+        $doctor_user = User::insert([
             'username'      => 'boris_reuk',
             'name'          => 'Boris Reuk',
             'email'         => 'boris_reuk@lumc.nl',
@@ -38,7 +38,7 @@ class TableSeeder extends Seeder
             'updated_at'    => Carbon::now()
         ]);
 
-        $patient_user = User::firstOrCreate([
+        $patient_user = User::insert([
             'username'      => 'bas',
             'name'          => 'Bas van Bovene',
             'email'         => 'bas@bovene.nl',
@@ -61,7 +61,7 @@ class TableSeeder extends Seeder
             'street_number' => '104',
             'postal_code' => '2332GP',
             'city' => 'zoeterwoude',
-            'user_id' => $patient_user->id
+            'user_id' => 2
         ]);
 
         $department = Department::firstOrCreate([
@@ -71,7 +71,7 @@ class TableSeeder extends Seeder
         ]);
 
         $doctor = Doctor::firstOrCreate([
-            'user_id' => $doctor_user->id,
+            'user_id' => 1,
             'gender' => 'Dr',
             'firstname' => 'Boris',
             'lastname' => 'Reuk',
@@ -84,31 +84,31 @@ class TableSeeder extends Seeder
 
         $therapy1 = Therapy::firstOrCreate([
             'name' => 'test_therapy_1',
-            'patient_id' => $patient->id,
+            'patient_id' => 1,
             'start_date' => '2017-06-30',
             'end_date' => '2017-07-30',
-            'created_by' => $doctor->id,
-            'last_update_by' => $doctor->id
+            'created_by' => 1,
+            'last_update_by' => 1
         ]);
 
         $therapy2 = Therapy::firstOrCreate([
             'name' => 'test_therapy_2',
-            'patient_id' => $patient->id,
+            'patient_id' => 1,
             'start_date' => '2017-06-27',
             'end_date' => '2017-07-10',
-            'created_by' => $doctor->id,
-            'last_update_by' => $doctor->id
+            'created_by' => 1,
+            'last_update_by' => 1
         ]);
 
 
 
         $patient_note = Patient_note::firstOrCreate([
-            'patient_id' => $patient->id,
+            'patient_id' => 1,
             'note' => 'test patient note'
         ]);
 
         $doctor_note = Doctor_note::firstOrCreate([
-            'added_by' => $doctor->id,
+            'added_by' => 1,
             'therapy_id' => $therapy1->id,
             'note' => 'therapy 1 test doctor note'
         ]);
