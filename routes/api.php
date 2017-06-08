@@ -34,7 +34,7 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
         $api->resource('medicine_todo', \App\Http\Controllers\MedicineTodoController::class);
         $api->resource('department', \App\Http\Controllers\DepartmentController::class, $except);
         $api->resource('doctor', \App\Http\Controllers\DoctorController::class, $except);
-        $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class, $except);
+        $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class);
 
         $api->get('authenticate/checkuser', ['as' => 'authenticate.checkuser',  'uses' => '\App\Http\Controllers\AuthenticateController@authenticateCheck']);
 
