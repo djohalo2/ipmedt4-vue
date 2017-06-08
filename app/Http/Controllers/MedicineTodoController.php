@@ -64,9 +64,10 @@ class MedicineTodoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Medicine_todo  $medicine_todo
+     * @param  \Illuminate\Http\Request $request
+     * @param $id
      * @return array
+     * @internal param Medicine_todo $medicine_todo
      */
     public function update(Request $request, $id)
     {
@@ -75,7 +76,12 @@ class MedicineTodoController extends Controller
         $done = $request->input('done');
 
         $medicine_todo->done = $done;
-        $medicine_todo->complete_date = Carbon::now()->addHours(2);
+
+        if ($done == 1) {
+            $medicine_todo->complete_date = Carbon::now()->addHours(2);
+        } else {
+            $medicine_todo->complete_date = null;
+        }
 
         $save = $medicine_todo->save();
 
