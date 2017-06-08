@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Medicine_todo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MedicineTodoController extends Controller
@@ -65,11 +66,24 @@ class MedicineTodoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Medicine_todo  $medicine_todo
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function update(Request $request, Medicine_todo $medicine_todo)
+    public function update(Request $request, $id)
     {
-        //
+        $medicine_todo = Medicine_todo::where('id', '=', $id)->first();
+
+        $done = $request->input('done');
+
+        $medicine_todo->done = $done;
+        $medicine_todo->complete_date = Carbon::now()->addHours(2);
+
+        $save = $medicine_todo->save();
+
+        if ($save) {
+            return ['success' => 1];
+        } else {
+            return ['success' => 0];
+        }
     }
 
     /**

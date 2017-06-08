@@ -31,7 +31,7 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
         $api->resource('type', \App\Http\Controllers\TypeController::class, $except);
         $api->resource('video', \App\Http\Controllers\VideoController::class, $except);
         $api->resource('medicine', \App\Http\Controllers\MedicineController::class, $except);
-        $api->resource('medicine_todo', \App\Http\Controllers\MedicineTodoController::class, $except);
+        $api->resource('medicine_todo', \App\Http\Controllers\MedicineTodoController::class);
         $api->resource('department', \App\Http\Controllers\DepartmentController::class, $except);
         $api->resource('doctor', \App\Http\Controllers\DoctorController::class, $except);
         $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class, $except);

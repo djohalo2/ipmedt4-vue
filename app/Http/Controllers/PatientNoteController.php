@@ -104,11 +104,18 @@ class PatientNoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Patient_note  $patient_note
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return array
+     * @internal param Patient_note $patient_note
      */
-    public function destroy(Patient_note $patient_note)
+    public function destroy($id)
     {
-        //
+        $delete = Patient_note::where('id', '=', $id)->delete();
+
+        if ($delete == 1) {
+            return ['success' => 1];
+        } else {
+            return ['success' => 0];
+        }
     }
 }
