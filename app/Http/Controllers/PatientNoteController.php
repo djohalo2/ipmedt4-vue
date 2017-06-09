@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Patient_note;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PatientNoteController extends Controller
@@ -31,11 +32,23 @@ class PatientNoteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->title;
+        $patient_id = $request->patient_id;
+        $note = $request->note;
+
+        Patient_note::insert([
+            'title' => $title,
+            'patient_id' => $patient_id,
+            'note' => $note,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        return ['success' => 1];
     }
 
     /**
@@ -63,23 +76,46 @@ class PatientNoteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Patient_note  $patient_note
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param $id
+     * @return array
+     * @internal param Patient_note $patient_note
      */
-    public function update(Request $request, Patient_note $patient_note)
+    public function update(Request $request, $id)
     {
-        //
+        $patient_note = Patient_note::where('id', '=', $id)->first();
+
+        $title = $request->input('title');
+        $note = $request->input('note');
+
+        $patient_note->title = $title;
+        $patient_note->note = $note;
+
+        $save = $patient_note->save();
+
+        if ($save) {
+            return ['success' => 1];
+        } else {
+            return ['success' => 0];
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Patient_note  $patient_note
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return array
+     * @internal param Patient_note $patient_note
      */
-    public function destroy(Patient_note $patient_note)
+    public function destroy($id)
     {
-        //
+        $delete = Patient_note::where('id', '=', $id)->delete();
+
+        if ($delete == 1) {
+            return ['success' => 1];
+        } else {
+            return ['success' => 0];
+        }
     }
 }

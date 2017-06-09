@@ -15,6 +15,7 @@ class CreateDoctorNotesTable extends Migration
     {
         Schema::create('doctor_notes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
             $table->integer('added_by')->unsigned();
             $table->integer('therapy_id')->unsigned();
             $table->longText('note');

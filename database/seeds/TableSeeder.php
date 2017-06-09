@@ -103,11 +103,13 @@ class TableSeeder extends Seeder
 
 
         $patient_note = Patient_note::firstOrCreate([
+            'title' => 'Patient note 1',
             'patient_id' => 1,
             'note' => 'test patient note'
         ]);
 
         $doctor_note = Doctor_note::firstOrCreate([
+            'title' => 'doctor note 1',
             'added_by' => 1,
             'therapy_id' => $therapy1->id,
             'note' => 'therapy 1 test doctor note'

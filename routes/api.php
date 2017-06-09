@@ -23,18 +23,18 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
 
         $except = ['except' => ['update']];
         $api->resource('patient', \App\Http\Controllers\PatientController::class, $except);
-        $api->resource('patient_note', \App\Http\Controllers\PatientNoteController::class, $except);
+        $api->resource('patient_note', \App\Http\Controllers\PatientNoteController::class);
         $api->resource('bodypart', \App\Http\Controllers\BodypartController::class, $except);
         $api->resource('excercise', \App\Http\Controllers\ExcerciseController::class, $except);
-        $api->resource('excercise_todo', \App\Http\Controllers\ExcerciseTodoController::class, $except);
+        $api->resource('excercise_todo', \App\Http\Controllers\ExcerciseTodoController::class);
         $api->resource('therapy', \App\Http\Controllers\TherapyController::class, $except);
         $api->resource('type', \App\Http\Controllers\TypeController::class, $except);
         $api->resource('video', \App\Http\Controllers\VideoController::class, $except);
         $api->resource('medicine', \App\Http\Controllers\MedicineController::class, $except);
-        $api->resource('medicine_todo', \App\Http\Controllers\MedicineTodoController::class, $except);
+        $api->resource('medicine_todo', \App\Http\Controllers\MedicineTodoController::class);
         $api->resource('department', \App\Http\Controllers\DepartmentController::class, $except);
         $api->resource('doctor', \App\Http\Controllers\DoctorController::class, $except);
-        $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class, $except);
+        $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class);
 
         $api->get('authenticate/checkuser', ['as' => 'authenticate.checkuser',  'uses' => '\App\Http\Controllers\AuthenticateController@authenticateCheck']);
 

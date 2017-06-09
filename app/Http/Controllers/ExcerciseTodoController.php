@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Excercise_todo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ExcerciseTodoController extends Controller
@@ -63,13 +64,32 @@ class ExcerciseTodoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Excercise_todo  $excercise_todo
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param $id
+     * @return array
+     * @internal param Excercise_todo $excercise_todo
      */
-    public function update(Request $request, Excercise_todo $excercise_todo)
+    public function update(Request $request, $id)
     {
-        //
+        $excercise_todo = Excercise_todo::where('id', '=', $id)->first();
+
+        $done = $request->input('done');
+
+        $excercise_todo->done = $done;
+
+        if ($done == 1) {
+            $excercise_todo->complete_date = Carbon::now()->addHours(2);
+        } else {
+            $excercise_todo->complete_date = null;
+        }
+
+        $save = $excercise_todo->save();
+
+        if ($save) {
+            return ['success' => 1];
+        } else {
+            return ['success' => 0];
+        }
     }
 
     /**
