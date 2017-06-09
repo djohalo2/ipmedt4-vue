@@ -10,12 +10,23 @@
 </template>
 
 <script>
+
+
 export default {
     name: 'todo',
-    props: ['name', 'date', 'completed'],
+    props: ['id', 'name', 'date', 'completed'],
+    data() {
+        return {
+            checked: false
+        }
+    },
     methods: {
         toggleTodo() {
-            this.$store.commit('TOGGLE_TODO', this.name);
+            let data = {
+                id: this.id,
+                completed: this.completed
+            }
+            this.$store.dispatch('TOGGLE_TODO', data);
         }
     }
 

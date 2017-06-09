@@ -25,9 +25,6 @@ export default {
             return this.$store.getters.getAllMedicatie;
         }
     },
-    created() {
-        this.fetchPatientData();
-    },
     methods: {
         fetchPatientData() {
             this.$store.dispatch('FETCH_PATIENT');

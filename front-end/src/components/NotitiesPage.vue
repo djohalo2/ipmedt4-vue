@@ -13,7 +13,7 @@
             </p>
 
             <div v-if="artsNotities.length > 0" class="list item-delimiter">
-                <q-collapsible group="notities" v-for="notitie in artsNotities" :label="notitie.note">
+                <q-collapsible group="notities" v-for="notitie in artsNotities" :label="notitie.title">
                     <div>
                         <p>{{notitie.note}}</p>
                     </div>

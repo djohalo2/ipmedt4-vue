@@ -9,16 +9,16 @@
                   <p>Uw persoonlijke zorghandboek.</p>
                 </div>
                 <div class="card-content">
-                  <form class="login" action="#" method="post">
+                  <form class="login">
                     <div class="floating-label">
-                      <input required class="full-width">
+                      <input v-model="username" required class="full-width">
                       <label>Gebruikersnaam</label>
                     </div>
                     <div class="floating-label">
-                      <input type="password" required class="full-width">
+                      <input v-model="password" type="password" required class="full-width">
                       <label>Wachtwoord</label>
                     </div>
-                    <button class="primary" @click="">
+                    <button class="primary" v-on:submit.prevent @click="login">
                       Log in
                     </button>
                   </form>
@@ -30,7 +30,34 @@
 </template>
 
 <script>
+import router from 'vue-router';
 
+export default {
+    data(){
+        return {
+            username: "",
+            password: ""
+        }
+    },
+    methods: {
+        login() {
+            let payload = {
+                username: this.username,
+                password: this.password
+            };
+            this.$store.dispatch('FETCH_TOKEN', payload).then(() => {
+                this.$store.dispatch('CHECK_TOKEN').then(() => {
+                    this.$store.dispatch('FETCH_PATIENT');
+                    this.$router.push({'path': '/'})
+                }).catch((err) => {
+                    console.log(err);
+                })
+            }).catch((err) => {
+                console.log(err)
+            });
+        }
+    }
+}
 </script>
 
 <style lang="styl" scoped>

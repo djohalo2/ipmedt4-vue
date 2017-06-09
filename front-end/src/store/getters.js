@@ -14,22 +14,22 @@ export default {
     getAllTodos(state) {
         let todos = [];
         state.patientData.therapys.map(behandeling => {
-            behandeling.medicine_todo.map(todo =>{
-                todos.push(todo);
-            });
-
-            // behandeling.excercise_todo.map(todo => {
-            //     todos.push(todo);
-            // });
+            if(behandeling.medicine_todo.length > 0){
+                behandeling.medicine_todo.map(todo =>{
+                    todos.push(todo);
+                });
+            }
         });
         return todos;
     },
     getAllMedicatie(state) {
         let medicatie = [];
         state.patientData.therapys.map(behandeling => {
-            behandeling.medicines.map(medicijn =>{
-                medicatie.push(medicijn);
-            });
+            if(behandeling.medicines.length > 0){
+                behandeling.medicines.map(medicijn =>{
+                    medicatie.push(medicijn);
+                });
+            }
         });
         return medicatie;
     },

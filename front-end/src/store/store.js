@@ -11,7 +11,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         patientData: {},
-        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cLzE3OC42Mi4yNDAuMTIzXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5NjgzMDEyMSwiZXhwIjoxNDk5NDIyMTIxLCJuYmYiOjE0OTY4MzAxMjEsImp0aSI6IlJQQ0VyUnpoUzM0aVpMcm8ifQ.4OwPmcmKuUP621VX2eZyA_NgLHQRi4WfYwZkkCs-Zv0",
+        token: "",
         currentBehandeling: {},
         currentMedicijn: {},
         realData: {},

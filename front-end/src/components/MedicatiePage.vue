@@ -10,7 +10,7 @@
 
             <div class="card">
                 <div class="card-title">
-                    {{medicijn.title}}
+                    {{medicijn.name}}
                 </div>
                 <div class="card-content">
                     {{medicijn.description}}
@@ -18,23 +18,17 @@
                 <div class="list">
                     <q-collapsible icon="add_circle" group="medicatie" :label="'Belangrijke informatie'">
                         <div>
-                            <ul>
-                                <li v-for="info in medicijn.belangrijkeInformatie">{{info}}</li>
-                            </ul>
+                            <p>{{medicijn.important}}</p>
                         </div>
                   </q-collapsible>
                   <q-collapsible icon="add_circle" group="medicatie" label="Mogelijke bijwerkingen">
                       <div>
-                          <ul>
-                              <li v-for="bijwerking in medicijn.mogelijkeBijwerkingen">{{bijwerking}}</li>
-                          </ul>
+                          <p>{{medicijn.side_effects}}</p>
                       </div>
                   </q-collapsible>
                   <q-collapsible icon="add_circle" group="medicatie" label="Hoe gebruiken?">
                       <div>
-                          <ul>
-                              <li>{{medicijn.hoeGebruiken}}</li>
-                          </ul>
+                          <p>{{medicijn.usage}}</p>
                       </div>
                   </q-collapsible>
                 </div>

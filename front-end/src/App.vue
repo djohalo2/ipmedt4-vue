@@ -12,10 +12,26 @@
 import TopHeader from 'components/Header.vue';
 import Navigation from 'components/Navigation.vue';
 
+import { LocalStorage } from 'quasar';
+import router from 'vue-router';
+
 export default {
     components: {
         TopHeader,
         Navigation
+    },
+    beforeCreate(){
+        if(LocalStorage.get.item('token')){
+            this.$store.dispatch('CHECK_TOKEN');
+            this.$store.dispatch('FETCH_PATIENT');
+        }
+    },
+    beforeUpdate(){
+        if(LocalStorage.get.item('token') === null){
+            this.$router.push({path: '/login'});
+        }else {
+            this.$store.dispatch('CHECK_TOKEN');
+        }
     }
 }
 </script>

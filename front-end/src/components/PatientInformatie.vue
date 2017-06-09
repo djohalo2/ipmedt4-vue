@@ -2,7 +2,7 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="profile-name">{{patient.name}}</p>
-            <!-- <img class="profile-img" :src="patient.foto"> -->
+            <img class="profile-img" :src="patient.avatar">
             <div class="card">
                 <div class="card-title">
                     <p class="text-primary">MIJN GEGEVENS</p>

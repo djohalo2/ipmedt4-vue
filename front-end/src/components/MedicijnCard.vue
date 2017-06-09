@@ -23,7 +23,7 @@ export default {
     props: ['id', 'behandeling', 'title', 'aantal', 'date'],
     methods: {
         cardClick() {
-            this.$router.push({path: '/behandeling/' + this.behandeling + '/medicatie/' + this.id});
+            this.$router.push({path: '/behandeling/' + this.id + '/medicatie/' + this.id});
         }
     }
 }

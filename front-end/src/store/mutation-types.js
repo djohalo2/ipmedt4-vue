@@ -3,3 +3,4 @@ export const CHANGE_CURRENT_MEDICIJN = 'CHANGE_CURRENT_MEDICIJN';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const ADD_NOTE = 'ADD_NOTE';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
+export const CHECK_TOKEN = 'CHECK_TOKEN';

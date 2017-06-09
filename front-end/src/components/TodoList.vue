@@ -5,11 +5,11 @@
 
             <ul>
                 <todo v-if="todoType === 'behandeling'" v-for="todo in behandeling.todos" :name="todo.naam" :date="todo.date" :completed="todo.completed"></todo>
-                <todo v-if="todoType === 'overzicht'" v-for="todo in behandeling" :name="todo.medicine.name" :date="todo.time_date" :completed="todo.done"></todo>
+                <todo v-if="todoType === 'overzicht'" v-for="todo in behandeling" :id="todo.id" :name="todo.medicine.name" :date="todo.time_date" :completed="!!todo.done"></todo>
             </ul>
 
             <q-progress
-              :percentage="todoProgress"
+              :percentage="100"
               style="height: 4px"
             ></q-progress>
         </div>
