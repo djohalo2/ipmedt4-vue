@@ -198,13 +198,15 @@ class TableSeeder extends Seeder
             'therapy_id' => $therapy1->id,
             'medicine_id' => $medicine->id,
             'amount' => '2 stuks',
+            'amount_per_day' => 2,
             'time_date' => '2017-06-07 08:30:00',
-            'done' => false
+            'done' => true
         ]);
         Medicine_todo::firstOrCreate([
             'therapy_id' => $therapy1->id,
             'medicine_id' => $medicine->id,
             'amount' => '2 stuks',
+            'amount_per_day' => 2,
             'time_date' => '2017-06-07 12:30:00',
             'done' => false
         ]);
@@ -212,6 +214,7 @@ class TableSeeder extends Seeder
             'therapy_id' => $therapy1->id,
             'medicine_id' => $medicine->id,
             'amount' => '2 stuks',
+            'amount_per_day' => 2,
             'time_date' => '2017-06-08 12:30:00',
             'done' => false
         ]);

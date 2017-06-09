@@ -19,6 +19,7 @@ class CreateMedicineTodosTable extends Migration
             $table->integer('medicine_id')->unsigned();
             $table->string('amount');
             $table->dateTime('time_date');
+            $table->integer('amount_per_day');
             $table->boolean('done');
             $table->dateTime('complete_date')->nullable();
             $table->timestamps();
