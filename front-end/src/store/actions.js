@@ -51,5 +51,26 @@ export default {
         .catch((error) => {
             console.log(error);
         });
+    },
+    ADD_NOTE({ commit, state }, data) {
+        axios({
+            method: "post",
+            url: BASE_URL + "patient_note",
+            data: {
+                title: data.title,
+                patient_id: data.patientId,
+                note: data.note
+            },
+            headers: {
+                Authorization: "Bearer " + state.token
+            }
+        })
+        .then(response => {
+            console.log("testje is gelukt he");
+            commit('ADD_NOTE', data);
+        })
+        .catch((error) => {
+
+        });
     }
 }

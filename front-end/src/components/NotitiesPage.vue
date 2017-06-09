@@ -8,12 +8,12 @@
               :options="selectOptions"
             ></q-select>
             <p class="page-title">NOTITIES</p>
-            <p class="no-entries-msg" v-if="artsNotities.length === 0">
+            <p class="no-entries-msg" v-if="notities.length === 0">
                 Er zijn geen notities gevonden.
             </p>
 
-            <div v-if="artsNotities.length > 0" class="list item-delimiter">
-                <q-collapsible group="notities" v-for="notitie in artsNotities" :label="notitie.title">
+            <div v-if="notities.length > 0" class="list item-delimiter">
+                <q-collapsible group="notities" v-for="notitie in notities" :label="notitie.title">
                     <div>
                         <p>{{notitie.note}}</p>
                     </div>
@@ -39,7 +39,7 @@ export default {
         return {
             noteTitle: "",
             noteContent: "",
-            noteTypeSelect: "arts",
+            noteTypeSelect: "patient",
             selectOptions: [
                 {
                     label: 'Arts',
@@ -55,10 +55,12 @@ export default {
     methods: {
         addNote() {
             const payload = {
-                noteTitle: this.noteTitle,
-                noteContent: this.noteContent
+                title: this.noteTitle,
+                note: this.noteContent,
+                patientId: this.patientId
             };
-            this.$store.commit('ADD_NOTE', payload);
+            this.$store.dispatch('ADD_NOTE', payload);
+            this.$refs.noteModal.close()
         }
     },
     computed: {
@@ -67,6 +69,16 @@ export default {
         },
         patientNotities() {
             return this.$store.getters.getPatientNotities
+        },
+        notities() {
+            if(this.noteTypeSelect === "arts"){
+                return this.artsNotities
+            }else {
+                return this.patientNotities;
+            }
+        },
+        patientId() {
+            return this.$store.getters.getPatientId
         }
 
     }

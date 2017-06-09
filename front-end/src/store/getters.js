@@ -18,7 +18,7 @@ export default {
         return state.currentBehandeling.medicatie;
     },
     getOefening(state) {
-        return state.currentOefening;    
+        return state.currentOefening;
     },
     getAllTodos(state) {
         let todos = [];
@@ -89,5 +89,8 @@ export default {
             birthday: state.patientData.birthday,
             avatar: state.patientData.avatar
         };
+    },
+    getPatientId(state) {
+        return state.patientData.id;
     }
 }

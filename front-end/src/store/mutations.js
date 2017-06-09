@@ -38,8 +38,11 @@ export default {
             }
         });
     },
-    [ADD_NOTE](state, payload) {
-
+    [ADD_NOTE](state, data) {
+        state.patientData.notes.push({
+            title: data.title,
+            note: data.note
+        })
     },
     [FETCH_PATIENT](state, payload) {
         state.patientData = payload;
