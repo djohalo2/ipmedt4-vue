@@ -17,6 +17,9 @@ export default {
     getMedicatie(state) {
         return state.currentBehandeling.medicatie;
     },
+    getOefening(state) {
+        return state.currentOefening;    
+    },
     getAllTodos(state) {
         let todos = [];
         if(state.patientData.therapys){
@@ -42,7 +45,6 @@ export default {
             });
             return medicatie;
         }
-
     },
     getArtsNotities(state) {
         let notities = [];
@@ -60,12 +62,16 @@ export default {
     },
     getAllOefeningen(state){
         let oefeningen = [];
-        state.behandelingen.map(behandeling => {
-            behandeling.oefeningen.map(oefening =>{
-                oefeningen.push(oefening);
+        if(state.patientData.therapys){
+            state.patientData.therapys.map(behandeling => {
+                if(behandeling.excercises.length > 0){
+                    behandeling.excercises.map(oefening =>{
+                        oefeningen.push(oefening);
+                    });
+                }
             });
-        });
-        return oefeningen;
+            return oefeningen;
+        }
     },
     getNotities(state) {
         return state.currentBehandeling.notities;

@@ -1,4 +1,4 @@
-import { CHANGE_CURRENT_BEHANDELING, CHANGE_CURRENT_MEDICIJN, TOGGLE_TODO, ADD_NOTE, FETCH_PATIENT, CHECK_TOKEN, TOGGLE_IS_FETCHING, FETCH_TOKEN } from './mutation-types';
+import { CHANGE_CURRENT_BEHANDELING, CHANGE_CURRENT_MEDICIJN, CHANGE_CURRENT_OEFENING, TOGGLE_TODO, ADD_NOTE, FETCH_PATIENT, CHECK_TOKEN, TOGGLE_IS_FETCHING, FETCH_TOKEN } from './mutation-types';
 import _ from 'lodash';
 import axios from 'axios';
 import { LocalStorage, SessionStorage } from 'quasar';
@@ -10,14 +10,19 @@ export default {
         state.currentBehandeling = state.patientData.therapys.filter(behandeling => behandeling.id === id)[0];
     },
     [CHANGE_CURRENT_MEDICIJN](state, id) {
-        console.log(id);
         state.patientData.therapys.map(behandeling => {
             behandeling.medicines.map(medicine => {
-                console.log(medicine.id);
                 if(medicine.id == id) {
-                    console.log(medicine);
                     state.currentMedicijn = medicine;
-                    console.log(state.currentMedicijn);
+                }
+            });
+        });
+    },
+    [CHANGE_CURRENT_OEFENING](state, id) {
+        state.patientData.therapys.map(behandeling => {
+            behandeling.excercises.map(oefening => {
+                if(oefening.id == id) {
+                    state.currentOefening = oefening;
                 }
             });
         });

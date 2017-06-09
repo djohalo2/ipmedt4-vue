@@ -37,7 +37,6 @@ export default {
         });
     },
     TOGGLE_TODO({ commit }, data) {
-        console.log("TOGGLE_TODO");
         axios({
             method: 'put',
             url: "http://178.62.240.123/api/medicine_todo/" + data.id,
@@ -47,7 +46,6 @@ export default {
             headers: { Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzE3OC42Mi4yNDAuMTIzXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5NjkxODUzNSwiZXhwIjoxNDk5NTEwNTM1LCJuYmYiOjE0OTY5MTg1MzUsImp0aSI6ImlCeTR2YktMbmNDNE9mSXEifQ.mTJFA_PqwKDBVxta8U1qRht1CFfpOoQWOQL3Kr-uqZw"}
         })
         .then(response => {
-            console.log("IS GELUKT HE");
             commit('TOGGLE_TODO', data.id);
         })
         .catch((error) => {

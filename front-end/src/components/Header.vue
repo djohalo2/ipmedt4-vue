@@ -13,6 +13,10 @@
             <i>search</i>
         </button>
 
+        <button class="hide-on-drawer-visible">
+            <i>more_vert</i>
+        </button>
+
         <!-- <button class="hide-on-drawer-visible">
             <i>more_vert</i>
         </button> -->

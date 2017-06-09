@@ -3,22 +3,19 @@
         <div class="layout-padding">
             <p class="page-title">Oefeningen</p>
 
-            <div class="card" v-for="oefening in oefeningen">
-                <div class="card-title">
-                    {{oefening.title}}
-                </div>
-                <div class="card-content">
-                    <button class="button outline text-primary float-right">Bekijk</button>
-                    <p>Aantal setjes: {{oefening.aantalSetjes}}</p>
-                </div>
-            </div>
+            <oefening-card v-for="oefening in oefeningen" :id="oefening.id" :title="oefening.title" :description="oefening.description" :therapy="oefening.pivot.therapy_id"></oefening-card>
         </div>
     </div>
 </template>
 
 <script>
+import OefeningCard from './OefeningCard.vue';
+
 export default {
     name: 'overzicht',
+    components: {
+        OefeningCard
+    },
     computed: {
         oefeningen() {
             return this.$store.getters.getAllOefeningen;
@@ -28,16 +25,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .card {
-
-        .card-content {
-            padding: 0;
-
-            p {
-                font-size: 14px;
-            }
-        }
-    }
-
 
 </style>

@@ -1,21 +1,21 @@
 <template>
     <div>
         <q-drawer id="drawer" ref="drawer">
-            <div class="toolbar light">
+            <div class="toolbar bg-primary">
               <q-toolbar-title :padding="1">
                   IPMEDT4
               </q-toolbar-title>
             </div>
 
             <div class="list no-border platform-delimiter">
+                <div class="patient-info bg-light" v-on:click="openPatientInfo">
+                    <img class="patient-avatar" :src="patientInfo.avatar" alt="">
+                    <p class="text-center">{{patientInfo.name}}</p>
+                </div>
               <q-drawer-link icon="home" to="/" exact>
-                Home
-              </q-drawer-link>
-              <hr>
-              <div class="list-label">Behandelingen</div>
-              <!-- <q-drawer-link icon="view_list" :to="'/behandeling/' + behandelingType">
                 Overzicht
-              </q-drawer-link> -->
+              </q-drawer-link>
+              <!-- <div class="list-label">Behandelingen</div> -->
               <q-drawer-link icon="assignment" :to="'/medicatie'">
                 Medicatie
               </q-drawer-link>
@@ -42,15 +42,36 @@ export default {
     computed: {
         behandelingType(){
             return this.$store.getters.getCurrentBehandelingType
+        },
+        patientInfo() {
+            return this.$store.getters.getPatientInfo
+        }
+    },
+    methods: {
+        openPatientInfo() {
+            this.$router.push({path: '/patientinformatie'});
+            this.$refs.drawer.close();
         }
     }
 }
 </script>
 
-<style lang="styl">
+<style lang="scss">
 
   #drawer {
     color: #333;
+  }
+
+  .patient-avatar {
+      border-radius: 100%;
+      width:70px;
+      height:70px;
+      display: block;
+      margin: auto;
+  }
+
+  .patient-info {
+      padding: 1rem 0;
   }
 
 </style>

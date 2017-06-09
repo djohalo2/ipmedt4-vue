@@ -32,6 +32,7 @@ export default new VueRouter({
     { path: '/behandeling/:typeBehandeling/notities', component: load('NotitiesPage') },
     { path: '/behandeling/:typeBehandeling/medicatie', component: load('Medicatie') },
     { path: '/behandeling/:typeBehandeling/medicatie/:typeMedicijn', component: load('MedicatiePage') },
+    { path: '/behandeling/:typeBehandeling/oefeningen/:typeOefening', component: load('OefeningPage') },
     { path: '*', component: load('Error404') } // Not found
   ]
 })

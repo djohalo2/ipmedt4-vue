@@ -15,16 +15,7 @@ export const store = new Vuex.Store({
         isFetching: false,
         currentBehandeling: {},
         currentMedicijn: {},
-        realData: {},
-        patientInfo: {
-            id: 12345,
-            voornaam: "Jeroen",
-            achternaam: "de Meij",
-            email: "jeroen@gmail.nl",
-            telefoon: "06-12345678",
-            geboortedatum: "02/02/1990",
-            foto: "http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png"
-        },
+        currentOefening: {},
         behandelingen: [
             {
                 id: "botbreuk-been",
