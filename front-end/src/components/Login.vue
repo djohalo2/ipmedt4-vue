@@ -39,6 +39,11 @@ export default {
             password: ""
         }
     },
+    computed: {
+        token(){
+            this.$store.getters.getToken;
+        }
+    },
     methods: {
         login() {
             let payload = {
@@ -46,14 +51,12 @@ export default {
                 password: this.password
             };
             this.$store.dispatch('FETCH_TOKEN', payload).then(() => {
-                this.$store.dispatch('CHECK_TOKEN').then(() => {
+                setTimeout(() => {
+                    console.log("IT's DONE FETCHING TOKENS", this.token);
+                    this.$router.push({'path': '/'});
                     this.$store.dispatch('FETCH_PATIENT');
-                    this.$router.push({'path': '/'})
-                }).catch((err) => {
-                    console.log(err);
-                })
-            }).catch((err) => {
-                console.log(err)
+                }, 300);
+
             });
         }
     }

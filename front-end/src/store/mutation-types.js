@@ -4,3 +4,5 @@ export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const ADD_NOTE = 'ADD_NOTE';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const CHECK_TOKEN = 'CHECK_TOKEN';
+export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+export const FETCH_TOKEN = 'FETCH_TOKEN';

@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
     state: {
         patientData: {},
         token: "",
+        isFetching: false,
         currentBehandeling: {},
         currentMedicijn: {},
         realData: {},

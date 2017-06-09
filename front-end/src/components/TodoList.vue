@@ -36,21 +36,21 @@ export default {
                 return this.$store.getters.getAllTodos;
             }
 
-        },
-        todoProgress() {
-            let totalTodos = 0;
-            let completedTodos = 0;
-
-            if(this.todoType === "behandeling"){
-                totalTodos = this.behandeling.todos.length;
-                completedTodos = _.filter(this.behandeling.todos, ['completed', true]).length;
-            } else {
-                totalTodos = this.behandeling.length;
-                completedTodos = _.filter(this.behandeling, ['completed', true]).length;
-            }
-
-            return (completedTodos / totalTodos) * 100;
         }
+        // todoProgress() {
+        //     let totalTodos = 0;
+        //     let completedTodos = 0;
+        //
+        //     if(this.todoType === "behandeling"){
+        //         totalTodos = this.behandeling.todos.length;
+        //         completedTodos = _.filter(this.behandeling.todos, ['completed', true]).length;
+        //     } else {
+        //         totalTodos = this.behandeling.length;
+        //         completedTodos = _.filter(this.behandeling, ['completed', true]).length;
+        //     }
+        //
+        //     return (completedTodos / totalTodos) * 100;
+        // }
     }
 
 }

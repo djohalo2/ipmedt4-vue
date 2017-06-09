@@ -1,7 +1,7 @@
 <template>
     <div>
         <li v-on:click="toggleTodo">
-            <q-checkbox v-model="completed" @input="toggleTodo"></q-checkbox>
+            <q-checkbox v-model="completedTodo" @input="toggleTodo"></q-checkbox>
             <p class="todo-name" v-bind:class="{completed: completed}">{{name}}</p>
             <p class="todo-date">{{date}}</p>
         </li>
@@ -20,11 +20,17 @@ export default {
             checked: false
         }
     },
+    computed: {
+        completedTodo() {
+            return this.completed;
+        }
+    },
     methods: {
         toggleTodo() {
+            console.log("test");
             let data = {
                 id: this.id,
-                completed: this.completed
+                completed: this.completedTodo
             }
             this.$store.dispatch('TOGGLE_TODO', data);
         }

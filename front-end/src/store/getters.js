@@ -1,4 +1,10 @@
 export default {
+    isFetching(state) {
+        return state.isFetching;
+    },
+    getToken(state) {
+        return state.token;
+    },
     totalBehandelingen(state) {
         return state.patientData.therapys;
     },
@@ -13,34 +19,41 @@ export default {
     },
     getAllTodos(state) {
         let todos = [];
-        state.patientData.therapys.map(behandeling => {
-            if(behandeling.medicine_todo.length > 0){
-                behandeling.medicine_todo.map(todo =>{
-                    todos.push(todo);
-                });
-            }
-        });
-        return todos;
+        if(state.patientData.therapys){
+            state.patientData.therapys.map(behandeling => {
+                if(behandeling.medicine_todo.length > 0){
+                    behandeling.medicine_todo.map(todo =>{
+                        todos.push(todo);
+                    });
+                }
+            });
+            return todos;
+        }
     },
     getAllMedicatie(state) {
         let medicatie = [];
-        state.patientData.therapys.map(behandeling => {
-            if(behandeling.medicines.length > 0){
-                behandeling.medicines.map(medicijn =>{
-                    medicatie.push(medicijn);
-                });
-            }
-        });
-        return medicatie;
+        if(state.patientData.therapys){
+            state.patientData.therapys.map(behandeling => {
+                if(behandeling.medicines.length > 0){
+                    behandeling.medicines.map(medicijn =>{
+                        medicatie.push(medicijn);
+                    });
+                }
+            });
+            return medicatie;
+        }
+
     },
     getArtsNotities(state) {
         let notities = [];
-        state.patientData.therapys.map(behandeling => {
-            behandeling.doctor_notes.map(notitie =>{
-                notities.push(notitie);
+        if(state.patientData.therapys){
+            state.patientData.therapys.map(behandeling => {
+                behandeling.doctor_notes.map(notitie =>{
+                    notities.push(notitie);
+                });
             });
-        });
-        return notities;
+            return notities;
+        }
     },
     getPatientNotities(state) {
         return state.patientData.notes;
@@ -67,7 +80,8 @@ export default {
             phone: state.patientData.phone,
             address: state.patientData.street + " " + state.patientData.street_number,
             city: state.patientData.postal_code + " " + state.patientData.city,
-            birthday: state.patientData.birthday
+            birthday: state.patientData.birthday,
+            avatar: state.patientData.avatar
         };
     }
 }

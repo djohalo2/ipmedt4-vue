@@ -3,7 +3,8 @@
         <q-layout>
             <top-header slot="header"></top-header>
             <navigation v-if="this.$route.path === '/behandeling' || this.$route.path === '/patientinformatie' || this.$route.path === '/'" slot="navigation"></navigation>
-            <router-view></router-view>
+            <router-view v-if="!isFetching"></router-view>
+            <h1 v-if="isFetching">BEN AN HET LADEN</h1>
         </q-layout>
     </div>
 </template>
@@ -20,10 +21,20 @@ export default {
         TopHeader,
         Navigation
     },
+    computed: {
+        isFetching(){
+            return this.$store.getters.isFetching;
+        }
+    },
     beforeCreate(){
+        console.log("BEFORE CREATE");
         if(LocalStorage.get.item('token')){
-            this.$store.dispatch('CHECK_TOKEN');
-            this.$store.dispatch('FETCH_PATIENT');
+            this.$store.commit('TOGGLE_IS_FETCHING');
+            this.$store.dispatch('CHECK_TOKEN').then(() => {
+                this.$store.dispatch('FETCH_PATIENT').then(() => {
+                    console.log("Patient gefetched!!!");
+                });
+            });
         }
     },
     beforeUpdate(){
