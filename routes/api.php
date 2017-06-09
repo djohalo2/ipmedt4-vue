@@ -22,7 +22,7 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
     {
 
         $except = ['except' => ['update']];
-        $api->resource('patient', \App\Http\Controllers\PatientController::class, $except);
+        $api->resource('patient', \App\Http\Controllers\PatientController::class);
         $api->resource('patient_note', \App\Http\Controllers\PatientNoteController::class);
         $api->resource('bodypart', \App\Http\Controllers\BodypartController::class, $except);
         $api->resource('excercise', \App\Http\Controllers\ExcerciseController::class, $except);

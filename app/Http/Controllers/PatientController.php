@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Patient;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PatientController extends Controller
 {
@@ -31,11 +34,59 @@ class PatientController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
-        //
+        $gender = $request->gender;
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
+        $email = $request->email;
+        $phone = $request->phone;
+        $birthday = $request->birthday;
+        $street = $request->street;
+        $street_number = $request->street_number;
+        $postal_code = $request->postal_code;
+        $city = $request->city;
+
+        $username = strtolower($firstname . '_' . $lastname);
+        $name = $firstname . ' ' . $lastname;
+        $password_str = str_random(8);
+        $password = Hash::make($password_str);
+
+        $user = User::firstOrCreate([
+            'username' => $username,
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'type' => 'patient'
+        ]);
+
+        if ($user) {
+
+            $patient = Patient::firstOrCreate([
+                'gender' => $gender,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'email' => $email,
+                'phone' => $phone,
+                'birthday' => $birthday,
+                'street' => $street,
+                'street_number' => $street_number,
+                'postal_code' => $postal_code,
+                'city' => $city,
+                'user_id' => $user->id
+            ]);
+
+            if ($patient) {
+
+                return ['success' => 1, 'password' => $password_str];
+
+            }
+
+        }
+
+        return ['success' => 0];
     }
 
     /**
