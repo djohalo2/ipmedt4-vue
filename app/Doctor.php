@@ -14,4 +14,9 @@ class Doctor extends Model
     {
         return $this->hasOne('App\Department', 'id', 'department_id');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany('App\Appointment', 'doctor_id', 'id');
+    }
 }

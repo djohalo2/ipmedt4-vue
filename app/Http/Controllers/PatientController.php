@@ -95,9 +95,10 @@ class PatientController extends Controller
      * @param  \App\Patient  $patient
      * @return Patient
      */
-    public function show(Patient $patient)
+    public function show($id)
     {
-        return $patient;
+        return Patient::where('user_id', '=', $id)->with('therapys', 'notes', 'appointments')->first();
+//        return $patient;
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Appointment;
 use App\Bodypart;
 use App\Department;
 use App\Doctor;
@@ -87,6 +88,7 @@ class TableSeeder extends Seeder
             'patient_id' => 1,
             'start_date' => '2017-06-30',
             'end_date' => '2017-07-30',
+            'department_id' => $department->id,
             'created_by' => 1,
             'last_update_by' => 1
         ]);
@@ -96,6 +98,7 @@ class TableSeeder extends Seeder
             'patient_id' => 1,
             'start_date' => '2017-06-27',
             'end_date' => '2017-07-10',
+            'department_id' => $department->id,
             'created_by' => 1,
             'last_update_by' => 1
         ]);
@@ -217,6 +220,23 @@ class TableSeeder extends Seeder
             'amount_per_day' => 2,
             'time_date' => '2017-06-08 12:30:00',
             'done' => false
+        ]);
+
+
+        $appointment1 = Appointment::firstOrCreate([
+            'time_date' => '2017-06-15',
+            'therapy_id' => $therapy1->id,
+            'patient_id' => $patient->id,
+            'doctor_id' => $doctor->id,
+            'status' => 'planned'
+        ]);
+
+        $appointment2 = Appointment::firstOrCreate([
+            'time_date' => '2017-06-01',
+            'therapy_id' => $therapy1->id,
+            'patient_id' => $patient->id,
+            'doctor_id' => $doctor->id,
+            'status' => 'planned'
         ]);
 
     }

@@ -8,7 +8,7 @@ class Therapy extends Model
 {
     public $fillable = ['name', 'patient_id', 'start_date', 'end_date', 'created_by', 'last_update_by'];
 
-    protected $with = ['created_by', 'last_update_by', 'doctor_notes', 'excercises', 'bodyparts', 'medicines', 'medicine_todo', 'excercise_todo'];
+    protected $with = ['created_by', 'last_update_by', 'doctor_notes', 'excercises', 'bodyparts', 'medicines', 'medicine_todo', 'excercise_todo', 'appointments'];
 
     public function patient()
     {
@@ -53,6 +53,11 @@ class Therapy extends Model
     public function excercise_todo()
     {
         return $this->hasMany('App\Excercise_todo', 'therapy_id', 'id');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany('App\Appointment', 'therapy_id', 'id');
     }
 
 

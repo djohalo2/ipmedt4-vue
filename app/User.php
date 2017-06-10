@@ -28,20 +28,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $with = ['patient', 'doctor'];
+//    protected $with = ['patient', 'doctor'];
 
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
     }
 
-    public function patient()
-    {
-        return $this->hasOne('App\Patient', 'user_id', 'id');
-    }
+//    public function patient()
+//    {
+//        return $this->hasOne('App\Patient', 'user_id', 'id');
+//    }
 
-    public function doctor()
-    {
-        return $this->hasOne('App\Doctor', 'user_id', 'id');
-    }
+//    public function doctor()
+//    {
+//        return $this->hasOne('App\Doctor', 'user_id', 'id');
+//    }
 }
