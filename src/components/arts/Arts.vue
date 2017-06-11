@@ -2,6 +2,7 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">Arts pagina</p>
+            <p>Hier komt straks allemaal mooie ding</p>
         </div>
     </div>
 </template>

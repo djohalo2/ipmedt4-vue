@@ -33,6 +33,8 @@ export default new VueRouter({
     { path: '/behandeling/:typeBehandeling/medicatie/:typeMedicijn', component: load('MedicatiePage') },
     // Just what the doctor ordered
     { path: '/arts', component: load('arts/Arts') },
+    { path: '/arts/patienten', component: load('arts/Patienten') },
+    { path: '/arts/patienten/:patientId', component: load('arts/PatientenPage') },
     // Not found
     { path: '*', component: load('Error404') }
   ]
