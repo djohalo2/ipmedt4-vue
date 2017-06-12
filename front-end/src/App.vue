@@ -4,7 +4,7 @@
             <top-header v-if="this.$route.path !== '/login' && !this.$route.path.includes('/arts')" slot="header"></top-header>
             <navigation v-if="this.$route.path === '/behandeling' || this.$route.path === '/'" slot="navigation"></navigation>
             <arts-top-header v-if="this.$route.path.includes('/arts')" slot="header"></arts-top-header>
-            <arts-drawer></arts-drawer>
+            <arts-drawer v-if="this.$route.path.includes('/arts')"></arts-drawer>
             <router-view v-if="!isFetching"></router-view>
             <spinner class="loading" v-if="isFetching" color="#e74c3c" name="tail"></spinner>
         </q-layout>

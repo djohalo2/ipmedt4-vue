@@ -9,7 +9,7 @@
 
             <div class="list no-border platform-delimiter">
               <q-drawer-link icon="home" to="/arts" exact>
-                Home
+                Dashboard
               </q-drawer-link>
               <hr>
               <div class="list-label">Opties</div>
