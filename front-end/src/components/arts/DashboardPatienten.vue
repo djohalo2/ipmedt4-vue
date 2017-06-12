@@ -1,10 +1,12 @@
 <template>
     <div class="card bg-white">
         <div class="card-title">
+            <i class="float-right add-icon text-primary">add_circle</i>
             Patiënten overzicht
         </div>
 
         <div class="card-content">
+
             <q-search v-model="patientSearch" class="searchbar"></q-search>
 
             <div class="list">
@@ -99,5 +101,10 @@ export default {
 
     .patient-pagination {
         margin: auto;
+    }
+
+    .add-icon {
+        font-size:24px;
+        cursor: pointer;
     }
 </style>
