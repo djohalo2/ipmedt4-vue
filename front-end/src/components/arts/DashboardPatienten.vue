@@ -1,13 +1,25 @@
 <template>
     <div class="card bg-white">
         <div class="card-title">
-            <i class="float-right add-icon text-primary">add_circle</i>
+            <i class="float-right add-icon" @click="$refs.addPatientModal.open()">add_circle</i>
             Patiënten overzicht
         </div>
 
+        <q-modal ref="addPatientModal" class="minimized patient-modal" :content-css="{padding: '50px'}">
+             <p>Patient toevoegen</p>
+             <q-select
+              type="radio"
+              v-model="select"
+              :options="selectOptions"
+             ></q-select>
+             <input placeholder="Voornaam">
+             <input placeholder="Achternaam">
+             <button class="red" @click="$refs.addPatientModal.close()">Close Me</button>
+         </q-modal>
+
         <div class="card-content">
 
-            <q-search v-model="patientSearch" class="searchbar"></q-search>
+            <q-search v-model="patientSearch" placeholder="Zoek patiënten..." class="searchbar"></q-search>
 
             <div class="list">
                 <dashboard-patient-card v-if="index < 3" v-for="(patient, index) in searchedPatients" :key="patient.id" :id="patient.id" :city="patient.city" :name="patient.name" :avatar="patient.avatar" :phone="patient.phone"></dashboard-patient-card>
@@ -27,6 +39,14 @@ export default {
     data(){
         return {
             patientSearch: "",
+            newPatient: {
+                gender: "",
+                firstname: "",
+                lastname: "",
+                email: "",
+                phone: "",
+                "birthday": ""        
+            },
             patientPage: 1,
             patienten: [
                 {
@@ -107,4 +127,14 @@ export default {
         font-size:24px;
         cursor: pointer;
     }
+
+    .patient-modal {
+        * {
+            display: block;
+            margin: 1rem 0;
+        }
+    }
+
+
+
 </style>

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { LocalStorage, SessionStorage } from 'quasar';
+import router from './../../router'
 
-const BASE_URL = "http://178.62.240.123/api/";
+const BASE_URL = "http://www.mijnnazorg.nl/api/";
 
 export default {
     CHECK_TOKEN({ commit }){
@@ -11,14 +12,27 @@ export default {
     FETCH_PATIENT({ commit, state }) {
         axios.get(BASE_URL + "authenticate/checkuser", { headers: { Authorization: "Bearer " + state.token}})
         .then(response => {
-            console.log(response);
             let userId = response.data.user.id;
+            state.userType = response.data.user.type;
 
-            axios.get(BASE_URL + response.data.user.type + "/" + userId, { headers: { Authorization: "Bearer " + state.token}})
+            axios.get(BASE_URL + response.data.user.type + "/user/" + userId, { headers: { Authorization: "Bearer " + state.token}})
             .then(response => {
-                console.log(response);
-                let patientData = response.data.patient;
-                commit('FETCH_PATIENT', patientData);
+                if(state.userType === "patient"){
+                    commit('FETCH_PATIENT', response.data.patient);
+                    router.push({path: '/'});
+                } else {
+                    commit('FETCH_DOCTOR', response.data.doctor);
+
+                    axios.get(BASE_URL + 'patient', { headers: { Authorization: "Bearer " + state.token}})
+                    .then(response => {
+                        commit('FETCH_PATIENTS', response.data.patients);
+                    })
+                    .catch((error) => {
+
+                    });
+                    router.push({path: '/arts'});
+                }
+
                 if(state.isFetching){
                     commit('TOGGLE_IS_FETCHING');
                 }

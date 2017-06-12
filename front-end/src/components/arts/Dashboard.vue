@@ -3,7 +3,7 @@
         <div class="layout-padding">
             <p class="page-title">Dashboard</p>
 
-            <div class="row small-gutter sm-column">
+            <div class="row medium-gutter sm-column">
                 <div class="gt-sm-width-1of3">
                     <count-card title="Patienten" number="130" description="Actuele patienten" icon="people"></count-card>
                 </div>
@@ -15,13 +15,19 @@
                 </div>
             </div>
 
-            <div class="row small-gutter sm-column">
+            <div class="row medium-gutter sm-column">
                 <div class="width-1of2">
                     <dashboard-patienten></dashboard-patienten>
                 </div>
 
                 <div class="width-1of2">
                     <dashboard-afspraken></dashboard-afspraken>
+                </div>
+            </div>
+
+            <div class="row medium-gutter sm-column">
+                <div class="width-1of2">
+                    <dashboard-notificaties></dashboard-notificaties>
                 </div>
             </div>
         </div>
@@ -45,6 +51,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+    
 </style>

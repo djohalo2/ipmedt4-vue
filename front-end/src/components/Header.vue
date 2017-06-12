@@ -4,7 +4,7 @@
         <drawer></drawer>
 
         <q-toolbar-title>
-            IPMEDT4
+            <span class="bold">mijn</span><span class="light">nazorg.nl</span>
         </q-toolbar-title>
 
         <q-search v-on-clickaway="closeSearch" v-if="searching" v-model="searchText" placeholder="Zoeken"></q-search>
@@ -69,5 +69,13 @@ export default {
 <style lang="scss" scoped>
     .list {
         margin: 0;
+    }
+
+    .bold {
+        font-weight: 800;
+    }
+
+    .light {
+        font-weight: 300;
     }
 </style>

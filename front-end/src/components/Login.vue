@@ -7,8 +7,6 @@
                     <div class="avatar">
                         <img id="logo" src="./../assets/logo_small.png" />
                     </div>
-
-                  <p>Uw persoonlijke zorghandboek.</p>
                 </div>
                 <div class="card-content">
                   <form class="login">
@@ -59,7 +57,6 @@ export default {
 
                     setTimeout(() => {
                         if(this.token !== "unauthorized"){
-                            this.$router.push({'path': '/'});
                             this.$store.dispatch('FETCH_PATIENT');
                         }
                     }, 300);
@@ -102,6 +99,7 @@ export default {
       max-width: 400px;
       margin: 2rem auto;
       position: relative;
+      overflow: visible;
     }
 
     .card-title {

@@ -5,6 +5,7 @@ import getters from './getters';
 const patientModule = {
     state: {
         patientData: {},
+        userType: "",
         token: "",
         isFetching: false,
         currentBehandeling: {},

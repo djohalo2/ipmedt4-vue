@@ -38,7 +38,7 @@ export default {
             this.$store.commit('TOGGLE_IS_FETCHING');
             this.$store.dispatch('CHECK_TOKEN').then(() => {
                 this.$store.dispatch('FETCH_PATIENT').then(() => {
-                    console.log("Patient gefetched!!!");
+
                 });
             });
         }

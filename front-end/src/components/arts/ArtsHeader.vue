@@ -26,12 +26,12 @@
             </div>
         </q-drawer>
 
-        <button class="hide-on-drawer-visible" @click="$refs.drawer.open()">
+        <button class="drawer-button hide-on-drawer-visible" @click="$refs.drawer.open()">
             <i>menu</i>
         </button>
 
-        <q-toolbar-title>
-            IPMEDT4
+        <q-toolbar-title class="header-title">
+            <span class="bold">mijn</span><span class="light">nazorg.nl</span>
         </q-toolbar-title>
 
         <q-search v-on-clickaway="closeSearch" v-if="searching" v-model="searchText" placeholder="Zoeken"></q-search>
@@ -70,6 +70,22 @@ export default {
 }
 </script>
 
-<style lang="styl">
+<style lang="scss" scoped>
 
+    .header-title {
+        position: absolute;
+        left: 40px;
+
+        .light {
+            font-weight:300;
+        }
+
+        .bold {
+            font-weight: 800;
+        }
+    }
+
+    .drawer-button {
+        position: absolute;
+    }
 </style>

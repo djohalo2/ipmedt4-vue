@@ -5,6 +5,9 @@ export default {
     getToken(state) {
         return state.token;
     },
+    getUserType(state){
+        return state.userType;    
+    },
     totalBehandelingen(state) {
         return state.patientData.therapys;
     },

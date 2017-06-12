@@ -4,7 +4,8 @@ import getters from './getters';
 
 const artsModule = {
     state: {
-        patienten: {},
+        doctorData: {},
+        patients: {},
         token: "",
         isFetching: false,
     },
