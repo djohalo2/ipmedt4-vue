@@ -20,6 +20,12 @@
               <q-drawer-link icon="assignment" :to="'/arts/Patienten'">
                 Patienten
               </q-drawer-link>
+              <q-drawer-link icon="event" :to="'/arts/Afspraken'">
+                Afspraken
+              </q-drawer-link>
+              <q-drawer-link icon="assignment" :to="'/arts/medicatie'">
+                Medicatie
+              </q-drawer-link>
               <q-drawer-link icon="insert_drive_file" :to="'/arts/Informatie'">
                 Informatie
               </q-drawer-link>
