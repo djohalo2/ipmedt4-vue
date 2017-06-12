@@ -1,10 +1,10 @@
 <template>
     <div id="q-app">
         <q-layout>
-            <top-header slot="header"></top-header>
-            <navigation v-if="this.$route.path === '/behandeling' || this.$route.path === '/patientinformatie' || this.$route.path === '/'" slot="navigation"></navigation>
+            <top-header v-if="this.$route.path !== '/login'" slot="header"></top-header>
+            <navigation v-if="this.$route.path === '/behandeling' || this.$route.path === '/'" slot="navigation"></navigation>
             <router-view v-if="!isFetching"></router-view>
-            <h1 v-if="isFetching">BEN AN HET LADEN</h1>
+            <spinner class="loading" v-if="isFetching" color="#e74c3c" name="tail"></spinner>
         </q-layout>
     </div>
 </template>
@@ -47,12 +47,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
     .layout-padding {
         padding-top: 0;
     }
 
     .card {
         margin-bottom: 15px;
+    }
+
+    .loading {
+        margin: 5rem auto;
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-title">
-            <p class="text-primary">MEDICATIE</p>
+            <p class="text-primary">HUIDIGE MEDICATIE</p>
             <p class="no-entries-msg" v-if="medicatie.length === 0">
                 Er zijn geen medicijnen aanwezig in deze behandeling.
             </p>

@@ -1,4 +1,4 @@
-import { CHANGE_CURRENT_BEHANDELING, CHANGE_CURRENT_MEDICIJN, CHANGE_CURRENT_OEFENING, TOGGLE_TODO, ADD_NOTE, FETCH_PATIENT, CHECK_TOKEN, TOGGLE_IS_FETCHING, FETCH_TOKEN } from './mutation-types';
+import { CHANGE_CURRENT_BEHANDELING, CHANGE_CURRENT_MEDICIJN, CHANGE_CURRENT_OEFENING, TOGGLE_TODO, ADD_NOTE, FETCH_PATIENT, LOG_OUT, CHECK_TOKEN, TOGGLE_IS_FETCHING, FETCH_TOKEN } from './mutation-types';
 import _ from 'lodash';
 import axios from 'axios';
 import { LocalStorage, SessionStorage } from 'quasar';
@@ -53,5 +53,9 @@ export default {
     },
     [TOGGLE_IS_FETCHING](state){
         state.isFetching = !state.isFetching;
+    },
+    [LOG_OUT](state) {
+        state = {};
+        LocalStorage.clear("token");
     }
 }

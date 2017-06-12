@@ -7,3 +7,4 @@ export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const CHECK_TOKEN = 'CHECK_TOKEN';
 export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 export const FETCH_TOKEN = 'FETCH_TOKEN';
+export const LOG_OUT = 'LOG_OUT';

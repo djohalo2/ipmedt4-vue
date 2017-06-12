@@ -6,9 +6,9 @@
         <q-tab name="tab-2" route="/behandeling">
             Behandelingen
         </q-tab>
-        <q-tab name="tab-3" route="/patientinformatie">
+        <!-- <q-tab name="tab-3" route="/patientinformatie">
             Gegevens
-        </q-tab>
+        </q-tab> -->
     </q-tabs>
 </template>
 

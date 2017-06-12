@@ -4,12 +4,17 @@
             <div class="layout-padding">
               <div class="card">
                 <div class="card-title">
-                  Djo&amp;Co.<br />
-                  <img id="logo" src="./../assets/logo_small.png" />
+                    <div class="avatar">
+                        <img id="logo" src="./../assets/logo_small.png" />
+                    </div>
+
                   <p>Uw persoonlijke zorghandboek.</p>
                 </div>
                 <div class="card-content">
                   <form class="login">
+                      <div v-if="token === 'unauthorized'" class="card bg-warning">
+                          <div class="card-title">Het ingevulde gebruikersnaam/wachtwoord klopt niet.</div>
+                      </div>
                     <div class="floating-label">
                       <input v-model="username" required class="full-width">
                       <label>Gebruikersnaam</label>
@@ -51,19 +56,24 @@ export default {
                 password: this.password
             };
             this.$store.dispatch('FETCH_TOKEN', payload).then(() => {
-                setTimeout(() => {
-                    console.log("IT's DONE FETCHING TOKENS", this.token);
-                    this.$router.push({'path': '/'});
-                    this.$store.dispatch('FETCH_PATIENT');
-                }, 300);
 
+                    setTimeout(() => {
+                        if(this.token !== "unauthorized"){
+                            this.$router.push({'path': '/'});
+                            this.$store.dispatch('FETCH_PATIENT');
+                        }
+                    }, 300);
             });
         }
     }
 }
 </script>
 
-<style lang="styl" scoped>
+<style lang="scss" scoped>
+    * {
+        box-sizing: border-box;
+    }
+
     .layout-view {
         background-image: url('./../assets/loginscreen.png');
         background-repeat: no-repeat;
@@ -73,12 +83,25 @@ export default {
         height:100vh;
     }
 
+    .avatar {
+        height: 120px;
+        width: 120px;
+        padding: 0.7rem;
+        border-radius: 50%;
+        background-color: #fff;
+        margin: -2rem auto;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+        img {
+            margin: 1rem auto;
+        }
+    }
+
     .card {
-      opacity: .95;
-      background-color: #eee;
-      border-radius:12px;
+      background-color: rgba(255, 255, 255, 0.95);
       max-width: 400px;
-      margin: auto;
+      margin: 2rem auto;
+      position: relative;
     }
 
     .card-title {

@@ -11,18 +11,25 @@ export default {
     FETCH_PATIENT({ commit, state }) {
         axios.get(BASE_URL + "authenticate/checkuser", { headers: { Authorization: "Bearer " + state.token}})
         .then(response => {
-            let patientData = response.data.user.patient;
-            commit('FETCH_PATIENT', patientData);
-            if(state.isFetching){
-                commit('TOGGLE_IS_FETCHING');
-            }
+            console.log(response);
+            let userId = response.data.user.id;
+
+            axios.get(BASE_URL + response.data.user.type + "/" + userId, { headers: { Authorization: "Bearer " + state.token}})
+            .then(response => {
+                console.log(response);
+                let patientData = response.data.patient;
+                commit('FETCH_PATIENT', patientData);
+                if(state.isFetching){
+                    commit('TOGGLE_IS_FETCHING');
+                }
+            })
+            .catch((error) => console.log('error' + error));
         })
         .catch((error) => {
             console.log('error ' + error);
         });
     },
     FETCH_TOKEN({ commit, state }, payload){
-        console.log(payload);
         axios.post(BASE_URL + "authenticate", {
             username: payload.username,
             password: payload.password
@@ -33,7 +40,7 @@ export default {
             state.token = response.data.token;
         })
         .catch((error) => {
-            console.log(error);
+            state.token = "unauthorized";
         });
     },
     TOGGLE_TODO({ commit }, data) {
