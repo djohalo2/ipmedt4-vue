@@ -81,6 +81,9 @@ export default {
   .card {
       margin-top: 1rem;
       background: #fcfcfc;
+      max-width: 700px;
+      margin:0 auto;
+      margin-top: 20px;
   }
   li > * {
       display: inline-block;
