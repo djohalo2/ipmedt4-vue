@@ -7,6 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class PatientController extends Controller
 {
@@ -79,6 +80,24 @@ class PatientController extends Controller
             ]);
 
             if ($patient) {
+
+//                $data = array(
+//                    'firstname'=>$firstname,
+//                    'lastname'=>$lastname,
+//                    'username'=>$username,
+//                    'email'=>$email,
+//                );
+//                Mail::send('mail', $data, function($message) use ($data) {
+//                    $message->to($data['email'])->subject('Welkom bij Mijn nazorg ');
+//                    $message->from('no-reply@mijnnazorg.nl', 'Mijn nazorg');
+//                });
+
+//                $data['password'] = $password_str;
+
+//                Mail::send('password', ($data), function($message) use ($data){
+//                    $message->to($data['email'])->subject('Wachtwoord bij Mijn nazorg');
+//                    $message->from('no-reply@mijnnazorg.com', 'Mijn nazorg');
+//                });
 
                 return ['success' => 1, 'password' => $password_str];
 
