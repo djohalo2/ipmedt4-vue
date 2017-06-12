@@ -92,8 +92,9 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Patient  $patient
+     * @param $id
      * @return Patient
+     * @internal param Patient $patient
      */
     public function show($id)
     {
