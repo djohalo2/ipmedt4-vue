@@ -26,6 +26,7 @@ export default new VueRouter({
     { path: '/arts', component: load('arts/Dashboard') },
     { path: '/arts/patienten', component: load('arts/Patienten') },
     { path: '/arts/patienten/:patientId', component: load('arts/PatientenPage') },
+    { path: '/arts/informatie', component: load('arts/ArtsInfo') },
      // Not found
     { path: '*', component: load('Error404') }
   ]

@@ -19,7 +19,7 @@
               <q-drawer-link icon="assignment" :to="'/arts/Patienten'">
                 Patienten
               </q-drawer-link>
-              <q-drawer-link icon="insert_drive_file" :to="'/arts'">
+              <q-drawer-link icon="insert_drive_file" :to="'/arts/Informatie'">
                 Informatie
               </q-drawer-link>
             </div>
