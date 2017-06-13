@@ -79,7 +79,7 @@ class PatientController extends Controller
 
         if ($user) {
 
-            $patient = Patient::insert([
+            $patient = Patient::firstOrCreate([
                 'gender' => $gender,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
