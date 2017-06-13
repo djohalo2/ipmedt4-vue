@@ -71,7 +71,7 @@
             <q-search v-model="patientSearch" placeholder="Zoek patiënten..." class="searchbar"></q-search>
 
             <div class="list">
-                <dashboard-patient-card v-if="index < 3" v-for="(patient, index) in searchedPatients" :key="patient.id" :id="patient.id" :city="patient.city" :name="patient.name" :avatar="patient.avatar" :phone="patient.phone"></dashboard-patient-card>
+                <dashboard-patient-card v-if="index < 3" v-for="(patient, index) in searchedPatients" :key="patient.id" :id="patient.id" :city="patient.city" :name="patient.firstname + ' ' + patient.lastname" :avatar="patient.avatar" :phone="patient.phone"></dashboard-patient-card>
             </div>
 
             <q-pagination class="patient-pagination" v-model="patientPage" :max="Math.round(searchedPatients.length / 3)"></q-pagination>
@@ -82,6 +82,7 @@
 <script>
 import DashboardPatientCard from './DashboardPatientCard.vue';
 import _ from 'lodash';
+import moment from 'moment';
 
 export default {
     name: 'dashboard-patienten',
@@ -109,45 +110,7 @@ export default {
                 postalcode: "",
                 city: ""
             },
-            patientPage: 1,
-            patienten: [
-                {
-                    name: "Djovanni Tehubijuluw",
-                    id: 1,
-                    avatar: "http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png",
-                    phone: "06-15022236",
-                    city: "Hoofddorp"
-                },
-                {
-                    name: "Bas van Bovene",
-                    id: 2,
-                    avatar: "http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png",
-                    phone: "06-15022236",
-                    city: "Leiden"
-                },
-                {
-                    name: "Sem Ekkelboom",
-                    id: 3,
-                    avatar: "http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png",
-                    phone: "06-15022236",
-                    city: "Zoeterwoude"
-                },
-                {
-                    name: "Jeroen de Meij",
-                    id: 4,
-                    avatar: "http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png",
-                    phone: "06-15022236",
-                    city: "Leiden"
-                }
-                ,
-                {
-                    name: "Robbert Winkel",
-                    id: 5,
-                    avatar: "http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png",
-                    phone: "06-15022236",
-                    city: "Leiden"
-                }
-            ]
+            patientPage: 1
         }
     },
     computed: {
@@ -155,7 +118,7 @@ export default {
             if(this.patientSearch !== ""){
                 let patients = [];
                 this.patienten.map(patient => {
-                    if(_.includes(patient.name.toLowerCase(), this.patientSearch.toLowerCase())){
+                    if(_.includes(patient.firstname.toLowerCase(), this.patientSearch.toLowerCase()) || _.includes(patient.lastname.toLowerCase(), this.patientSearch.toLowerCase())){
                         patients.push(patient);
                     }
                 });
@@ -163,11 +126,15 @@ export default {
             } else {
                 return this.patienten;
             }
+        },
+        patienten() {
+            return this.$store.getters.getPatients;
         }
     },
     methods: {
         addPatient(){
             this.$store.dispatch("ADD_PATIENT", this.newPatient);
+            this.$refs.addPatientModal.close();
         }
     },
     components: {

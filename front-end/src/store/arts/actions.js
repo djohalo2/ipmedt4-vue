@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { LocalStorage, SessionStorage } from 'quasar';
 import qs from 'qs';
+import moment from 'moment';
 
 const BASE_URL = "http://www.mijnnazorg.nl/api/";
 
@@ -30,7 +31,7 @@ export default {
                 lastname: patient.lastname,
                 email: patient.email,
                 phone: patient.phone,
-                birthday: "2017-05-02",
+                birthday: moment(patient.birthday).format('YYYY-MM-DD'),
                 street: patient.street,
                 street_number: patient.streetnumber,
                 postal_code: patient.postalcode,

@@ -5,7 +5,7 @@
 
             <div class="row medium-gutter sm-column">
                 <div class="gt-sm-width-1of3">
-                    <count-card title="Patienten" number="130" description="Actuele patienten" icon="people"></count-card>
+                    <count-card title="Patienten" :number="patientCount" description="Actuele patienten" icon="people"></count-card>
                 </div>
                 <div class="gt-sm-width-1of3">
                     <count-card title="Afspraken" number="7" description="Afspraken vandaag" icon="date_range"></count-card>
@@ -47,10 +47,15 @@ export default {
         DashboardPatienten,
         DashboardNotificaties,
         DashboardAfspraken
+    },
+    computed: {
+        patientCount(){
+            return this.$store.getters.getTotalPatientCount;
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    
+
 </style>
