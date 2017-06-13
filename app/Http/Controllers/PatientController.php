@@ -57,7 +57,7 @@ class PatientController extends Controller
         $password_str = str_random(8);
         $password = Hash::make($password_str);
 
-//        $user = User::firstOrCreate([
+//        $user = User::insert([
 //            'username' => $username,
 //            'name' => $name,
 //            'email' => $email,
@@ -81,9 +81,11 @@ class PatientController extends Controller
 
         $user->save();
 
+//        return $user;
+
         if ($user) {
 
-            $patient = Patient::firstOrCreate([
+            $patient = Patient::insert([
                 'gender' => $gender,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
