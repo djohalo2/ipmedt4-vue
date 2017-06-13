@@ -58,13 +58,7 @@ class PatientController extends Controller
         $password_str = str_random(8);
         $password = Hash::make($password_str);
 
-//        $user = User::insert([
-//            'username' => $username,
-//            'name' => $name,
-//            'email' => $email,
-//            'password' => $password,
-//            'type' => 'patient'
-//        ]);
+
 
         $user = User::firstOrNew([
             'email' => $email
@@ -82,7 +76,6 @@ class PatientController extends Controller
 
         $user->save();
 
-//        return $user;
 
         if ($user) {
 
@@ -119,7 +112,7 @@ class PatientController extends Controller
 //                Mail::to($data['email'])
 //                    ->later($when, new Password($data));
 
-                return ['success' => 1, 'password' => $password_str];
+                return ['success' => 1, 'password' => $password_str, 'patient' => $patient];
 
             }
 
