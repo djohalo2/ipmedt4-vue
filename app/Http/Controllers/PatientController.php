@@ -52,18 +52,34 @@ class PatientController extends Controller
         $postal_code = $request->postal_code;
         $city = $request->city;
 
-        $username = strtolower($firstname . '_' . $lastname);
+        $username = strtolower($firstname . '_' . $lastname . '_' . rand(1000, 9999));
         $name = $firstname . ' ' . $lastname;
         $password_str = str_random(8);
         $password = Hash::make($password_str);
 
-        $user = User::firstOrCreate([
-            'username' => $username,
-            'name' => $name,
-            'email' => $email,
-            'password' => $password,
-            'type' => 'patient'
+//        $user = User::firstOrCreate([
+//            'username' => $username,
+//            'name' => $name,
+//            'email' => $email,
+//            'password' => $password,
+//            'type' => 'patient'
+//        ]);
+
+        $user = User::firstOrNew([
+            'email' => $email
         ]);
+
+        if ($user->exists) {
+            return ['success' => 0];
+        }
+
+        $user->username = $username;
+        $user->name = $name;
+        $user->email = $email;
+        $user->type = 'patient';
+        $user->password = $password;
+
+        $user->save();
 
         if ($user) {
 
