@@ -4,7 +4,7 @@
         <q-drawer id="drawer" ref="drawer">
             <div class="toolbar light">
               <q-toolbar-title :padding="1">
-                  ARTS TEST
+                  Hallo {{doctorData.firstname}}
               </q-toolbar-title>
             </div>
 
@@ -72,6 +72,11 @@ export default {
         closeSearch(){
             this.searching = false;
         }
+    },
+    computed: {
+      doctorData() {
+        return this.$store.getters.getDoctorInfo;
+      }
     }
 }
 </script>

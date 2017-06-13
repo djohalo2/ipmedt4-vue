@@ -2,45 +2,45 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">Arts Informatie</p>
-            <p class="profile-name">Sem Brekelbeen</p>
-            <img class="profile-img" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAbQAAAAJDJlZjUxNDJjLTc3N2EtNDg3My1hOGY0LWRiNmEyNGU1YzQ1OQ.jpg">
+            <p class="profile-name">{{doctorData.firstname}} {{doctorData.lastname}}</p>
+            <img class="profile-img" src="https://image.shutterstock.com/z/stock-vector-male-doctor-avatar-icon-with-a-faceless-man-with-flat-design-element-modern-style-logo-vector-281668325.jpg">
             <div class="card">
                 <div class="card-title">
                     <p class="text-primary">MIJN GEGEVENS</p>
                     <ul>
                         <li>
                             <i>person</i>
-                            <p>Sem Brekelbeen</p>
+                            <p>{{doctorData.firstname}} {{doctorData.lastname}}</p>
                         </li>
 
                         <li>
                             <i>class</i>
-                            <p>Arts Botfracturen</p>
+                            <p>{{doctorData.department.naam}}</p>
                         </li>
 
                         <li>
                             <i>email</i>
-                            <p>sem@breakaleg.com</p>
+                            <p>{{doctorData.email}}</p>
                         </li>
 
                         <li>
                             <i>smartphone</i>
-                            <p>06-13376969</p>
+                            <p>{{doctorData.phone}}</p>
                         </li>
 
                         <li>
                             <i>today</i>
-                            <p>27-01-1969</p>
+                            <p>Rip geen birthday</p>
                         </li>
 
                         <li>
                             <i>today</i>
-                            <p>Ziekenhuisstraat 69</p>
+                            <p>Ripgeenstraat 69</p>
                         </li>
 
                         <li>
                             <i>today</i>
-                            <p>Groenlo</p>
+                            <p>Engeenstad</p>
                         </li>
                     </ul>
 
@@ -57,6 +57,11 @@ export default {
     name: 'arts-informatie',
     components: {
         CountCard
+    },
+    computed: {
+      doctorData() {
+          return this.$store.getters.getDoctorInfo;
+      }
     }
 }
 </script>

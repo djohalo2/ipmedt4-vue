@@ -1,7 +1,7 @@
 <template>
     <div class="layout-view">
         <div class="layout-padding">
-            <p class="page-title">MEDICATIE</p>
+            <p class="page-title">Medicatie</p>
             <q-search v-model="medicijnSearch" placeholder="Zoek medicijn..." class="searchbar"></q-search>
 
             <div class="list bg-white striped">

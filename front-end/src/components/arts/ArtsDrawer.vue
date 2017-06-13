@@ -3,7 +3,7 @@
         <q-drawer id="drawer">
             <div class="toolbar light">
               <q-toolbar-title :padding="1">
-                  ARTS TEST
+                  Hallo {{doctorData.firstname}}
               </q-toolbar-title>
             </div>
 
@@ -35,7 +35,12 @@
 
 <script>
 export default {
-    name: 'arts-drawer'
+    name: 'arts-drawer',
+    computed: {
+      doctorData() {
+        return this.$store.getters.getDoctorInfo;
+      }
+    }
 }
 </script>
 

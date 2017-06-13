@@ -7,5 +7,8 @@ export default {
     },
     getTotalPatientCount(state) {
         return state.patients.length;
+    },
+    getDoctorInfo(state) {
+        return state.doctorData;
     }
 }
