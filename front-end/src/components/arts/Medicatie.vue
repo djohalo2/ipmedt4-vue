@@ -4,10 +4,10 @@
             <p class="page-title">MEDICATIE</p>
             <q-search v-model="medicijnSearch" placeholder="Zoek medicijn..." class="searchbar"></q-search>
 
-            <div class="list striped">
+            <div class="list bg-white striped">
               <div class="item"  v-for="(medicijn, index) in searchedMedicijnen">
                 <div class="item-content">
-                  <a>{{medicijn.naam}}</a>
+                  {{medicijn.naam}}
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@ export default {
                 let medicijnen = [];
                 this.medicijnen.map(medicijn => {
                     // Djo, hij zegt dat er iets undefined is, maar snap niet zo goed wat.
-                    if(_.includes(medicijn.name.toLowerCase(), this.medicijnSearch.toLowerCase())){
+                    if(_.includes(medicijn.naam.toLowerCase(), this.medicijnSearch.toLowerCase())){
                         medicijnen.push(medicijn);
                     }
                 });
@@ -54,11 +54,13 @@ export default {
 
 </script>
 
-<style lang="styl">
+<style lang="scss" scoped>
     .page-title {
         font-size:0.85rem;
         font-weight: 500;
         color: #a8a8a8;
         margin: 0.5rem 0;
     }
+
+
 </style>

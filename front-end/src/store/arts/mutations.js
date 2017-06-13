@@ -1,4 +1,4 @@
-import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS } from './mutation-types';
+import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT } from './mutation-types';
 
 import _ from 'lodash';
 import axios from 'axios';
@@ -15,5 +15,8 @@ export default {
     },
     [FETCH_PATIENTS](state, payload) {
         state.patients = payload;
+    },
+    [ADD_PATIENT](state, payload) {
+        state.patients.push(payload);
     }
 }
