@@ -130,7 +130,7 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        return Patient::where('patient_id', '=', $id)->with('therapys', 'notes', 'appointments')->first();
+        return Patient::where('id', '=', $id)->with('therapys', 'notes', 'appointments')->first();
     }
 
     /**
