@@ -1,16 +1,17 @@
 <template>
-        <div class="card" v-on:click="cardClick">
+        <div class="card">
             <div class="float-right">
-              <img class="profile-img" :src="patienten.foto">
+              <!-- <img class="profile-img" :src="{{avatar}}"> -->
             </div>
             <div class="card-title">
-                {{voornaam + " " + achternaam}}
+                {{firstname}} {{lastname}}
             </div>
             <div class="card-content">
-                Telefoon: {{telefoon}}<br>
+                Geboortedatum: {{birthday}}<br>
+                Telefoon: {{phone}}<br>
                 Email: {{email}}<br>
             </div>
-            <button class="primary clear">Bekijk</button>
+            <button class="primary clear" v-on:click="cardClick">Bekijk</button>
         </div>
 </template>
 
@@ -19,16 +20,11 @@ import router from 'vue-router';
 
 export default {
     name: 'patient-card',
-    props: ['id', 'voornaam', 'achternaam', 'email', 'telefoon', 'geboortedatum', 'foto'],
+    props: ['id', 'firstname', 'lastname', 'email', 'phone', 'birthday', 'avatar'],
     methods: {
         cardClick() {
             this.$router.push({path: 'patienten/' + this.id});
         }
-    },
-    computed: {
-      patienten() {
-        return this.$store.getters.getPatientInfo
-      }
     }
 }
 </script>

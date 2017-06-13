@@ -2,7 +2,8 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">Geregistreerde patienten</p>
-            <patient-card :id="patienten.id" :voornaam="patienten.voornaam" :achternaam="patienten.achternaam" :email="patienten.email" :telefoon="patienten.telefoon" :geboortedatum="patienten.geboortedatum" :foto="patienten.foto"></patient-card>
+            <q-search v-model="patientSearch" placeholder="Zoek patiënten..." class="searchbar"></q-search><br>
+            <patient-card v-for="patient in searchedPatients" :id="patient.id" :firstname="patient.firstname" :lastname="patient.lastname" :email="patient.email" :phone="patient.phone" :birthday="patient.birthday" :avatar="patient.avatar"></patient-card>
         </div>
     </div>
 </template>
@@ -12,12 +13,34 @@ import PatientCard from './PatientCard.vue';
 
 export default {
     name: 'patienten',
+    data() {
+      return {
+        patientSearch: ""
+      }
+    },
     components: {
         PatientCard
     },
     computed: {
-        patienten(){
-            return this.$store.getters.getPatientInfo
+        searchedPatients() {
+            if(this.patientSearch !== ""){
+                let patients = [];
+                this.patienten.map(patient => {
+                    if(_.includes(patient.firstname.toLowerCase(), this.patientSearch.toLowerCase()) ||
+                       _.includes(patient.lastname.toLowerCase(), this.patientSearch.toLowerCase()) ||
+                       _.includes(patient.email.toLowerCase(), this.patientSearch.toLowerCase()) ||
+                       _.includes(patient.phone, this.patientSearch) ||
+                       _.includes(patient.birthday, this.patientSearch)){
+                        patients.push(patient);
+                    }
+                });
+                return patients;
+            } else {
+                return this.patienten;
+            }
+        },
+        patienten() {
+            return this.$store.getters.getPatients;
         }
     }
 }

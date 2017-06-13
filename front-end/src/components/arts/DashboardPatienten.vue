@@ -43,7 +43,9 @@
                         v-model="newPatient.birthday"
                         type="date"
                         placeholder="2017-6-13"
+                        min="1900-3-10"
                     ></q-datetime>
+                    <!-- Violet Brown <3 -->
                 </div>
             </div>
             <div class="row small-gutter">
@@ -71,10 +73,10 @@
             <q-search v-model="patientSearch" placeholder="Zoek patiënten..." class="searchbar"></q-search>
 
             <div class="list">
-                <dashboard-patient-card v-if="index > (patientPage * 3 - 4) && index < (patientPage * 3)" v-for="(patient, index) in searchedPatients" :key="patient.id" :id="patient.id" :city="patient.city" :name="patient.firstname + ' ' + patient.lastname" :avatar="patient.avatar" :phone="patient.phone"></dashboard-patient-card>
+                <dashboard-patient-card v-if="index > (patientPage * 4 - 5) && index < (patientPage * 4)" v-for="(patient, index) in searchedPatients" :key="patient.id" :id="patient.id" :city="patient.city" :name="patient.firstname + ' ' + patient.lastname" :avatar="patient.avatar" :phone="patient.phone"></dashboard-patient-card>
             </div>
 
-            <q-pagination class="patient-pagination" v-model="patientPage" :max="Math.round(searchedPatients.length / 3)"></q-pagination>
+            <q-pagination class="patient-pagination" v-model="patientPage" :max="Math.ceil(searchedPatients.length / 4)"></q-pagination>
         </div>
     </div>
 </template>
@@ -118,7 +120,11 @@ export default {
             if(this.patientSearch !== ""){
                 let patients = [];
                 this.patienten.map(patient => {
-                    if(_.includes(patient.firstname.toLowerCase(), this.patientSearch.toLowerCase()) || _.includes(patient.lastname.toLowerCase(), this.patientSearch.toLowerCase())){
+                    if(_.includes(patient.firstname.toLowerCase(), this.patientSearch.toLowerCase()) ||
+                       _.includes(patient.lastname.toLowerCase(), this.patientSearch.toLowerCase()) ||
+                       _.includes(patient.email.toLowerCase(), this.patientSearch.toLowerCase()) ||
+                       _.includes(patient.phone, this.patientSearch) ||
+                       _.includes(patient.birthday, this.patientSearch)){
                         patients.push(patient);
                     }
                 });
