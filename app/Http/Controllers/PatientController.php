@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Password;
+use App\Mail\Welcome;
 use App\Patient;
 use App\User;
 use Carbon\Carbon;
@@ -87,17 +89,16 @@ class PatientController extends Controller
 //                    'username'=>$username,
 //                    'email'=>$email,
 //                );
-//                Mail::send('mail', $data, function($message) use ($data) {
-//                    $message->to($data['email'])->subject('Welkom bij Mijn nazorg ');
-//                    $message->from('no-reply@mijnnazorg.nl', 'Mijn nazorg');
-//                });
-
+//
+//                Mail::to($data['email'])
+//                    ->queue(new Welcome($data));
+//
 //                $data['password'] = $password_str;
-
-//                Mail::send('password', ($data), function($message) use ($data){
-//                    $message->to($data['email'])->subject('Wachtwoord bij Mijn nazorg');
-//                    $message->from('no-reply@mijnnazorg.com', 'Mijn nazorg');
-//                });
+//
+//                $when = Carbon::now()->addMinutes(1);
+//
+//                Mail::to($data['email'])
+//                    ->later($when, new Password($data));
 
                 return ['success' => 1, 'password' => $password_str];
 
@@ -118,7 +119,6 @@ class PatientController extends Controller
     public function show($id)
     {
         return Patient::where('patient_id', '=', $id)->with('therapys', 'notes', 'appointments')->first();
-//        return $patient;
     }
 
     /**
