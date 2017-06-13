@@ -71,7 +71,7 @@
             <q-search v-model="patientSearch" placeholder="Zoek patiënten..." class="searchbar"></q-search>
 
             <div class="list">
-                <dashboard-patient-card v-if="index < 3" v-for="(patient, index) in searchedPatients" :key="patient.id" :id="patient.id" :city="patient.city" :name="patient.firstname + ' ' + patient.lastname" :avatar="patient.avatar" :phone="patient.phone"></dashboard-patient-card>
+                <dashboard-patient-card v-if="index > (patientPage * 3 - 4) && index < (patientPage * 3)" v-for="(patient, index) in searchedPatients" :key="patient.id" :id="patient.id" :city="patient.city" :name="patient.firstname + ' ' + patient.lastname" :avatar="patient.avatar" :phone="patient.phone"></dashboard-patient-card>
             </div>
 
             <q-pagination class="patient-pagination" v-model="patientPage" :max="Math.round(searchedPatients.length / 3)"></q-pagination>
