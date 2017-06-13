@@ -41,7 +41,6 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
 
         $gender = $request->gender;
         $firstname = $request->firstname;
