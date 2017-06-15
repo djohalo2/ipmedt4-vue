@@ -85,7 +85,6 @@
 import DashboardPatientCard from './DashboardPatientCard.vue';
 import _ from 'lodash';
 import moment from 'moment';
-
 export default {
     name: 'dashboard-patienten',
     data(){
@@ -150,38 +149,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
     .searchbar {
         margin-bottom: 1rem;
     }
-
     .list {
         border-bottom: none;
     }
-
     .patient-pagination {
         margin: auto;
     }
-
     .add-icon {
         font-size:24px;
         cursor: pointer;
     }
-
     input, .patient-datepicker, .gender-select {
         width: 100%;
     }
-
     .patient-modal {
         .row {
             margin-bottom: 0.5rem;
         }
-
         button {
             margin: 0 auto;
             display: block;
         }
     }
-
-
 </style>
