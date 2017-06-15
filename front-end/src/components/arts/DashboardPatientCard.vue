@@ -1,24 +1,27 @@
 <template>
     <div class="item three-lines">
-        <img class="item-primary" :src="avatar">
+        <img class="item-primary" :src="patient.avatar">
         <div class="item-content has-secondary">
-                <div class="item-title">{{name}}</div>
+                <div class="item-title">{{patient.firstname + " " + patient.lastname}}</div>
                 <div class="item-label item-smaller">
-                    {{phone}}<br>
-                    {{city}}
+                    {{patient.phone}}<br>
+                    {{patient.city}}
                 </div>
         </div>
         <div class="item-secondary stamp">
-            Nr. {{id}}
+            Nr. {{patient.id}}
         </div>
-        <i class="item-secondary">edit</i>
+        <i class="item-secondary" @click="editPatient">edit</i>
     </div>
 </template>
 
 <script>
 export default {
     name: 'dashboard-patient-card',
-    props: ['name', 'id', 'avatar', 'phone', 'city']
+    props: ['patient'],
+    methods: {
+        
+    }
 }
 </script>
 
