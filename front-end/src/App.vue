@@ -3,6 +3,7 @@
         <q-layout>
             <top-header v-if="this.$route.path !== '/login' && !this.$route.path.includes('/arts')" slot="header"></top-header>
             <navigation v-if="this.$route.path === '/behandeling' || this.$route.path === '/'" slot="navigation"></navigation>
+            <notitie-tabs v-if="this.$route.path === '/notities' || this.$route.path === '/notities-arts'" slot="navigation"></notitie-tabs>
             <arts-top-header v-if="this.$route.path.includes('/arts')" slot="header"></arts-top-header>
             <arts-drawer v-if="this.$route.path.includes('/arts')"></arts-drawer>
             <router-view v-if="!isFetching"></router-view>
@@ -16,6 +17,7 @@ import TopHeader from 'components/Header.vue';
 import Navigation from 'components/Navigation.vue';
 import ArtsTopHeader from 'components/arts/ArtsHeader.vue';
 import ArtsDrawer from 'components/arts/ArtsDrawer.vue';
+import NotitieTabs from 'components/NotitieTabs.vue';
 
 import { LocalStorage } from 'quasar';
 import router from 'vue-router';
@@ -25,7 +27,8 @@ export default {
         TopHeader,
         Navigation,
         ArtsTopHeader,
-        ArtsDrawer
+        ArtsDrawer,
+        NotitieTabs
     },
     computed: {
         isFetching(){

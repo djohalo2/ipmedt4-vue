@@ -15,6 +15,7 @@ export default new VueRouter({
     { path: '/behandeling', component: load('Behandelingen') },
     { path: '/medicatie', component: load('Medicatie') },
     { path: '/notities', component: load('NotitiesPage') },
+    { path: '/notities-arts', component: load('ArtsNotitiesPage') },
     { path: '/oefeningen', component: load('Oefeningen') },
     { path: '/afspraken', component: load('Afspraken') },
     { path: '/login', component: load('Login') },
