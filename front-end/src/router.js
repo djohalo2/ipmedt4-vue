@@ -10,11 +10,13 @@ function load (component) {
 export default new VueRouter({
 
   routes: [
+    // Paths voor patient
     { path: '/', component: load('Overzicht') },
     { path: '/behandeling', component: load('Behandelingen') },
     { path: '/medicatie', component: load('Medicatie') },
     { path: '/notities', component: load('NotitiesPage') },
     { path: '/oefeningen', component: load('Oefeningen') },
+    { path: '/afspraken', component: load('Afspraken') },
     { path: '/login', component: load('Login') },
     { path: '/patientinformatie', component: load('PatientInformatie') },
     { path: '/behandeling/:typeBehandeling', component: load('BehandelingPage') },

@@ -67,7 +67,7 @@ export default {
 
 </script>
 
-<style lang="styl">
+<style lang="styl" scoped>
 
   .timeline-badge {
     background: #fd4935;

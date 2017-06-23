@@ -6,7 +6,7 @@ export default {
         return state.token;
     },
     getUserType(state){
-        return state.userType;    
+        return state.userType;
     },
     totalBehandelingen(state) {
         return state.patientData.therapys;
@@ -22,6 +22,19 @@ export default {
     },
     getOefening(state) {
         return state.currentOefening;
+    },
+    getAllAppointsments(state) {
+      let appointments = [];
+      if(state.patientData.therapys){
+          state.patientData.therapys.map(behandeling => {
+              if(behandeling.appointments.length > 0){
+                  behandeling.appointments.map(appointment =>{
+                      appointments.push(appointment);
+                  });
+              }
+          });
+          return appointments;
+      }
     },
     getAllTodos(state) {
         let todos = [];
