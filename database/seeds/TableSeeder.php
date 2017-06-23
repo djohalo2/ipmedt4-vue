@@ -224,7 +224,8 @@ class TableSeeder extends Seeder
 
 
         $appointment1 = Appointment::firstOrCreate([
-            'time_date' => '2017-06-15',
+            'title' => 'Controle afspraak',
+            'time_date' => Carbon::tomorrow(),
             'therapy_id' => $therapy1->id,
             'patient_id' => $patient->id,
             'doctor_id' => $doctor->id,
@@ -232,7 +233,17 @@ class TableSeeder extends Seeder
         ]);
 
         $appointment2 = Appointment::firstOrCreate([
-            'time_date' => '2017-06-01',
+            'title' => 'Operatie',
+            'time_date' => Carbon::now()->subDays(7),
+            'therapy_id' => $therapy1->id,
+            'patient_id' => $patient->id,
+            'doctor_id' => $doctor->id,
+            'status' => 'done'
+        ]);
+
+        $appointment3 = Appointment::firstOrCreate([
+            'title' => 'Controle afspraak',
+            'time_date' => Carbon::now()->addDays(25),
             'therapy_id' => $therapy1->id,
             'patient_id' => $patient->id,
             'doctor_id' => $doctor->id,
