@@ -177,6 +177,6 @@ class PatientController extends Controller
 
             $query->orderBy('time_date', 'desc');
 
-        }], 'therapys', 'notes')->first();
+        }, 'therapys', 'notes'])->first();
     }
 }
