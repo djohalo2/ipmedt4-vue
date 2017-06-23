@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
-    public $fillable = ['time_date', 'therapy_id', 'patient_id', 'doctor_id', 'status'];
+    public $fillable = ['title', 'time_date', 'therapy_id', 'patient_id', 'doctor_id', 'status'];
 
-    protected $with = ['patient', 'doctor'];
+    protected $with = ['doctor'];
 
-    public function patient()
-    {
-        return $this->belongsTo('App\Patient');
-    }
+//    public function patient()
+//    {
+//        return $this->belongsTo('App\Patient');
+//    }
 
     public function doctor()
     {
