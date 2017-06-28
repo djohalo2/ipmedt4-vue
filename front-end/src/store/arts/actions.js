@@ -57,5 +57,14 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+    },
+    FETCH_ALL_MEDICINES({ commit, state }) {
+      axios.get(BASE_URL + 'medicine', { headers: { Authorization: "Bearer " + state.token}})
+      .then(response => {
+        commit('SET_ALL_MEDICINES', response.data.medicines)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     }
 }

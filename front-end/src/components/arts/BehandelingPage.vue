@@ -10,6 +10,10 @@
             <div class="card-title">
               Behandeling informatie
             </div>
+
+            <div class="card-content">
+
+            </div>
           </div>
         </div>
 
@@ -24,17 +28,19 @@
 
       <div class="row medium-gutter sm-column">
         <div class="width-1of2">
-          <div class="card">
-            <div class="card-title">
-              Medicatie
-            </div>
-          </div>
+          <behandeling-medicatie :medicatie="behandeling.medicines"></behandeling-medicatie>
         </div>
 
         <div class="width-1of2">
           <div class="card">
             <div class="card-title">
               Oefeningen
+            </div>
+
+            <div class="card-content">
+              <div class="list">
+                <list-item v-for="oefening in behandeling.excercises" :key="oefening.id" :title="oefening.title"></list-item>
+              </div>
             </div>
           </div>
         </div>
@@ -44,9 +50,15 @@
 </template>
 
 <script>
+import ListItem from './ListItem';
+import BehandelingMedicatie from './BehandelingMedicatie'
 
 export default {
     name: 'behandeling-page',
+    components: {
+      ListItem,
+      BehandelingMedicatie
+    },
     computed: {
       behandelingen () {
         return this.$store.getters.getPatientBehandelingen

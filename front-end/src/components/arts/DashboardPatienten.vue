@@ -162,10 +162,6 @@ export default {
     .patient-pagination {
         margin: auto;
     }
-    .add-icon {
-        font-size:24px;
-        cursor: pointer;
-    }
     input, .patient-datepicker, .gender-select {
         width: 100%;
     }

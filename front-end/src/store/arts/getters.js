@@ -13,5 +13,8 @@ export default {
     },
     getPatientBehandelingen(state) {
       return state.patientBehandelingen
+    },
+    getAllMedicines(state) {
+      return state.medicines
     }
 }

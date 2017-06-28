@@ -3,3 +3,4 @@ export const CHECK_TOKEN = 'CHECK_TOKEN';
 export const FETCH_PATIENTS = 'FETCH_PATIENTS';
 export const ADD_PATIENT = 'ADD_PATIENT';
 export const SET_PATIENT_DATA = 'SET_PATIENT_DATA';
+export const SET_ALL_MEDICINES = 'SET_ALL_MEDICINES';

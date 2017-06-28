@@ -80,4 +80,9 @@ export default {
         color: #a8a8a8;
         margin: 0.5rem 0;
     }
+
+    .add-icon {
+        font-size:24px;
+        cursor: pointer;
+    }
 </style>
