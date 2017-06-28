@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.zoho.eu'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@djoandco.com'),
-        'name' => env('MAIL_FROM_NAME', 'DJO & CO'),
+        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@mijnnazorg.nl'),
+        'name' => env('MAIL_FROM_NAME', 'Mijn nazorg'),
     ],
 
     /*
