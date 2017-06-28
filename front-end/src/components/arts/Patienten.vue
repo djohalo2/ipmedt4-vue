@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style lang="styl">
+<style lang="scss" scoped>
     .layout-view {
         background-color: #F6F6F6;
     }

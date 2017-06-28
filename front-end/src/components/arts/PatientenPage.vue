@@ -1,21 +1,21 @@
 <template>
     <div class="layout-view">
         <div class="layout-padding">
-            <p class="page-title">{{patient.voornaam + " " + patient.achternaam}}</p>
+            <p class="page-title">{{patient.firstname + " " + patient.lastname}}</p>
 
             <div class="card">
                 <div class="card-title">
                     <p class="text-primary">Gegevens:</p>
-                    <img class="profile-img" :src="patient.foto">
-                    <p>Voornaam: {{patient.voornaam}}<br>
-                    Achternaam: {{patient.achternaam}}<br>
-                    Telefoon: {{patient.telefoon}}<br>
+                    <img class="profile-img" :src="patient.avatar">
+                    <p>Voornaam: {{patient.firstname}}<br>
+                    Achternaam: {{patient.lastname}}<br>
+                    Telefoon: {{patient.phone}}<br>
                     Email: {{patient.email}}</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-title">
-                    <p class="text-primary">Notities:</p>
+                    <p class="text-primary">Behandelingen:</p>
                 </div>
             </div>
         </div>
@@ -28,12 +28,24 @@ import router from 'vue-router';
 
 export default {
     name: 'patienten-page',
+    data() {
+        return {
+            patientId: 0
+        }
+    },
     computed: {
-        patient() {
-            return this.$store.getters.getPatientInfo
+        patients() {
+            return this.$store.getters.getPatients
         },
         notities() {
             return this.$store.getters.getNotities
+        },
+        patient() {
+            for(let patient in this.patients) {
+                if (this.patients[patient].id == this.$route.params.patientId) {
+                    return this.patients[patient];
+                }
+            }
         }
     }
 }
