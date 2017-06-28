@@ -191,6 +191,24 @@ class TableSeeder extends Seeder
             'side_effects' => 'Misselijkheid',
             'usage' => 'Innemen met een half glas water'
         ]);
+        Medicine::firstOrCreate([
+            'name' => 'Rommel',
+            'important' => 'Lekker rommel in je lichaam gooien',
+            'side_effects' => 'Misselijkheid',
+            'usage' => 'Innemen met een half glas water'
+        ]);
+        Medicine::firstOrCreate([
+            'name' => 'Paracetamol',
+            'important' => 'Kom je van je hoofdpijn af',
+            'side_effects' => 'Misselijkheid',
+            'usage' => 'Innemen met een half glas water'
+        ]);
+        Medicine::firstOrCreate([
+            'name' => 'Anti Djovanni',
+            'important' => 'Kom je van djo af',
+            'side_effects' => 'Misselijkheid',
+            'usage' => 'Innemen met een half glas water'
+        ]);
 
         DB::table('therapy_medicine')->insert([
             'therapy_id' => $therapy1->id,
