@@ -41,6 +41,9 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
 
         $api->get('patient/user/{user_id}', ['as' => 'patient.user_id',  'uses' => '\App\Http\Controllers\PatientController@patient_user_id']);
         $api->get('doctor/user/{user_id}', ['as' => 'doctor.user_id',  'uses' => '\App\Http\Controllers\DoctorController@doctor_user_id']);
+
+
+        $api->get('doctor/appointments/{doctor_ic}', ['as' => 'doctor.appointments',  'uses' => '\App\Http\Controllers\AppointmentController@doctor_appointments']);
     });
 
 

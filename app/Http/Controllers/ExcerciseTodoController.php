@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Excercise_todo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ExcerciseTodoController extends Controller
 {
@@ -36,7 +37,39 @@ class ExcerciseTodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $start_date = Carbon::createFromFormat('Y-m-d', $request->start_date);
+        $end_date = Carbon::createFromFormat('Y-m-d', $request->end_date);
+
+        $excercise_id = $request->excercise_id;
+        $therapy_id = $request->therapy_id;
+
+        DB::table('therapy_excercise')->insert([
+            'therapy_id' => $therapy_id,
+            'excercise_id' => $excercise_id
+        ]);
+
+        $sets = $request->sets;
+        $sets_amount = $request->sets_amount;
+
+        $per_day = $request->per_day;
+        $hours_between = 12/$per_day;
+
+        for ($i = $start_date; $i <= $end_date; $i->addDay()) {
+            $date = $i;
+            $date->setTime(8,0,0);
+            for ($x = 0; $x < $per_day; $x = $x + 1) {
+                Excercise_todo::create([
+                    'therapy_id' => $therapy_id,
+                    'excercise_id' => $excercise_id,
+                    'sets' => $sets,
+                    'sets_amount' => $sets_amount,
+                    'time_date' => $date,
+                ]);
+
+                $date->addHours($hours_between);
+            }
+        }
+
     }
 
     /**

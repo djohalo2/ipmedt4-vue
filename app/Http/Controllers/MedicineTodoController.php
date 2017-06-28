@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Medicine_todo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicineTodoController extends Controller
 {
@@ -36,7 +37,39 @@ class MedicineTodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $start_date = Carbon::createFromFormat('Y-m-d', $request->start_date);
+        $end_date = Carbon::createFromFormat('Y-m-d', $request->end_date);
+
+        $medicine_id = $request->medicine_id;
+        $therapy_id = $request->therapy_id;
+
+        DB::table('therapy_medicine')->insert([
+            'therapy_id' => $therapy_id,
+            'medicine_id' => $medicine_id
+        ]);
+
+        $amount = $request->amount;
+
+        $per_day = $request->amount_per_day;
+        $hours_between = 12/$per_day;
+
+        for ($i = $start_date; $i <= $end_date; $i->addDay()) {
+            $date = $i;
+            $date->setTime(8,0,0);
+            for ($x = 0; $x < $per_day; $x = $x + 1) {
+                Medicine_todo::create([
+                    'therapy_id' => $therapy_id,
+                    'medicine_id' => $medicine_id,
+                    'amount' => $amount,
+                    'time_date' => $date,
+                    'amount_per_day' => $per_day,
+                    'done' => 0
+                ]);
+
+                $date->addHours($hours_between);
+            }
+        }
     }
 
     /**

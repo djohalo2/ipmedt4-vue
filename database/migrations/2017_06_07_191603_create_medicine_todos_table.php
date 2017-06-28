@@ -20,7 +20,7 @@ class CreateMedicineTodosTable extends Migration
             $table->string('amount');
             $table->dateTime('time_date');
             $table->integer('amount_per_day');
-            $table->boolean('done');
+            $table->boolean('done')->default(0);
             $table->dateTime('complete_date')->nullable();
             $table->timestamps();
 

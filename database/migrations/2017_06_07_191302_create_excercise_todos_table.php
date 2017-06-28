@@ -20,7 +20,7 @@ class CreateExcerciseTodosTable extends Migration
             $table->integer('sets');
             $table->integer('sets_amount');
             $table->dateTime('time_date');
-            $table->boolean('done');
+            $table->boolean('done')->default(0);
             $table->dateTime('complete_date')->nullable();
             $table->timestamps();
 

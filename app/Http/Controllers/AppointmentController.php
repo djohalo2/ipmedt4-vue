@@ -82,4 +82,9 @@ class AppointmentController extends Controller
     {
         //
     }
+
+
+    public function doctor_appointments($doctor_id) {
+        return Appointment::where('doctor_id', '=', $doctor_id)->get();
+    }
 }
