@@ -54,12 +54,9 @@ export default {
                 password: this.password
             };
             this.$store.dispatch('FETCH_TOKEN', payload).then(() => {
-
-                    setTimeout(() => {
-                        if(this.token !== "unauthorized"){
-                            this.$store.dispatch('FETCH_PATIENT');
-                        }
-                    }, 300);
+                if(this.token !== "unauthorized"){
+                    this.$store.dispatch('FETCH_PATIENT');
+                }
             });
         }
     }

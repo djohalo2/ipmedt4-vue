@@ -44,18 +44,22 @@ export default {
         });
     },
     FETCH_TOKEN({ commit, state }, payload){
-        axios.post(BASE_URL + "authenticate", {
-            username: payload.username,
-            password: payload.password
+        return new Promise((resolve, reject) => {
+            axios.post(BASE_URL + "authenticate", {
+                username: payload.username,
+                password: payload.password
+            })
+            .then(response => {
+                LocalStorage.set("token", response.data.token);
+                // commit('CHECK_TOKEN', response.data.token);
+                state.token = response.data.token;
+                resolve();
+            })
+            .catch((error) => {
+                state.token = "unauthorized";
+                reject();
+            });
         })
-        .then(response => {
-            LocalStorage.set("token", response.data.token);
-            // commit('CHECK_TOKEN', response.data.token);
-            state.token = response.data.token;
-        })
-        .catch((error) => {
-            state.token = "unauthorized";
-        });
     },
     TOGGLE_TODO({ commit }, data) {
         axios({

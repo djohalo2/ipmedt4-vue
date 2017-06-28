@@ -11,7 +11,7 @@
         <div class="item-secondary stamp">
             Nr. {{patient.id}}
         </div>
-        <i class="item-secondary" @click="editPatient">edit</i>
+        <i class="item-secondary">edit</i>
     </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     name: 'dashboard-patient-card',
     props: ['patient'],
     methods: {
-        
+
     }
 }
 </script>
