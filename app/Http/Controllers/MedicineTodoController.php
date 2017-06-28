@@ -64,7 +64,6 @@ class MedicineTodoController extends Controller
                     'amount' => $amount,
                     'time_date' => $date,
                     'amount_per_day' => $per_day,
-                    'done' => 0
                 ]);
 
                 $date->addHours($hours_between);

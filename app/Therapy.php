@@ -8,7 +8,7 @@ class Therapy extends Model
 {
     public $fillable = ['name', 'patient_id', 'start_date', 'end_date', 'department_id', 'created_by', 'last_update_by'];
 
-    protected $with = ['created_by', 'last_update_by', 'doctor_notes', 'excercises', 'bodyparts', 'medicines', 'medicine_todo', 'excercise_todo', 'appointments'];
+    protected $with = ['created_by', 'last_update_by'];
 
     public function patient()
     {

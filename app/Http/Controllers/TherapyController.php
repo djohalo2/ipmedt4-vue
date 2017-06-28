@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bodypart;
 use App\Therapy;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -88,16 +89,17 @@ class TherapyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Therapy $therapy
+     * @param $patient_id
      * @return Therapy
+     * @internal param Therapy $therapy
      * @internal param $id
      * @internal param Therapy $therapy
      * @internal param $id
      * @internal param Therapy $therapy
      */
-    public function show(Therapy $therapy)
+    public function show($patient_id)
     {
-        return $therapy;
+        return Therapy::where('patient_id', '=', $patient_id)->with('doctor_notes', 'excercises', 'medicines', 'bodyparts')->get();
     }
 
     /**
