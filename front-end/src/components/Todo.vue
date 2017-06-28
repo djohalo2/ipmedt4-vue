@@ -3,14 +3,14 @@
         <li v-on:click="toggleTodo">
             <q-checkbox v-model="completedTodo" @input="toggleTodo"></q-checkbox>
             <p class="todo-name" v-bind:class="{completed: completed}">{{name}}</p>
-            <p class="todo-date">{{date}}</p>
+            <p class="todo-date">{{tijdstip}}</p>
         </li>
         <hr>
     </div>
 </template>
 
 <script>
-
+import moment from 'moment';
 
 export default {
     name: 'todo',
@@ -23,6 +23,9 @@ export default {
     computed: {
         completedTodo() {
             return this.completed;
+        },
+        tijdstip() {
+          return moment(this.date).format("HH:mm")
         }
     },
     methods: {
