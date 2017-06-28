@@ -14,18 +14,46 @@
 
     <q-modal ref="addMedicineModal" class="minimized patient-modal" :content-css="{padding: '50px'}">
         <p>Medicijn toevoegen</p>
-        <div class="row small-gutter">
+        <div class="row medium-gutter">
           <q-autocomplete v-model="terms" @search="search" @selected="selected" :delay="0">
             <q-search v-model="terms" placeholder="Zoek een medicijn" />
           </q-autocomplete>
         </div>
-        <button class="red">Toevoegen</button>
+        <div class="row medium-gutter">
+          <q-datetime
+              class="patient-datepicker"
+              v-model="medicineData.start_date"
+              type="date"
+              placeholder="Startdatum"
+              :min="now"
+          ></q-datetime>
+        </div>
+        <div class="row medium-gutter">
+          <q-datetime
+              class="patient-datepicker"
+              v-model="medicineData.end_date"
+              type="date"
+              placeholder="Einddatum"
+              :min="now"
+          ></q-datetime>
+        </div>
+        <div class="row medium-gutter">
+          <input v-model="medicineData.amount" placeholder="Dosering">
+        </div>
+        <div class="row medium-gutter">
+          <input v-model="medicineData.amount_per_day" placeholder="Hoeveelheid per dag">
+        </div>
+        <button class="red" @click="addMedicine()">Toevoegen</button>
     </q-modal>
   </div>
 </template>
 
 <script>
 import _ from 'lodash';
+import { Utils } from 'quasar';
+import router from 'vue-router';
+import moment from 'moment';
+import lodash from 'lodash';
 
 import ListItem from './ListItem';
 
@@ -37,7 +65,16 @@ export default {
     },
     data () {
       return {
-        terms: ''
+        terms: '',
+        medicineData: {
+          amount: '',
+          amount_per_day: '',
+          therapy_id: this.$route.params.behandelingId,
+          medicine_id: 0,
+          start_date: undefined,
+          end_date: undefined
+        },
+        now: moment().format()
       }
     },
     computed: {
@@ -49,14 +86,21 @@ export default {
       search (terms, done) {
         let results = [];
         this.medicines.map((medicine) => {
-          if(_.includes(medicine.name.toLowerCase(), terms)) {
-            results.push(medicine);
+          if(_.includes(medicine.name.toLowerCase(), terms.toLowerCase())) {
+            results.push({
+              label: medicine.name,
+              id: medicine.id,
+              value: medicine.name
+            });
           }
         })
         done(results);
       },
       selected (item) {
-        console.log(item);
+        this.medicineData.medicine_id = item.id
+      },
+      addMedicine() {
+        this.$store.dispatch('ADD_MEDICINE', this.medicineData)
       }
     },
     created () {

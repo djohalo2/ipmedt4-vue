@@ -1,5 +1,5 @@
 <template>
-    <div class="item three-lines">
+    <div class="item three-lines" @click="clickPatient()">
         <img class="item-primary" :src="patient.avatar">
         <div class="item-content has-secondary">
                 <div class="item-title">{{patient.firstname + " " + patient.lastname}}</div>
@@ -16,11 +16,15 @@
 </template>
 
 <script>
+import router from 'vue-router';
+
 export default {
     name: 'dashboard-patient-card',
     props: ['patient'],
     methods: {
-
+      clickPatient() {
+        this.$router.push({path: 'arts/patienten/' + this.patient.id})
+      }
     }
 }
 </script>
@@ -29,6 +33,11 @@ export default {
 
     .item {
         border-bottom: 1px solid #e0e0e0;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #F6F6F6;
+        }
 
         .item-primary {
             margin-right: 1rem;

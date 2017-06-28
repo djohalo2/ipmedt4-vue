@@ -66,5 +66,28 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+    },
+    ADD_MEDICINE({ commit, state }, medicineData) {
+      axios({
+          method: "post",
+          url: BASE_URL + "medicine_todo",
+          data: qs.stringify({
+              amount: medicineData.amount,
+              amount_per_day: medicineData.amount_per_day,
+              therapy_id: medicineData.therapy_id,
+              medicine_id: medicineData.medicine_id,
+              start_date: moment(medicineData.start_date).format('YYYY-MM-DD'),
+              end_date: moment(medicineData.end_date).format('YYYY-MM-DD'),
+          }),
+          headers: {
+              Authorization: "Bearer " + state.token,
+          }
+      })
+      .then(response => {
+          console.log(response);
+      })
+      .catch((error) => {
+          console.log(error);
+      });
     }
 }

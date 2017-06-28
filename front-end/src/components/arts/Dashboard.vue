@@ -57,5 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .gt-sm-width-1of3 {
+    flex: 33.33333%;
+  }
 </style>
