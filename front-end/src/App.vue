@@ -63,9 +63,21 @@ export default {
 
     .card {
         margin-bottom: 15px;
+        background-color: #fff;
     }
 
     .loading {
         margin: 5rem auto;
+    }
+
+    .layout-view {
+        background-color: #F6F6F6;
+    }
+
+    .page-title {
+        font-size:0.85rem;
+        font-weight: 500;
+        color: #a8a8a8;
+        margin: 0.5rem 0;
     }
 </style>

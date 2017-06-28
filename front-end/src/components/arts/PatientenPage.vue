@@ -5,17 +5,32 @@
 
             <div class="card">
                 <div class="card-title">
-                    <p class="text-primary">Gegevens:</p>
+                    <p class="text-primary">Gegevens</p>
                     <img class="profile-img" :src="patient.avatar">
-                    <p>Voornaam: {{patient.firstname}}<br>
-                    Achternaam: {{patient.lastname}}<br>
-                    Telefoon: {{patient.phone}}<br>
-                    Email: {{patient.email}}</p>
+                    <ul class="patientinfo-list">
+                      <li>Voornaam: {{patient.firstname}}</li>
+                      <li>Achternaam: {{patient.lastname}}</li>
+                      <li>Telefoon: {{patient.phone}}</li>
+                      <li>Email: {{patient.email}}</li>
+                    </ul>
                 </div>
             </div>
             <div class="card">
                 <div class="card-title">
-                    <p class="text-primary">Behandelingen:</p>
+                    <p class="text-primary">Behandelingen</p>
+                    <div class="list">
+                      <div class="item three-lines" @click="clickBehandeling(behandeling.id)" v-for="behandeling in behandelingen" :key="behandeling.id">
+                          <i class="item-primary">{{behandelingStatus(behandeling.end_date)}}</i>
+                          <div class="item-content has-secondary">
+                                  <div class="item-title">{{behandeling.name}}</div>
+                                  <div class="item-label item-smaller">
+                                      Loopt sinds {{behandeling.start_date}}<br>
+                                      <p v-for="bodypart in behandeling.bodyparts">{{bodypart.name}}</p>
+                                  </div>
+                          </div>
+                          <button class="primary small item-secondary text-white">Bekijken</button>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,7 +39,7 @@
 
 <script>
 import router from 'vue-router';
-
+import moment from 'moment';
 
 export default {
     name: 'patienten-page',
@@ -33,12 +48,23 @@ export default {
             patientId: 0
         }
     },
+    methods: {
+      behandelingStatus(date) {
+        return moment(date).diff(moment()) < 0 ? 'check_circle' : 'cached';
+      },
+      clickBehandeling(behandelingId) {
+        this.$router.push({path: this.patient.id + '/behandelingen/' + behandelingId})
+      }
+    },
     computed: {
         patients() {
-            return this.$store.getters.getPatients
+          return this.$store.getters.getPatients
         },
         notities() {
-            return this.$store.getters.getNotities
+          return this.$store.getters.getNotities
+        },
+        behandelingen() {
+          return this.$store.getters.getPatientBehandelingen
         },
         patient() {
             for(let patient in this.patients) {
@@ -47,6 +73,9 @@ export default {
                 }
             }
         }
+    },
+    created() {
+      this.$store.dispatch('FETCH_PATIENT_DATA', this.patient.id)
     }
 }
 </script>
@@ -59,16 +88,38 @@ export default {
       display: block;
     }
 
-    .no-entries-msg {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: #a8a8a8;
-    }
-
     span {
         color: #fff;
         margin-right: 0.5rem;
         margin-bottom: 0.5rem;
         font-size: 13px;
     }
+
+    .patientinfo-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .item-smaller {
+      p {
+        font-size:14px;
+      }
+    }
+
+    .item {
+      border-bottom: 1px solid #e0e0e0;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #F6F6F6;
+      }
+    }
+
+    .item-secondary {
+      width: 120px;
+      font-size: 13px;
+      margin-top: 25px;
+      text-align: center;
+    }
+
 </style>

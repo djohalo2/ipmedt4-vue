@@ -29,6 +29,7 @@ export default new VueRouter({
     { path: '/arts', component: load('arts/Dashboard') },
     { path: '/arts/patienten', component: load('arts/Patienten') },
     { path: '/arts/patienten/:patientId', component: load('arts/PatientenPage') },
+    { path: '/arts/patienten/:patientId/behandelingen/:behandelingId', component: load('arts/BehandelingPage') },
     { path: '/arts/informatie', component: load('arts/ArtsInfo') },
     { path: '/arts/medicatie', component: load('arts/Medicatie') },
     // { path: '/arts/medicatie/:typeMedicijn', component: load('ArtsMedicatiePage') }, // Path later toevoegen voor doorklikken in medicatie, in overleg met Djo

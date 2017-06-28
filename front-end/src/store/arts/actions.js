@@ -48,5 +48,14 @@ export default {
         .catch((error) => {
             console.log(error);
         });
+    },
+    FETCH_PATIENT_DATA({ commit, state}, patientId) {
+      axios.get(BASE_URL + 'therapy/' + patientId, { headers: { Authorization: "Bearer " + state.token}})
+      .then(response => {
+        commit('SET_PATIENT_DATA', response.data.therapies)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     }
 }

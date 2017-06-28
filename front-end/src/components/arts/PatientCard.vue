@@ -56,7 +56,6 @@ export default {
     .card {
         padding: 0rem 1rem;
         box-shadow: 0 1px 3px rgba(0,0,0,0.22), 0 3px 2px rgba(0,0,0,0.05);
-        background-color: #fff;
 
         .card-title {
             font-size: 1rem;

@@ -30,14 +30,4 @@ export default {
     .no-entries-msg {
         color: #a8a8a8;
     }
-    .layout-view {
-        background-color: #F6F6F6;
-    }
-
-    .page-title {
-        font-size:0.85rem;
-        font-weight: 500;
-        color: #a8a8a8;
-        margin: 0.5rem 0;
-    }
 </style>

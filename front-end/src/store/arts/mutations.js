@@ -1,22 +1,19 @@
-import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT } from './mutation-types';
-
-import _ from 'lodash';
-import axios from 'axios';
-import { LocalStorage, SessionStorage } from 'quasar';
-
-const BASE_URL = "http://www.mijnnazorg.nl/api/";
+import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA } from './mutation-types';
 
 export default {
     [FETCH_DOCTOR](state, payload, rootState) {
-        state.doctorData = payload;
+      state.doctorData = payload
     },
     [CHECK_TOKEN](state, payload) {
-        state.token = payload;
+      state.token = payload
     },
     [FETCH_PATIENTS](state, payload) {
-        state.patients = payload;
+      state.patients = payload
     },
     [ADD_PATIENT](state, payload) {
-        state.patients.push(payload);
+      state.patients.push(payload)
+    },
+    [SET_PATIENT_DATA](state, payload) {
+      state.patientBehandelingen = payload
     }
 }
