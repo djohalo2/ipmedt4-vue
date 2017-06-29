@@ -33,7 +33,7 @@ export default new VueRouter({
     { path: '/arts/informatie', component: load('arts/ArtsInfo') },
     { path: '/arts/medicatie', component: load('arts/Medicatie') },
     // { path: '/arts/medicatie/:typeMedicijn', component: load('ArtsMedicatiePage') }, // Path later toevoegen voor doorklikken in medicatie, in overleg met Djo
-    { path: '/arts/afspraken', component: load('arts/Afspraken') },
+    { path: '/arts/afspraken', component: load('arts/afspraken/Afspraken') },
      // Not found
     { path: '*', component: load('Error404') }
   ]

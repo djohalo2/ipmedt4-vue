@@ -6,15 +6,7 @@
       </div>
       <div class="row medium-gutter sm-column">
         <div class="width-1of2">
-          <div class="card">
-            <div class="card-title">
-              Behandeling informatie
-            </div>
-
-            <div class="card-content">
-
-            </div>
-          </div>
+          <behandeling-informatie></behandeling-informatie>
         </div>
 
         <div class="width-1of2">
@@ -43,13 +35,15 @@
 import ListItem from './ListItem';
 import BehandelingMedicatie from './BehandelingMedicatie'
 import BehandelingOefeningen from './BehandelingOefeningen'
+import BehandelingInformatie from './BehandelingInformatie'
 
 export default {
     name: 'behandeling-page',
     components: {
       ListItem,
       BehandelingMedicatie,
-      BehandelingOefeningen
+      BehandelingOefeningen,
+      BehandelingInformatie
     },
     computed: {
       behandelingen () {

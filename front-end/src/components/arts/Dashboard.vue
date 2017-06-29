@@ -4,14 +4,11 @@
             <p class="page-title">Dashboard</p>
 
             <div class="row medium-gutter sm-column">
-                <div class="gt-sm-width-1of3">
+                <div class="gt-sm-width-1of2">
                     <count-card title="Patienten" :number="patientCount" description="Actuele patienten" icon="people"></count-card>
                 </div>
-                <div class="gt-sm-width-1of3">
+                <div class="gt-sm-width-1of2">
                     <count-card title="Afspraken" number="7" description="Afspraken vandaag" icon="date_range"></count-card>
-                </div>
-                <div class="gt-sm-width-1of3">
-                    <count-card title="Behandelingen" number="75" description="Actuele behandelingen" icon="loyalty"></count-card>
                 </div>
             </div>
 
@@ -25,11 +22,11 @@
                 </div>
             </div>
 
-            <div class="row medium-gutter sm-column">
+            <!-- <div class="row medium-gutter sm-column">
                 <div class="width-1of2">
                     <dashboard-notificaties></dashboard-notificaties>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
