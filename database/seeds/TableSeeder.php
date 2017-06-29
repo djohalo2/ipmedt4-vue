@@ -209,5 +209,25 @@ class TableSeeder extends Seeder
             'status' => 'planned'
         ]);
 
+        $appointment4 = Appointment::firstOrCreate([
+            'title' => 'Operatie',
+            'start' => '2017-07-06 14:20',
+            'end' => '2017-07-06 15:30',
+            'therapy_id' => $therapy1->id,
+            'patient_id' => $patient->id,
+            'doctor_id' => $doctor->id,
+            'status' => 'planned'
+        ]);
+
+        $appointment4 = Appointment::firstOrCreate([
+            'title' => 'Operatie',
+            'start' => '2017-06-22 14:20',
+            'end' => '2017-06-22 15:30',
+            'therapy_id' => $therapy1->id,
+            'patient_id' => $patient->id,
+            'doctor_id' => $doctor->id,
+            'status' => 'planned'
+        ]);
+
     }
 }
