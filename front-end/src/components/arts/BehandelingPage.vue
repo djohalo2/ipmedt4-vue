@@ -32,17 +32,7 @@
         </div>
 
         <div class="width-1of2">
-          <div class="card">
-            <div class="card-title">
-              Oefeningen
-            </div>
-
-            <div class="card-content">
-              <div class="list">
-                <list-item v-for="oefening in behandeling.excercises" :key="oefening.id" :title="oefening.title"></list-item>
-              </div>
-            </div>
-          </div>
+          <behandeling-oefeningen :oefeningen="behandeling.excercises"></behandeling-oefeningen>
         </div>
       </div>
     </div>
@@ -52,12 +42,14 @@
 <script>
 import ListItem from './ListItem';
 import BehandelingMedicatie from './BehandelingMedicatie'
+import BehandelingOefeningen from './BehandelingOefeningen'
 
 export default {
     name: 'behandeling-page',
     components: {
       ListItem,
-      BehandelingMedicatie
+      BehandelingMedicatie,
+      BehandelingOefeningen
     },
     computed: {
       behandelingen () {

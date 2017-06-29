@@ -67,6 +67,15 @@ export default {
         console.log(error)
       })
     },
+    FETCH_ALL_EXERCISES({ commit, state }) {
+      axios.get(BASE_URL + 'excercise', { headers: { Authorization: "Bearer " + state.token}})
+      .then(response => {
+        commit('SET_ALL_EXERCISES', response.data.excercises)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
     ADD_MEDICINE({ commit, state }, medicineData) {
       axios({
           method: "post",
@@ -85,6 +94,31 @@ export default {
       })
       .then(response => {
           commit('ADD_MEDICINE', medicineData)
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+    },
+    ADD_EXCERCISE({ commit, state }, excerciseData) {
+      axios({
+          method: "post",
+          url: BASE_URL + "excercise_todo",
+          data: qs.stringify({
+              sets: excerciseData.sets,
+              sets_amount: excerciseData.sets_amount,
+              per_day: excerciseData.per_day,
+              therapy_id: excerciseData.therapy_id,
+              excercise_id: excerciseData.id,
+              start_date: moment(excerciseData.start_date).format('YYYY-MM-DD'),
+              end_date: moment(excerciseData.end_date).format('YYYY-MM-DD'),
+          }),
+          headers: {
+              Authorization: "Bearer " + state.token,
+          }
+      })
+      .then(response => {
+        console.log(response)
+          commit('ADD_EXCERCISE', excerciseData)
       })
       .catch((error) => {
           console.log(error);

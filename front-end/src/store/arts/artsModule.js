@@ -9,7 +9,8 @@ const artsModule = {
         patientBehandelingen: {},
         token: "",
         isFetching: false,
-        medicines: []
+        medicines: [],
+        excercises: []
     },
     actions,
     mutations,

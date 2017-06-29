@@ -16,5 +16,8 @@ export default {
     },
     getAllMedicines(state) {
       return state.medicines
+    },
+    getAllExercises(state) {
+      return state.excercises
     }
 }
