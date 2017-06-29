@@ -22,25 +22,27 @@ export default {
       huidigeWeek: this.week
     }
   },
+  watch: {
+    week: function () {
+      this.huidigeWeek = this.week
+      this.getDagen()
+    }
+  },
   methods: {
     getDagen() {
       console.log('Start get dagen')
       let dagen = []
       for(let i = 0; i < 5; i++) {
         dagen.push({
-          dayNumber: moment().lang('nl').startOf('week').add(i, 'day').format('DD'),
-          day: moment().lang('nl').startOf('week').add(i, 'day').format('dddd'),
-          month: moment().lang('nl').startOf('week').add(i, 'day').format('MMMM')
+          dayNumber: moment('2017').locale('nl').add(this.huidigeWeek, 'weeks').startOf('week').add(i, 'day').format('DD'),
+          day: moment('2017').locale('nl').add(this.huidigeWeek, 'weeks').startOf('week').add(i, 'day').format('dddd'),
+          month: moment('2017').locale('nl').add(this.huidigeWeek, 'weeks').startOf('week').add(i, 'day').format('MMMM')
         })
       }
       this.dagen = dagen
     }
   },
   created() {
-    this.getDagen()
-  },
-  updated() {
-    console.log(this.huidigeWeek)
     this.getDagen()
   }
 }

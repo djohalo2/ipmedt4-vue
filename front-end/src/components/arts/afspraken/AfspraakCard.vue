@@ -30,7 +30,7 @@ export default {
       this.height = height
     },
     calculateLeftOffset() {
-      let verschil = moment(this.start).diff(moment().startOf('week').add(1, 'day'), 'days')
+      let verschil = moment(this.start).diff(moment(this.start).startOf('week').add(1, 'day'), 'days')
       let offset = verschil * 20 + '%'
       this.leftOffset = offset
     },
@@ -47,6 +47,11 @@ export default {
     this.calculateTopOffset()
     this.calculateLength()
     this.calculateLeftOffset()
+  },
+  beforeUpdate() {
+    this.calculateTopOffset()
+    this.calculateLength()
+    this.calculateLeftOffset()
   }
 }
 
@@ -57,6 +62,7 @@ export default {
     width: 20%;
     background-color: #e74c3c;
     position: absolute;
+    transition: none!important;
 
     .card-title {
       color: #fff;

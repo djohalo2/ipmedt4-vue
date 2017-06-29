@@ -11,7 +11,6 @@ export default {
         commit('CHECK_TOKEN', token);
     },
     FETCH_PATIENTS({ commit, state }){
-        console.log("JEEEJ");
         axios.get(BASE_URL + 'patient', { headers: { Authorization: "Bearer " + state.token}})
         .then(response => {
             commit('FETCH_PATIENTS', response.data.patients);
@@ -21,7 +20,6 @@ export default {
         });
     },
     ADD_PATIENT({ commit, state }, patient){
-        console.log(patient);
         axios({
             method: "post",
             url: BASE_URL + "patient",
@@ -42,7 +40,6 @@ export default {
             }
         })
         .then(response => {
-            console.log(response);
             commit('ADD_PATIENT', patient);
         })
         .catch((error) => {
@@ -127,6 +124,7 @@ export default {
     FETCH_AFSPRAKEN({ commit, state}, week) {
       axios.get(BASE_URL + 'doctor/appointments/' + state.doctorData.id + '/' + week, { headers: { Authorization: "Bearer " + state.token}})
       .then(response => {
+        console.log(response);
         commit('SET_AFSPRAKEN', response.data.appointments)
       })
       .catch((error) => {

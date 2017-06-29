@@ -12,8 +12,8 @@
         </div>
         <div class="calendar">
           <kalender-top :week="huidigeWeek"></kalender-top>
-          <afspraak-tijd-rij v-for="n in 9" :rowNumber="n"></afspraak-tijd-rij>
-          <afspraak-card v-for="appointment in appointments" :start="appointment.start" :eind="appointment.end" :name="appointment.title"></afspraak-card>
+          <afspraak-tijd-rij v-for="n in 9" :rowNumber="n" :key="n"></afspraak-tijd-rij>
+          <afspraak-card v-for="(appointment, index) in appointments" :key="index" :start="appointment.start" :eind="appointment.end" :name="appointment.title"></afspraak-card>
         </div>
       </div>
     </div>
@@ -49,11 +49,15 @@ export default {
       } else {
         this.huidigeWeek++;
       }
+      console.log('huidige week', this.huidigeWeek)
       this.$store.dispatch('FETCH_AFSPRAKEN', this.huidigeWeek)
     }
   },
   created() {
     this.$store.dispatch('FETCH_AFSPRAKEN', this.huidigeWeek)
+  },
+  updated() {
+    console.log('week updateje', this.huidigeWeek)
   }
 }
 
