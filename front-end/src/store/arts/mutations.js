@@ -1,4 +1,4 @@
-import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, ADD_MEDICINE, ADD_EXCERCISE } from './mutation-types';
+import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, ADD_MEDICINE, ADD_EXCERCISE } from './mutation-types';
 
 export default {
     [FETCH_DOCTOR](state, payload, rootState) {
@@ -21,6 +21,9 @@ export default {
     },
     [SET_ALL_EXERCISES](state, payload) {
       state.excercises = payload
+    },
+    [SET_AFSPRAKEN](state, payload) {
+      state.appointments = payload
     },
     [ADD_MEDICINE](state, payload) {
       state.patientBehandelingen.map((behandeling) => {

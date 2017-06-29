@@ -19,5 +19,8 @@ export default {
     },
     getAllExercises(state) {
       return state.excercises
+    },
+    getAppointments(state) {
+      return state.appointments
     }
 }

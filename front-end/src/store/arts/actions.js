@@ -123,5 +123,14 @@ export default {
       .catch((error) => {
           console.log(error);
       });
+    },
+    FETCH_AFSPRAKEN({ commit, state}, week) {
+      axios.get(BASE_URL + 'doctor/appointments/' + state.doctorData.id + '/' + week, { headers: { Authorization: "Bearer " + state.token}})
+      .then(response => {
+        commit('SET_AFSPRAKEN', response.data.appointments)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     }
 }

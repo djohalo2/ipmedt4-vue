@@ -1,13 +1,19 @@
 <template>
     <div class="layout-view">
       <div class="layout-padding">
+        <div class="row small-gutter">
+          <div class="width-1of5">
+            <button @click="changeWeek('previous')" class="primary outline"><i>keyboard_arrow_left</i>Vorige week</button>
+          </div>
+          <div class="width-3of5"></div>
+          <div class="width-1of5">
+            <button @click="changeWeek('next')" class="primary outline float-right">Volgende week<i>keyboard_arrow_right</i></button>
+          </div>
+        </div>
         <div class="calendar">
-          <kalender-top></kalender-top>
-
+          <kalender-top :week="huidigeWeek"></kalender-top>
           <afspraak-tijd-rij v-for="n in 9" :rowNumber="n"></afspraak-tijd-rij>
-
-          <afspraak-card :start="start" :eind="eind"></afspraak-card>
-          <afspraak-card :start="start2" :eind="eind2"></afspraak-card>
+          <afspraak-card v-for="appointment in appointments" :start="appointment.start" :eind="appointment.end" :name="appointment.title"></afspraak-card>
         </div>
       </div>
     </div>
@@ -28,11 +34,26 @@ export default {
   },
   data() {
     return {
-      start: moment('2017-06-29 09:30').format(),
-      eind: moment('2017-06-29 10:15').format(),
-      start2: moment('2017-06-29 10:30').format(),
-      eind2: moment('2017-06-29 12:30').format()
+      huidigeWeek: moment().format('w')
     }
+  },
+  computed: {
+    appointments() {
+      return this.$store.getters.getAppointments
+    }
+  },
+  methods: {
+    changeWeek(buttonType) {
+      if(buttonType == 'previous') {
+        this.huidigeWeek--;
+      } else {
+        this.huidigeWeek++;
+      }
+      this.$store.dispatch('FETCH_AFSPRAKEN', this.huidigeWeek)
+    }
+  },
+  created() {
+    this.$store.dispatch('FETCH_AFSPRAKEN', this.huidigeWeek)
   }
 }
 
@@ -46,5 +67,4 @@ export default {
   .calendar {
     position: relative;
   }
-
 </style>

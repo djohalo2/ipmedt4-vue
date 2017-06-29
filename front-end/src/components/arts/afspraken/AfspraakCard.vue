@@ -1,7 +1,7 @@
 <template>
-  <div class="card afspraak-card" v-bind:style="{top: topOffset, height: height, left: leftOffset}" @click="clickEvent()">
-    <div class="card-title">Start: {{startTijd}}</div>
-  </div>
+  <button class="card primary afspraak-card" v-bind:style="{top: topOffset, height: height, left: leftOffset}" @click="clickEvent()">
+    {{name}}
+  </button>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import moment from 'moment'
 
 export default {
   name: 'afspraak-card',
-  props: ['start', 'eind'],
+  props: ['start', 'eind', 'name'],
   data () {
     return {
       topOffset: '',
@@ -57,8 +57,6 @@ export default {
     width: 20%;
     background-color: #e74c3c;
     position: absolute;
-
-    //1.33px per minuut
 
     .card-title {
       color: #fff;

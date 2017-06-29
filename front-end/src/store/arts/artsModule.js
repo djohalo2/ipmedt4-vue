@@ -10,7 +10,8 @@ const artsModule = {
         token: "",
         isFetching: false,
         medicines: [],
-        excercises: []
+        excercises: [],
+        appointments: []
     },
     actions,
     mutations,

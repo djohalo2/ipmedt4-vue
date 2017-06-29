@@ -28,9 +28,5 @@ export default {
     background-color: #fff;
     width: 100%;
     border-right: 1px solid #e4e4e4;
-
-    &:hover {
-      background-color: #e4e4e4;
-    }
   }
 </style>
