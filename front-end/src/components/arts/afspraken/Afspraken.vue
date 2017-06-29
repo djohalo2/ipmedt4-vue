@@ -2,38 +2,7 @@
     <div class="layout-view">
       <div class="layout-padding">
         <div class="calendar">
-          <div class="row">
-            <div class="width-1of5">
-              <div class="box-day">
-                Maandag
-                <span class="day-date">25</span>
-              </div>
-            </div>
-            <div class="width-1of5">
-              <div class="box-day">
-                Dinsdag
-                <span class="day-date">26</span>
-              </div>
-            </div>
-            <div class="width-1of5">
-              <div class="box-day">
-                Woensdag
-                <span class="day-date">27</span>
-              </div>
-            </div>
-            <div class="width-1of5">
-              <div class="box-day">
-                Donderdag
-                <span class="day-date">28</span>
-              </div>
-            </div>
-            <div class="width-1of5">
-              <div class="box-day">
-                Vrijdag
-                <span class="day-date">29</span>
-              </div>
-            </div>
-          </div>
+          <kalender-top></kalender-top>
 
           <afspraak-tijd-rij v-for="n in 9" :rowNumber="n"></afspraak-tijd-rij>
 
@@ -47,13 +16,15 @@
 <script>
 import AfspraakTijdRij from './AfspraakTijdRij'
 import AfspraakCard from './AfspraakCard'
+import KalenderTop from './KalenderTop'
 import moment from 'moment'
 
 export default {
   name: 'afspraken',
   components: {
     AfspraakTijdRij,
-    AfspraakCard
+    AfspraakCard,
+    KalenderTop
   },
   data() {
     return {
@@ -72,28 +43,8 @@ export default {
     padding-top: 1.5rem;
   }
 
-  .day-date {
-    font-size: 40px;
-    display: block;
-  }
-
   .calendar {
     position: relative;
   }
 
-  .row {
-    border: 1px solid #e4e4e4;
-    position: relative;
-  }
-
-  .box-day {
-    min-height: 100px;
-  }
-
-  .box-event, .box-day {
-    padding: 0.7rem;
-    background-color: #fff;
-    width: 100%;
-    border-right: 1px solid #e4e4e4;
-  }
 </style>

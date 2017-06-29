@@ -1,5 +1,5 @@
 <template>
-  <div class="card afspraak-card" v-bind:style="{top: topOffset, height: height}" @click="clickEvent()">
+  <div class="card afspraak-card" v-bind:style="{top: topOffset, height: height, left: leftOffset}" @click="clickEvent()">
     <div class="card-title">Start: {{startTijd}}</div>
   </div>
 </template>
@@ -13,7 +13,8 @@ export default {
   data () {
     return {
       topOffset: '',
-      height: ''
+      height: '',
+      leftOffset: ''
     }
   },
   methods: {
@@ -25,8 +26,13 @@ export default {
     },
     calculateLength() {
       let verschil = moment(this.eind).diff(moment(this.start), 'minutes')
-      let height = verschil * 1.33 + 'px';
-      this.height = height;
+      let height = verschil * 1.33 + 'px'
+      this.height = height
+    },
+    calculateLeftOffset() {
+      let verschil = moment(this.start).diff(moment().startOf('week').add(1, 'day'), 'days')
+      let offset = verschil * 20 + '%'
+      this.leftOffset = offset
     },
     clickEvent() {
       console.log(this.start, 'has been clicked')
@@ -40,6 +46,7 @@ export default {
   created() {
     this.calculateTopOffset()
     this.calculateLength()
+    this.calculateLeftOffset()
   }
 }
 
