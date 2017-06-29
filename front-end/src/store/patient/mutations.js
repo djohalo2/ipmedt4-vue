@@ -27,11 +27,18 @@ export default {
             });
         });
     },
-    [TOGGLE_TODO](state, id){
+    [TOGGLE_TODO](state, data){
         state.patientData.therapys.map(behandeling => {
-            if(behandeling.medicine_todo.length > 0){
+            if(behandeling.medicine_todo.length > 0 && data.type == 'medicine_todo'){
                 behandeling.medicine_todo.map(todo => {
-                    if(todo.id === id){
+                    if(todo.id === data.id){
+                        todo.done = !todo.done;
+                    };
+                })
+            }
+            if(behandeling.excercise_todo.length > 0 && data.type == 'excercise_todo'){
+                behandeling.excercise_todo.map(todo => {
+                    if(todo.id === data.id){
                         todo.done = !todo.done;
                     };
                 })

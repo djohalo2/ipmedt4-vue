@@ -63,17 +63,18 @@ export default {
     TOGGLE_TODO({ commit }, data) {
         axios({
             method: 'put',
-            url: "http://178.62.240.123/api/medicine_todo/" + data.id,
+            url: "http://178.62.240.123/api/" + data.type + "/" + data.id,
             data: {
                 done: + !data.completed
             },
             headers: { Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzE3OC42Mi4yNDAuMTIzXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5NjkxODUzNSwiZXhwIjoxNDk5NTEwNTM1LCJuYmYiOjE0OTY5MTg1MzUsImp0aSI6ImlCeTR2YktMbmNDNE9mSXEifQ.mTJFA_PqwKDBVxta8U1qRht1CFfpOoQWOQL3Kr-uqZw"}
         })
         .then(response => {
-            commit('TOGGLE_TODO', data.id);
+          console.log(response)
+          commit('TOGGLE_TODO', data);
         })
         .catch((error) => {
-            console.log(error);
+          console.log(error);
         });
     },
     ADD_NOTE({ commit, state }, data) {

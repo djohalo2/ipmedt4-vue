@@ -39,14 +39,20 @@ export default {
     getAllTodos(state) {
         let todos = [];
         if(state.patientData.therapys){
-            state.patientData.therapys.map(behandeling => {
-                if(behandeling.medicine_todo.length > 0){
-                    behandeling.medicine_todo.map(todo =>{
-                        todos.push(todo);
-                    });
-                }
-            });
-            return todos;
+          state.patientData.therapys.map(behandeling => {
+            if(behandeling.medicine_todo.length > 0){
+              behandeling.medicine_todo.map(todo =>{
+                todos.push(todo);
+              });
+            }
+
+            if (behandeling.excercise_todo.length> 0) {
+              behandeling.excercise_todo.map(todo => {
+                todos.push(todo);
+              });
+            }
+          });
+          return todos;
         }
     },
     getAllMedicatie(state) {

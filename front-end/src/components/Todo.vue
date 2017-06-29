@@ -14,7 +14,7 @@ import moment from 'moment';
 
 export default {
     name: 'todo',
-    props: ['id', 'name', 'date', 'completed'],
+    props: ['id', 'name', 'date', 'completed', 'type'],
     data() {
         return {
             checked: false
@@ -30,10 +30,10 @@ export default {
     },
     methods: {
         toggleTodo() {
-            console.log("test");
             let data = {
                 id: this.id,
-                completed: this.completedTodo
+                completed: this.completedTodo,
+                type: this.type
             }
             this.$store.dispatch('TOGGLE_TODO', data);
         }

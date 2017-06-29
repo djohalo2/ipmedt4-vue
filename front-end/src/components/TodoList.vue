@@ -2,16 +2,10 @@
     <div class="card">
         <div class="card-title">
             <p class="text-primary">TODOS VANDAAG</p>
-
             <ul>
-                <todo v-if="todoType === 'behandeling'" v-for="(todo, index) in behandeling.todos" :key="index" :name="todo.naam" :date="todo.date" :completed="todo.completed"></todo>
-                <todo v-if="todoType === 'overzicht'" v-for="todo in behandeling" :key="todo.id" :id="todo.id" :name="todo.medicine.name" :date="todo.time_date" :completed="!!todo.done"></todo>
+                <todo v-if="todoType === 'overzicht'" v-for="todo in behandeling" :key="todo.id" :id="todo.id" :type="getTodoType(todo)" :name="getTodoName(todo)" :date="todo.time_date" :completed="!!todo.done"></todo>
             </ul>
-
-            <q-progress
-              :percentage="100"
-              style="height: 4px"
-            ></q-progress>
+            <q-progress :percentage="100" style="height: 4px"></q-progress>
         </div>
     </div>
 </template>
@@ -27,6 +21,24 @@ export default {
     props: ['todoType'],
     components: {
         Todo
+    },
+    methods: {
+      getTodoName (todo) {
+        if ('medicine' in todo) {
+          return todo.medicine.name;
+        }
+        if ('excercise' in todo) {
+          return todo.excercise.title;
+        }
+      },
+      getTodoType (todo) {
+        if ('medicine' in todo) {
+          return 'medicine_todo';
+        }
+        if ('excercise' in todo) {
+          return 'excercise_todo';
+        }
+      }
     },
     computed: {
         behandeling() {
