@@ -95,22 +95,22 @@ class PatientController extends Controller
 
             if ($patient) {
 
-//                $data = array(
-//                    'firstname'=>$firstname,
-//                    'lastname'=>$lastname,
-//                    'username'=>$username,
-//                    'email'=>$email,
-//                );
-//
-//                Mail::to($data['email'])
-//                    ->queue(new Welcome($data));
-//
-//                $data['password'] = $password_str;
-//
-//                $when = Carbon::now()->addMinutes(1);
-//
-//                Mail::to($data['email'])
-//                    ->later($when, new Password($data));
+                $data = array(
+                    'firstname'=>$firstname,
+                    'lastname'=>$lastname,
+                    'username'=>$username,
+                    'email'=>$email,
+                );
+
+                Mail::to($data['email'])
+                    ->queue(new Welcome($data));
+
+                $data['password'] = $password_str;
+
+                $when = Carbon::now()->addMinutes(1);
+
+                Mail::to($data['email'])
+                    ->later($when, new Password($data));
 
                 return ['success' => 1, 'password' => $password_str, 'patient' => $patient];
 
@@ -177,6 +177,15 @@ class PatientController extends Controller
 
             $query->orderBy('time_date', 'desc');
 
-        }, 'therapys', 'notes'])->first();
+        }, 'therapys',
+            'notes',
+            'therapys.doctor_notes',
+            'therapys.excercises',
+            'therapys.medicines',
+            'therapys.bodyparts',
+            'therapys.medicine_todo',
+            'therapys.excercise_todo',
+            'therapys.appointments'
+        ])->first();
     }
 }
