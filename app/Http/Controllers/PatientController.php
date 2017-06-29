@@ -56,7 +56,7 @@ class PatientController extends Controller
         $username = strtolower($firstname . '_' . $lastname . '_' . rand(1000, 9999));
         $name = $firstname . ' ' . $lastname;
         $password_str = str_random(8);
-        $password = Hash::make($password_str);
+        $password = $password_str;
 
 
 
