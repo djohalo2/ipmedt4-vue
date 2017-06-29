@@ -178,15 +178,11 @@ class TableSeeder extends Seeder
             'usage' => 'Innemen met een half glas water'
         ]);
 
-        DB::table('therapy_medicine')->insert([
-            'therapy_id' => $therapy1->id,
-            'medicine_id' => $medicine->id
-        ]);
-
 
         $appointment1 = Appointment::firstOrCreate([
             'title' => 'Controle afspraak',
-            'time_date' => Carbon::tomorrow(),
+            'start' => '2017-06-28 9:20',
+            'end' => '2017-06-28 9:40',
             'therapy_id' => $therapy1->id,
             'patient_id' => $patient->id,
             'doctor_id' => $doctor->id,
@@ -195,16 +191,38 @@ class TableSeeder extends Seeder
 
         $appointment2 = Appointment::firstOrCreate([
             'title' => 'Operatie',
-            'time_date' => Carbon::now()->subDays(7),
+            'start' => '2017-06-27 14:20',
+            'end' => '2017-06-27 15:30',
             'therapy_id' => $therapy1->id,
             'patient_id' => $patient->id,
             'doctor_id' => $doctor->id,
-            'status' => 'done'
+            'status' => 'planned'
         ]);
 
         $appointment3 = Appointment::firstOrCreate([
             'title' => 'Controle afspraak',
-            'time_date' => Carbon::now()->addDays(25),
+            'start' => '2017-06-28 10:00',
+            'end' => '2017-06-28 10:50',
+            'therapy_id' => $therapy1->id,
+            'patient_id' => $patient->id,
+            'doctor_id' => $doctor->id,
+            'status' => 'planned'
+        ]);
+
+        $appointment4 = Appointment::firstOrCreate([
+            'title' => 'Operatie',
+            'start' => '2017-07-06 14:20',
+            'end' => '2017-07-06 15:30',
+            'therapy_id' => $therapy1->id,
+            'patient_id' => $patient->id,
+            'doctor_id' => $doctor->id,
+            'status' => 'planned'
+        ]);
+
+        $appointment4 = Appointment::firstOrCreate([
+            'title' => 'Operatie',
+            'start' => '2017-06-22 14:20',
+            'end' => '2017-06-22 15:30',
             'therapy_id' => $therapy1->id,
             'patient_id' => $patient->id,
             'doctor_id' => $doctor->id,
