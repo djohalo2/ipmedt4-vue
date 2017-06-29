@@ -12,8 +12,9 @@
         </div>
         <div class="calendar">
           <kalender-top :week="huidigeWeek"></kalender-top>
-          <afspraak-tijd-rij v-for="n in 9" :rowNumber="n" :key="n"></afspraak-tijd-rij>
-          <afspraak-card v-for="(appointment, index) in appointments" :key="index" :start="appointment.start" :eind="appointment.end" :name="appointment.title"></afspraak-card>
+          <afspraak-tijd-rij v-for="n in 18" :rowNumber="n" :week="huidigeWeek" :key="n"></afspraak-tijd-rij>
+          <afspraak-card v-if="!isFetching" v-for="(appointment, index) in appointments" :key="index" :start="appointment.start" :eind="appointment.end" :name="appointment.title"></afspraak-card>
+          <spinner class="loading-spinner" color="#e74c3c" v-if="isFetching"></spinner>
         </div>
       </div>
     </div>
@@ -34,7 +35,8 @@ export default {
   },
   data() {
     return {
-      huidigeWeek: moment().format('w')
+      huidigeWeek: moment().format('w'),
+      isFetching: true
     }
   },
   computed: {
@@ -49,15 +51,17 @@ export default {
       } else {
         this.huidigeWeek++;
       }
-      console.log('huidige week', this.huidigeWeek)
-      this.$store.dispatch('FETCH_AFSPRAKEN', this.huidigeWeek)
+      this.fetchAfspraken()
+    },
+    fetchAfspraken() {
+      this.isFetching = true
+      this.$store.dispatch('FETCH_AFSPRAKEN', this.huidigeWeek).then(() => {
+        this.isFetching = false
+      })
     }
   },
   created() {
-    this.$store.dispatch('FETCH_AFSPRAKEN', this.huidigeWeek)
-  },
-  updated() {
-    console.log('week updateje', this.huidigeWeek)
+    this.fetchAfspraken()
   }
 }
 
@@ -70,5 +74,14 @@ export default {
 
   .calendar {
     position: relative;
+    border: 1px solid #e4e4e4;
+  }
+
+  .loading-spinner {
+    position: absolute;
+    left: 50%;
+    margin: auto;
+    top: 50%;
+    transform: translate(-50%,-50%);
   }
 </style>

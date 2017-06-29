@@ -1,10 +1,10 @@
 <template>
   <div class="row">
     <div class="timestamp">
-      <span>{{8 + rowNumber}}:00</span>
+      <span v-if="rowNumber % 2 != 0">{{8 + Math.round(rowNumber / 2)}}:00</span>
     </div>
 
-    <afspraak-kolom v-for="n in 5"></afspraak-kolom>
+    <afspraak-kolom v-for="n in 5" :week="week" :xPos="n" :yPos="rowNumber"></afspraak-kolom>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import AfspraakKolom from './AfspraakKolom'
 
 export default {
   name: 'afspraken-tijd-rij',
-  props: ['rowNumber'],
+  props: ['rowNumber', 'week'],
   components: {
     AfspraakKolom
   }
@@ -30,7 +30,7 @@ export default {
   }
 
   .row {
-    border: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
     position: relative;
   }
 </style>

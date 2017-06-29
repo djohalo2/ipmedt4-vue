@@ -122,13 +122,17 @@ export default {
       });
     },
     FETCH_AFSPRAKEN({ commit, state}, week) {
-      axios.get(BASE_URL + 'doctor/appointments/' + state.doctorData.id + '/' + week, { headers: { Authorization: "Bearer " + state.token}})
-      .then(response => {
-        console.log(response);
-        commit('SET_AFSPRAKEN', response.data.appointments)
-      })
-      .catch((error) => {
-        console.log(error)
+      return new Promise((resolve, reject) => {
+        axios.get(BASE_URL + 'doctor/appointments/' + state.doctorData.id + '/' + week, { headers: { Authorization: "Bearer " + state.token}})
+        .then(response => {
+          console.log(response);
+          commit('SET_AFSPRAKEN', response.data.appointments)
+          resolve()
+        })
+        .catch((error) => {
+          reject()
+          console.log(error)
+        })
       })
     }
 }

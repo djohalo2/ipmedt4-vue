@@ -51,12 +51,13 @@ export default {
 
 <style lang="scss" scoped>
   .row {
-    border: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
     position: relative;
   }
 
   .box-day {
     min-height: 100px;
+    font-size: 14px;
   }
 
   .box-event, .box-day {

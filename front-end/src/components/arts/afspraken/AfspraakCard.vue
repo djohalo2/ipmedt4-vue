@@ -21,12 +21,12 @@ export default {
     calculateTopOffset() {
       let offset = 100;
       let verschil = moment(this.start).diff(moment(this.start).startOf('day').add(9, 'hours'), 'minutes')
-      offset = offset + (verschil * 1.33) + 'px';
+      offset = offset + (verschil * 1.366666) + 'px';
       this.topOffset = offset
     },
     calculateLength() {
       let verschil = moment(this.eind).diff(moment(this.start), 'minutes')
-      let height = verschil * 1.33 + 'px'
+      let height = verschil * 1.366666 + 'px'
       this.height = height
     },
     calculateLeftOffset() {
