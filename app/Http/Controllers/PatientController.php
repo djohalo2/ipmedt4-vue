@@ -177,14 +177,17 @@ class PatientController extends Controller
 
             $query->orderBy('time_date', 'desc');
 
-        }, 'therapys',
+        }, 'therapys.medicine_todo' => function($query) {
+            $query->where('time_date', 'like', Carbon::parse(Carbon::today())->format('Y-m-d') . '%');
+        }, 'therapys.excercise_todo' => function($query) {
+            $query->where('time_date', 'like', Carbon::parse(Carbon::today())->format('Y-m-d') . '%');
+        },
+            'therapys',
             'notes',
             'therapys.doctor_notes',
             'therapys.excercises',
             'therapys.medicines',
             'therapys.bodyparts',
-            'therapys.medicine_todo',
-            'therapys.excercise_todo',
             'therapys.appointments'
         ])->first();
     }
