@@ -1,5 +1,5 @@
 export default {
-    getToken(state) {
+    getTokenArts(state) {
       return state.token;
     },
     getPatients(state) {

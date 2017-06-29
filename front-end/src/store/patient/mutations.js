@@ -46,7 +46,6 @@ export default {
     },
     [FETCH_PATIENT](state, payload) {
         state.patientData = payload;
-        console.log("fetch therapys", state.patientData.therapys);
     },
     [CHECK_TOKEN](state, payload) {
         state.token = payload;

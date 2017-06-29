@@ -32,12 +32,11 @@ export default {
                     });
                     router.push({path: '/arts'});
                 }
-
                 if(state.isFetching){
                     commit('TOGGLE_IS_FETCHING');
                 }
             })
-            .catch((error) => console.log('error' + error));
+            .catch((error) => console.log('error ' + error));
         })
         .catch((error) => {
             console.log('error ' + error);
@@ -51,12 +50,12 @@ export default {
             })
             .then(response => {
                 LocalStorage.set("token", response.data.token);
-                // commit('CHECK_TOKEN', response.data.token);
-                state.token = response.data.token;
+                commit('CHECK_TOKEN', response.data.token);
                 resolve();
             })
             .catch((error) => {
-                state.token = "unauthorized";
+                console.log(error)
+                commit('CHECK_TOKEN', "unauthorized");
                 reject();
             });
         })
@@ -91,7 +90,6 @@ export default {
             }
         })
         .then(response => {
-            console.log("testje is gelukt he");
             commit('ADD_NOTE', data);
         })
         .catch((error) => {
