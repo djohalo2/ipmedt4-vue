@@ -25,7 +25,7 @@
                                   <div class="item-title">{{behandeling.name}}</div>
                                   <div class="item-label item-smaller">
                                       Loopt sinds {{behandeling.start_date}}<br>
-                                      <p v-for="bodypart in behandeling.bodyparts">{{bodypart.name}}</p>
+                                      <p v-for="(bodypart, index) in behandeling.bodyparts" :key="index">{{bodypart.name}}</p>
                                   </div>
                           </div>
                           <button class="primary small item-secondary text-white">Bekijken</button>

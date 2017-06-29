@@ -11,7 +11,7 @@
                 ><button class="primary outline">Deze week</button>
             </div>
             <div class="list">
-                <dashboard-afspraak-card v-for="afspraak in afspraken" :patient="afspraak.patient" :date="afspraak.date" :therapy="afspraak.therapy"></dashboard-afspraak-card>
+                <dashboard-afspraak-card v-for="(afspraak, index) in afspraken" :key="index" :patient="afspraak.patient" :date="afspraak.date" :therapy="afspraak.therapy"></dashboard-afspraak-card>
             </div>
         </div>
     </div>

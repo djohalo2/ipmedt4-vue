@@ -5,7 +5,7 @@
             <q-search v-model="medicijnSearch" placeholder="Zoek medicijn..." class="searchbar"></q-search>
 
             <div class="list bg-white striped">
-              <div class="item"  v-for="(medicijn, index) in searchedMedicijnen">
+              <div class="item"  v-for="(medicijn, index) in searchedMedicijnen" :key="index">
                 <div class="item-content">
                   {{medicijn.naam}}
                 </div>

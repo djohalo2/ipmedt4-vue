@@ -5,7 +5,7 @@
             <p class="no-entries-msg" v-if="medicatie.length === 0">
                 Er zijn geen medicijnen aanwezig in deze behandeling.
             </p>
-            <span v-on:click="labelClick('/behandeling/' + medicijn.pivot.therapy_id + '/medicatie/' + medicijn.id, medicijn.pivot.therapy_id)" class="label bg-primary" v-for="medicijn in medicatie">
+            <span v-on:click="labelClick('/behandeling/' + medicijn.pivot.therapy_id + '/medicatie/' + medicijn.id, medicijn.pivot.therapy_id)" class="label bg-primary" v-for="(medicijn, index) in medicatie" :key="index">
                 {{medicijn.name}}
             </span>
         </div>

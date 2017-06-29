@@ -7,7 +7,7 @@
                   Afspraken
                 </h4>
               </div>
-              <div v-for="afspraak in afspraken" class="timeline-item">
+              <div v-for="(afspraak, index) in afspraken" :key="index"  class="timeline-item">
                 <div class="timeline-badge">
                   <i>alarm</i>
                 </div>

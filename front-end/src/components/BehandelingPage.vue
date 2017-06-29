@@ -13,7 +13,7 @@
                     <p class="no-entries-msg" v-if="behandeling.oefeningen.length === 0">
                         Er zijn geen oefeningen aanwezig in deze behandeling.
                     </p>
-                    <span class="label bg-primary" v-for="oefening in behandeling.oefeningen">
+                    <span class="label bg-primary" v-for="(oefening, index) in behandeling.oefeningen" :key="index">
                         {{oefening.title}}
                     </span>
                 </div>

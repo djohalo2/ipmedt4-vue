@@ -7,7 +7,7 @@
             </p>
 
             <div v-if="patientNotities.length > 0" class="list item-delimiter">
-                <q-collapsible group="notities" v-for="notitie in patientNotities" :label="notitie.title">
+                <q-collapsible group="notities" v-for="(notitie, index) in patientNotities" :key="index" :label="notitie.title">
                     <div>
                         <p>{{notitie.note}}</p>
                     </div>

@@ -3,7 +3,7 @@
         <div class="layout-padding">
             <p class="page-title">Geregistreerde patienten</p>
             <q-search v-model="patientSearch" placeholder="Zoek patiënten..." class="searchbar"></q-search><br>
-            <patient-card v-for="patient in searchedPatients" :id="patient.id" :firstname="patient.firstname" :lastname="patient.lastname" :email="patient.email" :phone="patient.phone" :birthday="patient.birthday" :avatar="patient.avatar"></patient-card>
+            <patient-card v-for="patient in searchedPatients" :key="patient.id" :id="patient.id" :firstname="patient.firstname" :lastname="patient.lastname" :email="patient.email" :phone="patient.phone" :birthday="patient.birthday" :avatar="patient.avatar"></patient-card>
         </div>
     </div>
 </template>

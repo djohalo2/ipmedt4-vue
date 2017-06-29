@@ -3,7 +3,7 @@
         <div class="layout-padding">
             <p class="page-title">MEDICATIE</p>
             <p class="no-entries-msg" v-if="medicatie.length === 0">Er is geen medicatie gevonden.</p>
-            <medicijn-card v-for="medicijn in medicatie" :id="medicijn.id" :behandeling="medicijn.behandeling" :title="medicijn.name" :aantal="medicijn.aantal" :date="medicijn.start_date"></medicijn-card>
+            <medicijn-card v-for="medicijn in medicatie" :key="medicijn.id" :id="medicijn.id" :behandeling="medicijn.behandeling" :title="medicijn.name" :aantal="medicijn.aantal" :date="medicijn.start_date"></medicijn-card>
         </div>
     </div>
 </template>

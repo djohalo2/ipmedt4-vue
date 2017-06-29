@@ -20,22 +20,10 @@
           </q-autocomplete>
         </div>
         <div class="row medium-gutter">
-          <q-datetime
-              class="patient-datepicker"
-              v-model="medicineData.start_date"
-              type="date"
-              placeholder="Startdatum"
-              :min="now"
-          ></q-datetime>
+          <q-datetime class="patient-datepicker" v-model="medicineData.start_date" type="date" placeholder="Startdatum" :min="now"></q-datetime>
         </div>
         <div class="row medium-gutter">
-          <q-datetime
-              class="patient-datepicker"
-              v-model="medicineData.end_date"
-              type="date"
-              placeholder="Einddatum"
-              :min="now"
-          ></q-datetime>
+          <q-datetime class="patient-datepicker" v-model="medicineData.end_date" type="date" placeholder="Einddatum" :min="now"></q-datetime>
         </div>
         <div class="row medium-gutter">
           <input v-model="medicineData.amount" placeholder="Dosering">
@@ -70,9 +58,10 @@ export default {
           amount: '',
           amount_per_day: '',
           therapy_id: this.$route.params.behandelingId,
-          medicine_id: 0,
-          start_date: undefined,
-          end_date: undefined
+          id: 0,
+          start_date: moment().format(),
+          end_date: moment().format(),
+          name: ''
         },
         now: moment().format()
       }
@@ -97,10 +86,12 @@ export default {
         done(results);
       },
       selected (item) {
-        this.medicineData.medicine_id = item.id
+        this.medicineData.id = item.id
+        this.medicineData.name = item.label
       },
       addMedicine() {
         this.$store.dispatch('ADD_MEDICINE', this.medicineData)
+        this.$refs.addMedicineModal.close()
       }
     },
     created () {

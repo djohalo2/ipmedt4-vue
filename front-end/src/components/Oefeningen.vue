@@ -3,7 +3,7 @@
         <div class="layout-padding">
             <p class="page-title">Oefeningen</p>
 
-            <oefening-card v-for="oefening in oefeningen" :id="oefening.id" :title="oefening.title" :description="oefening.description" :therapy="oefening.pivot.therapy_id"></oefening-card>
+            <oefening-card v-for="oefening in oefeningen" :key="oefening.id" :id="oefening.id" :title="oefening.title" :description="oefening.description" :therapy="oefening.pivot.therapy_id"></oefening-card>
         </div>
     </div>
 </template>

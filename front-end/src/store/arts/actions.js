@@ -75,7 +75,7 @@ export default {
               amount: medicineData.amount,
               amount_per_day: medicineData.amount_per_day,
               therapy_id: medicineData.therapy_id,
-              medicine_id: medicineData.medicine_id,
+              medicine_id: medicineData.id,
               start_date: moment(medicineData.start_date).format('YYYY-MM-DD'),
               end_date: moment(medicineData.end_date).format('YYYY-MM-DD'),
           }),
@@ -84,7 +84,7 @@ export default {
           }
       })
       .then(response => {
-          console.log(response);
+          commit('ADD_MEDICINE', medicineData)
       })
       .catch((error) => {
           console.log(error);
