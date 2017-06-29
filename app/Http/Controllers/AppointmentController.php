@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -85,6 +86,14 @@ class AppointmentController extends Controller
 
 
     public function doctor_appointments($doctor_id) {
-        return Appointment::where('doctor_id', '=', $doctor_id)->get();
+
+        $start_of_week = Carbon::now()->startOfWeek();
+        $end_of_week = Carbon::now()->endOfWeek()->subDays(2);
+
+//        return $start_of_week . ' - ' .$end_of_week;
+
+        return Appointment::whereBetween('start', [$start_of_week, $end_of_week])
+            ->where('doctor_id', '=', $doctor_id)
+            ->get();
     }
 }
