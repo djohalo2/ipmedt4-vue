@@ -85,12 +85,16 @@ class AppointmentController extends Controller
     }
 
 
-    public function doctor_appointments($doctor_id) {
+    public function doctor_appointments($doctor_id, $week_of_year) {
 
-        $start_of_week = Carbon::now()->startOfWeek();
-        $end_of_week = Carbon::now()->endOfWeek()->subDays(2);
+        $date_start = Carbon::now();
+        $date_end = Carbon::now();
+        $year = Carbon::now()->year;
+        $date_start->setISODate($year,$week_of_year);
+        $date_end->setISODate($year,$week_of_year);
 
-//        return $start_of_week . ' - ' .$end_of_week;
+        $start_of_week = $date_start->startOfWeek();
+        $end_of_week = $date_end->endOfWeek();
 
         return Appointment::whereBetween('start', [$start_of_week, $end_of_week])
             ->where('doctor_id', '=', $doctor_id)
