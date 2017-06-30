@@ -7,8 +7,8 @@
           :key="appointment.id"
           :doctor="appointment.doctor.gender + ' ' + appointment.doctor.lastname"
           :status="appointment.status"
-          :date="appointment.time_date"
-          :title="appointment.title"  
+          :date="appointment.start"
+          :title="appointment.title"
           :department="appointment.doctor.department.naam"
         ></afspraken-timeline-item>
       </div>
@@ -29,6 +29,9 @@ export default {
     appointments () {
       return this.$store.getters.getAllAppointsments
     }
+  },
+  created() {
+    console.log(this.appointments)
   }
 }
 

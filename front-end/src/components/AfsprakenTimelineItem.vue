@@ -1,14 +1,11 @@
 <template>
-  <!-- item -->
   <div class="timeline-item">
-    <div class="timeline-badge bg-warning">
+    <div class="timeline-badge" v-bind:class="getBadge">
       <i>{{afspraakStatus}}</i>
     </div>
-    <!-- title -->
     <div class="timeline-title">
       {{title}}
     </div>
-    <!-- date timestamp -->
     <div class="timeline-date text-italic">
       <div>{{tijdstip}}</div>
       <div>{{datum}}</div>
@@ -40,7 +37,10 @@ export default {
       return moment(this.date).format("HH:mm")
     },
     afspraakStatus () {
-      return status = moment(this.date).diff(moment()) < 0 ? 'check' : 'alarm';
+      return moment(this.date).diff(moment()) < 0 ? 'check' : 'alarm';
+    },
+    getBadge() {
+      return this.afspraakStatus == 'check' ? 'bg-positive' : 'bg-warning'
     }
   }
 }

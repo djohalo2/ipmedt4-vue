@@ -36,10 +36,10 @@ export default {
                     commit('TOGGLE_IS_FETCHING');
                 }
             })
-            .catch((error) => console.log('error ' + error));
+            .catch((error) => console.log('error2 ' + error));
         })
         .catch((error) => {
-            console.log('error ' + error);
+            console.log('error1 ' + error);
         });
     },
     FETCH_TOKEN({ commit, state }, payload){
@@ -60,14 +60,14 @@ export default {
             });
         })
     },
-    TOGGLE_TODO({ commit }, data) {
+    TOGGLE_TODO({ commit, state }, data) {
         axios({
             method: 'put',
             url: "http://178.62.240.123/api/" + data.type + "/" + data.id,
             data: {
                 done: + !data.completed
             },
-            headers: { Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzE3OC42Mi4yNDAuMTIzXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5NjkxODUzNSwiZXhwIjoxNDk5NTEwNTM1LCJuYmYiOjE0OTY5MTg1MzUsImp0aSI6ImlCeTR2YktMbmNDNE9mSXEifQ.mTJFA_PqwKDBVxta8U1qRht1CFfpOoQWOQL3Kr-uqZw"}
+            headers: { Authorization: "Bearer " + state.token}
         })
         .then(response => {
           console.log(response)

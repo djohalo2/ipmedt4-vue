@@ -25,16 +25,12 @@ export default {
     },
     getAllAppointsments(state) {
       let appointments = [];
-      if(state.patientData.therapys){
-          state.patientData.therapys.map(behandeling => {
-              if(behandeling.appointments.length > 0){
-                  behandeling.appointments.map(appointment =>{
-                      appointments.push(appointment);
-                  });
-              }
+      if(state.patientData.appointments.length > 0){
+          state.patientData.appointments.map(appointment =>{
+              appointments.push(appointment);
           });
-          return appointments;
       }
+      return appointments;
     },
     getAllTodos(state) {
         let todos = [];
