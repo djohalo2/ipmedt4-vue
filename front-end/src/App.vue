@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import TopHeader from 'components/Header.vue';
-import Navigation from 'components/Navigation.vue';
+import TopHeader from 'components/patient/Header.vue';
+import Navigation from 'components/patient/Navigation.vue';
 import ArtsTopHeader from 'components/arts/ArtsHeader.vue';
 import ArtsDrawer from 'components/arts/ArtsDrawer.vue';
-import NotitieTabs from 'components/NotitieTabs.vue';
+import NotitieTabs from 'components/patient/notities/NotitieTabs.vue';
 
 import { LocalStorage } from 'quasar';
 import router from 'vue-router';

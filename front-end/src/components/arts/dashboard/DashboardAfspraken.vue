@@ -7,8 +7,7 @@
         <div class="card-content">
             <div class="filters">
                 <button class="button primary">Vandaag</button
-                ><button class="primary outline">Morgen</button
-                ><button class="primary outline">Deze week</button>
+                ><button class="primary outline">Morgen</button>
             </div>
             <div class="list">
                 <dashboard-afspraak-card v-for="(afspraak, index) in afspraken" :key="index" :patient="afspraak.patient" :date="afspraak.date" :therapy="afspraak.therapy"></dashboard-afspraak-card>

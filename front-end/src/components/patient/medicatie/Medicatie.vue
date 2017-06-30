@@ -10,13 +10,11 @@
 
 <script>
 import MedicijnCard from './MedicijnCard.vue';
-import Navigation from './Navigation.vue';
 
 export default {
     name: 'medicatie',
     components: {
-        MedicijnCard,
-        Navigation
+        MedicijnCard
     },
     computed: {
       medicatie(){

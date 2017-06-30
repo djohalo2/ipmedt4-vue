@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import CountCard from './CountCard.vue';
+import CountCard from './dashboard/CountCard.vue';
 
 export default {
     name: 'arts-informatie',
