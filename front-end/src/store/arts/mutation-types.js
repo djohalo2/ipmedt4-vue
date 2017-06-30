@@ -8,3 +8,4 @@ export const SET_ALL_EXERCISES = 'SET_ALL_EXERCISES';
 export const SET_AFSPRAKEN = 'SET_AFSPRAKEN';
 export const ADD_MEDICINE = 'ADD_MEDICINE';
 export const ADD_EXCERCISE = 'ADD_EXCERCISE';
+export const LOG_DOCTOR_OUT = 'LOG_DOCTOR_OUT';

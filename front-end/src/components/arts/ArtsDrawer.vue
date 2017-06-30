@@ -1,5 +1,4 @@
 <template>
-    <!-- <div> -->
         <q-drawer id="drawer">
             <div class="toolbar light">
               <q-toolbar-title :padding="1">
@@ -13,24 +12,27 @@
               </q-drawer-link>
               <hr>
               <div class="list-label">Opties</div>
-              <!-- <q-drawer-link icon="view_list" :to="'/behandeling/' + behandelingType">
-                Overzicht
-              </q-drawer-link> -->
-              <q-drawer-link icon="person" :to="'/arts/Patienten'">
+              <q-drawer-link icon="person" :to="'/arts/patienten'">
                 Patienten
               </q-drawer-link>
-              <q-drawer-link icon="event" :to="'/arts/Afspraken'">
+              <q-drawer-link icon="event" :to="'/arts/afspraken'">
                 Afspraken
               </q-drawer-link>
               <q-drawer-link icon="assignment" :to="'/arts/medicatie'">
                 Medicatie
               </q-drawer-link>
-              <q-drawer-link icon="info" :to="'/arts/Informatie'">
+              <q-drawer-link icon="info" :to="'/arts/informatie'">
                 Informatie
               </q-drawer-link>
+              <div class="item item-link drawer-closer" @click="logOut()">
+                <i class="item-primary">exit_to_app</i>
+                <div class="item-content">
+                  Uitloggen
+                </div>
+              </div>
+
             </div>
         </q-drawer>
-    <!-- </div> -->
 </template>
 
 <script>
@@ -39,6 +41,13 @@ export default {
     computed: {
       doctorData() {
         return this.$store.getters.getDoctorInfo;
+      }
+    },
+    methods: {
+      logOut(){
+        console.log('CLICKED')
+        this.$store.commit('LOG_DOCTOR_OUT');
+        this.$router.push({path: '/login'});
       }
     }
 }
