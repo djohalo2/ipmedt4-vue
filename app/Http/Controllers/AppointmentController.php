@@ -134,7 +134,7 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+
     }
 
 

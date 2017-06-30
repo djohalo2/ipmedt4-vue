@@ -66,7 +66,7 @@
             Dit is een vervolg op de mail over uw account voor Mijn nazorg.<br>
             U kunt inloggen op <a href="http://mijnnazorg.nl" style="color:black;text-decoration:underline;font-weight:500;" >mijnnazorg.nl</a>.<br>
             <br>
-            Uw wachtwoord is: <b>bas_van_bovene</b><br>
+            Uw wachtwoord is: <b>{{ $this->data['password'] }}</b><br>
             <br>
             De gebruikersnaam heeft u eerder ontvangen.<br>
         </p>
