@@ -19,9 +19,9 @@ export default {
         Navigation
     },
     computed: {
-        medicatie(){
-            return this.$store.getters.getAllMedicatie
-        }
+      medicatie(){
+          return this.$store.getters.getAllMedicatie
+      }
     }
 }
 </script>
