@@ -156,10 +156,19 @@ class AppointmentController extends Controller
 
     public function today_appointments($doctor_id) {
         $today = Carbon::today();
+        $tomorrow = Carbon::tomorrow();
 
-        return Appointment::where('start', 'like', $today->toDateString() . '%')
+        $today_appointments = Appointment::where('start', 'like', $today->toDateString() . '%')
             ->where('doctor_id', '=', $doctor_id)
+            ->with('patient')
             ->get();
+
+        $tomorrow_appointments = Appointment::where('start', 'like', $tomorrow->toDateString() . '%')
+            ->where('doctor_id', '=', $doctor_id)
+            ->with('patient')
+            ->get();
+
+        return ['today_appointments' => $today_appointments, 'tomorrow_appointments' => $tomorrow_appointments];
     }
 
 

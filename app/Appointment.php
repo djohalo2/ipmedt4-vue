@@ -10,10 +10,10 @@ class Appointment extends Model
 
     protected $with = ['doctor'];
 
-//    public function patient()
-//    {
-//        return $this->belongsTo('App\Patient');
-//    }
+    public function patient()
+    {
+        return $this->belongsTo('App\Patient');
+    }
 
     public function doctor()
     {

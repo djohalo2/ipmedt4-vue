@@ -146,10 +146,10 @@ class TableSeeder extends Seeder
             'type_id' => $excercise_type->id
         ]);
 
-        DB::table('therapy_excercise')->insert([
-            'therapy_id' => $therapy1->id,
-            'excercise_id' => $excercise->id
-        ]);
+//        DB::table('therapy_excercise')->insert([
+//            'therapy_id' => $therapy1->id,
+//            'excercise_id' => $excercise->id
+//        ]);
 
 
 
@@ -179,55 +179,55 @@ class TableSeeder extends Seeder
         ]);
 
 
-        $appointment1 = Appointment::firstOrCreate([
-            'title' => 'Controle afspraak',
-            'start' => '2017-06-28 9:20',
-            'end' => '2017-06-28 9:40',
-            'therapy_id' => $therapy1->id,
-            'patient_id' => $patient->id,
-            'doctor_id' => $doctor->id,
-            'status' => 'planned'
-        ]);
-
-        $appointment2 = Appointment::firstOrCreate([
-            'title' => 'Operatie',
-            'start' => '2017-06-27 14:20',
-            'end' => '2017-06-27 15:30',
-            'therapy_id' => $therapy1->id,
-            'patient_id' => $patient->id,
-            'doctor_id' => $doctor->id,
-            'status' => 'planned'
-        ]);
-
-        $appointment3 = Appointment::firstOrCreate([
-            'title' => 'Controle afspraak',
-            'start' => '2017-06-28 10:00',
-            'end' => '2017-06-28 10:50',
-            'therapy_id' => $therapy1->id,
-            'patient_id' => $patient->id,
-            'doctor_id' => $doctor->id,
-            'status' => 'planned'
-        ]);
-
-        $appointment4 = Appointment::firstOrCreate([
-            'title' => 'Operatie',
-            'start' => '2017-07-06 14:20',
-            'end' => '2017-07-06 15:30',
-            'therapy_id' => $therapy1->id,
-            'patient_id' => $patient->id,
-            'doctor_id' => $doctor->id,
-            'status' => 'planned'
-        ]);
-
-        $appointment4 = Appointment::firstOrCreate([
-            'title' => 'Operatie',
-            'start' => '2017-06-22 14:20',
-            'end' => '2017-06-22 15:30',
-            'therapy_id' => $therapy1->id,
-            'patient_id' => $patient->id,
-            'doctor_id' => $doctor->id,
-            'status' => 'planned'
-        ]);
+//        $appointment1 = Appointment::firstOrCreate([
+//            'title' => 'Controle afspraak',
+//            'start' => '2017-06-28 9:20',
+//            'end' => '2017-06-28 9:40',
+//            'therapy_id' => $therapy1->id,
+//            'patient_id' => $patient->id,
+//            'doctor_id' => $doctor->id,
+//            'status' => 'planned'
+//        ]);
+//
+//        $appointment2 = Appointment::firstOrCreate([
+//            'title' => 'Operatie',
+//            'start' => '2017-06-27 14:20',
+//            'end' => '2017-06-27 15:30',
+//            'therapy_id' => $therapy1->id,
+//            'patient_id' => $patient->id,
+//            'doctor_id' => $doctor->id,
+//            'status' => 'planned'
+//        ]);
+//
+//        $appointment3 = Appointment::firstOrCreate([
+//            'title' => 'Controle afspraak',
+//            'start' => '2017-06-28 10:00',
+//            'end' => '2017-06-28 10:50',
+//            'therapy_id' => $therapy1->id,
+//            'patient_id' => $patient->id,
+//            'doctor_id' => $doctor->id,
+//            'status' => 'planned'
+//        ]);
+//
+//        $appointment4 = Appointment::firstOrCreate([
+//            'title' => 'Operatie',
+//            'start' => '2017-07-06 14:20',
+//            'end' => '2017-07-06 15:30',
+//            'therapy_id' => $therapy1->id,
+//            'patient_id' => $patient->id,
+//            'doctor_id' => $doctor->id,
+//            'status' => 'planned'
+//        ]);
+//
+//        $appointment4 = Appointment::firstOrCreate([
+//            'title' => 'Operatie',
+//            'start' => '2017-06-22 14:20',
+//            'end' => '2017-06-22 15:30',
+//            'therapy_id' => $therapy1->id,
+//            'patient_id' => $patient->id,
+//            'doctor_id' => $doctor->id,
+//            'status' => 'planned'
+//        ]);
 
     }
 }
