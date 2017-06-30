@@ -99,7 +99,7 @@ export default {
     },
     getPatientInfo(state) {
         return {
-            name: state.patientData.gender + " " + state.patientData.firstname + " " + state.patientData.lastname,
+            name: state.patientData.firstname + " " + state.patientData.lastname,
             email: state.patientData.email,
             phone: state.patientData.phone,
             address: state.patientData.street + " " + state.patientData.street_number,

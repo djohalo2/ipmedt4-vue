@@ -1,4 +1,4 @@
-import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, ADD_MEDICINE, ADD_EXCERCISE, LOG_DOCTOR_OUT } from './mutation-types';
+import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, ADD_MEDICINE, ADD_EXCERCISE, ADD_APPOINTMENT, LOG_DOCTOR_OUT } from './mutation-types';
 import { LocalStorage, SessionStorage } from 'quasar';
 
 export default {
@@ -38,6 +38,13 @@ export default {
         if(behandeling.id == payload.therapy_id) {
           behandeling.excercises.push(payload)
         }
+      })
+    },
+    [ADD_APPOINTMENT](state, payload) {
+      state.appointments.push({
+        title: payload.title,
+        start: payload.start,
+        end: payload.end
       })
     },
     [LOG_DOCTOR_OUT](state, payload) {

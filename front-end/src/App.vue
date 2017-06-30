@@ -86,4 +86,11 @@ export default {
         font-size:24px;
         cursor: pointer;
     }
+
+    .no-entries-msg {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #a8a8a8;
+    }
+
 </style>

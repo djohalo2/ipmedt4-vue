@@ -1,22 +1,20 @@
 <template>
   <div class="width-1of5">
     <div class="box-event" @click="openAppointmentCreator()" v-bind:class="{'box-creating': isCreating}">
-      <!-- {{xPos}} - {{yPos}} - Week {{week}} -->
-
       <q-popover class="popover" @close="closeAppointmentCreator()" :ref="'appointmentPopover' + xPos + yPos">
         <div class="create-appointment">
           <p>Afspraak maken</p>
           <span class="afspraak-date"></span>
           <input v-model="appointment.title" placeholder="Afspraak omschrijving">
           <div class="stacked-label">
-            <q-autocomplete v-model="patientTerms" @search="searchPatient"></q-autocomplete>
+            <q-autocomplete v-model="patientTerms" @selected="selected" @close="openPopover()" @search="searchPatient"></q-autocomplete>
             <label>Patient</label>
           </div>
           <div class="stacked-label">
-            <q-autocomplete v-model="therapyTerms"></q-autocomplete>
+            <q-autocomplete v-model="therapyTerms" @selected="selected" @close="openPopover()" @search="searchTherapy"></q-autocomplete>
             <label>Behandeling</label>
           </div>
-          <button class="primary small outline float-right">Toevoegen</button>
+          <button class="primary small outline float-right" @click="addAppointment()">Toevoegen</button>
         </div>
       </q-popover>
     </div>
@@ -44,7 +42,8 @@ export default {
         therapy_id: 1,
         patient_id: 1,
         doctor_id: this.doctorId,
-        patientName: ''
+        patientName: '',
+        therapyName: ''
       },
       patientTerms: '',
       therapyTerms: ''
@@ -57,6 +56,12 @@ export default {
     closeAppointmentCreator() {
       this.isCreating = false
     },
+    openPopover() {
+      this.$refs['appointmentPopover' + this.xPos + this.yPos].open()
+    },
+    addAppointment() {
+      this.$store.dispatch('ADD_APPOINTMENT', this.appointment)
+    },
     searchPatient (patientTerms, done) {
       let results = [];
       this.patients.map((patient) => {
@@ -64,16 +69,38 @@ export default {
           results.push({
             label: patient.firstname + ' ' + patient.lastname,
             id: patient.id,
-            value: patient.firstname + ' ' + patient.lastname
+            value: patient.firstname + ' ' + patient.lastname,
+            type: 'patient'
+          });
+        }
+      })
+      done(results);
+    },
+    searchTherapy (therapyTerms, done) {
+      let results = [];
+      this.therapies.map((therapy) => {
+        if(_.includes(therapy.name.toLowerCase(), therapyTerms.toLowerCase())) {
+          results.push({
+            label: therapy.name,
+            id: therapy.id,
+            value: therapy.name,
+            type: 'therapy'
           });
         }
       })
       done(results);
     },
     selected (item) {
-      this.appointment.id = item.id
-      this.appointment.patientName = item.label
-    },
+      if(item.type == 'patient') {
+        this.$store.dispatch('FETCH_PATIENT_DATA', item.id)
+        this.appointment.patient_id = item.id
+        this.appointment.patientName = item.label
+      } else {
+        this.appointment.therapy_id = item.id
+        this.appointment.therapyName = item.label
+        console.log(this.appointment)
+      }
+    }
   },
   computed: {
     doctorId () {
@@ -87,7 +114,15 @@ export default {
     },
     patients () {
       return this.$store.getters.getPatients
+    },
+    therapies() {
+      return this.$store.getters.getPatientBehandelingen
     }
+  },
+  created() {
+    this.appointment.start = this.startDate
+    this.appointment.end = this.endDate
+    this.appointment.doctor_id = this.doctorId
   }
 }
 

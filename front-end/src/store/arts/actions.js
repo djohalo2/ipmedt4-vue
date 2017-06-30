@@ -121,6 +121,30 @@ export default {
           console.log(error);
       });
     },
+    ADD_APPOINTMENT({ commit, state }, appointmentData) {
+      axios({
+          method: "post",
+          url: BASE_URL + "appointment",
+          data: qs.stringify({
+              title: appointmentData.title,
+              start: appointmentData.start,
+              end: appointmentData.end,
+              therapy_id: appointmentData.therapy_id,
+              patient_id: appointmentData.patient_id,
+              doctor_id: appointmentData.doctor_id
+          }),
+          headers: {
+              Authorization: "Bearer " + state.token,
+          }
+      })
+      .then(response => {
+        console.log(response)
+          commit('ADD_APPOINTMENT', appointmentData)
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+    },
     FETCH_AFSPRAKEN({ commit, state}, week) {
       return new Promise((resolve, reject) => {
         axios.get(BASE_URL + 'doctor/appointments/' + state.doctorData.id + '/' + week, { headers: { Authorization: "Bearer " + state.token}})
