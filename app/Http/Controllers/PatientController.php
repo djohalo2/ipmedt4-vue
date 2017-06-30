@@ -175,7 +175,7 @@ class PatientController extends Controller
     {
         return Patient::where('user_id', '=', $user_id)->with(['appointments' => function($query){
 
-            $query->orderBy('time_date', 'desc');
+            $query->orderBy('start', 'desc');
 
         }, 'therapys.medicine_todo' => function($query) {
             $query->where('time_date', 'like', Carbon::parse(Carbon::today())->format('Y-m-d') . '%');

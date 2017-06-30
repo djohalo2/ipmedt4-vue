@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
-    public $fillable = ['title', 'time_date', 'therapy_id', 'patient_id', 'doctor_id', 'status'];
+    public $fillable = ['title', 'start', 'end', 'therapy_id', 'patient_id', 'doctor_id', 'status'];
 
     protected $with = ['doctor'];
 

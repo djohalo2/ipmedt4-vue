@@ -44,6 +44,7 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
 
 
         $api->get('doctor/appointments/{doctor_id}/{week_of_year}', ['as' => 'doctor.appointments',  'uses' => '\App\Http\Controllers\AppointmentController@doctor_appointments']);
+        $api->get('doctor/today_appointments/{doctor_id}/', ['as' => 'doctor.appointments',  'uses' => '\App\Http\Controllers\AppointmentController@today_appointments']);
     });
 
 

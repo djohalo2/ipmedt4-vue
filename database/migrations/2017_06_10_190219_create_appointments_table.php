@@ -21,7 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->integer('therapy_id')->unsigned();
             $table->integer('patient_id')->unsigned();
             $table->integer('doctor_id')->unsigned();
-            $table->string('status');
+            $table->string('status')->default('planned');
             $table->timestamps();
 
             $table->foreign('therapy_id')->references('id')->on('therapies');

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AppointmentMail;
 use App\Appointment;
+use App\Doctor;
+use App\Patient;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -31,12 +36,57 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request|\Illuminate\Http\Request $request
+     * @return array
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->title;
+        $start = $request->start;
+        $end = $request->end;
+        $therapy_id = $request->therapy_id;
+        $patient_id = $request->patient_id;
+        $doctor_id = $request->doctor_id;
+
+        $appointment = Appointment::firstOrCreate([
+            'title' => $title,
+            'start' => $start,
+            'end' => $end,
+            'therapy_id' => $therapy_id,
+            'patient_id' => $patient_id,
+            'doctor_id' => $doctor_id
+        ]);
+
+
+        if ($appointment) {
+
+            $doctor = Doctor::where('id', '=', $doctor_id)->first();
+
+            $patient = Patient::where('id', '=', $patient_id)->first();
+
+            if ($patient && $doctor) {
+
+                $data = array(
+                    'firstname' => $patient->firstname,
+                    'lastname' => $patient->lastname,
+                    'email' => $patient->email,
+                    'date' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->start)->format('d/m/y'),
+                    'start' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->start)->format('H:i'),
+                    'end' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->end)->format('H:i'),
+                    'doctor' => $doctor->firstname . ' ' .$doctor->lastname,
+                    'department' => $doctor->department->naam
+
+                );
+
+                Mail::to($data['email'])
+                    ->queue(new AppointmentMail($data));
+
+            }
+
+            return ['success' => 1];
+        }
+
+        return ['success' => 0];
     }
 
     /**
@@ -100,4 +150,14 @@ class AppointmentController extends Controller
             ->where('doctor_id', '=', $doctor_id)
             ->get();
     }
+
+    public function today_appointments($doctor_id) {
+        $today = Carbon::today();
+
+        return Appointment::where('start', 'like', $today->toDateString() . '%')
+            ->where('doctor_id', '=', $doctor_id)
+            ->get();
+    }
+
+
 }

@@ -1,5 +1,5 @@
 <head>
-    <style media="screen">
+    <style>
         body {
             background-color: #f6f6f6;
         }
@@ -46,6 +46,13 @@
             text-decoration: underline;
             font-weight: 500;
         }
+
+        .appointment-card {
+            background-color: white;
+            border-radius:2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            padding: 15px;
+        }
     </style>
 </head>
 
@@ -60,16 +67,26 @@
 
     <div class="message" style="font-family:sans-serif;margin-top:3vh;margin-bottom:3vh;margin-right:auto;margin-left:auto;width:80%;font-weight:100;" >
         <p class="name" style="font-size:1.5rem;" >
-            Beste Bas van Bovene,<br>
+            Beste {{ $data['firstname'] }} {{ $data['lastname'] }},<br>
         </p>
         <p>
-            Dit is een vervolg op de mail over uw account voor Mijn nazorg.<br>
-            U kunt inloggen op <a href="http://mijnnazorg.nl" style="color:black;text-decoration:underline;font-weight:500;" >mijnnazorg.nl</a>.<br>
-            <br>
-            Uw wachtwoord is: <b>bas_van_bovene</b><br>
-            <br>
-            De gebruikersnaam heeft u eerder ontvangen.<br>
+            Er is een nieuwe afspraak voor u gemaakt. Hieronder vindt u de details betreffende deze afspraak.<br>
+            U kunt inloggen op <a href="http://mijnnazorg.nl" style="color:black;text-decoration:underline;font-weight:500;" >mijnnazorg.nl</a> om deze te bekijken.<br>
         </p>
+        <div class="appointment-card" style="background-color:white;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;" >
+            <br>
+            Datum: {{ $data['date'] }}<br>
+            Ontvangst: {{ $data['start'] }}<br>
+            Geschatte afrond tijd: {{ $data['end'] }}<br>
+            <br>
+            Afdeling: {{ $data['department'] }}<br>
+            Arts: {{ $data['doctor'] }}<br>
+            <br>
+        </div>
+        <p>
+            Vertrouwende u hiermee voldoende te hebben geinformeerd.
+        </p>
+
         <p>
             <br>
             Met vriendelijke groet,<br>
