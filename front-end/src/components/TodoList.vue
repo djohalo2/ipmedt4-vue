@@ -3,9 +3,9 @@
         <div class="card-title">
             <p class="text-primary">TODOS VANDAAG</p>
             <ul>
-                <todo v-if="todoType === 'overzicht'" v-for="todo in behandeling" :key="todo.id" :id="todo.id" :type="getTodoType(todo)" :name="getTodoName(todo)" :date="todo.time_date" :completed="!!todo.done"></todo>
+                <todo v-if="todoType === 'overzicht'" v-for="todo in todos" :key="todo.id" :id="todo.id" :type="getTodoType(todo)" :name="getTodoName(todo)" :date="todo.time_date" :completed="!!todo.done"></todo>
             </ul>
-            <q-progress :percentage="100" style="height: 4px"></q-progress>
+            <q-progress :percentage="todoProgress" style="height: 4px"></q-progress>
         </div>
     </div>
 </template>
@@ -41,28 +41,15 @@ export default {
       }
     },
     computed: {
-        behandeling() {
-            if(this.todoType === "behandeling"){
-                return this.$store.getters.getBehandeling;
-            } else {
-                return this.$store.getters.getAllTodos;
-            }
+        todos() {
+          return this.$store.getters.getAllTodos;
+        },
+        todoProgress() {
+          let totalTodos = this.todos.length;
+          let completedTodos = _.filter(this.todos, ['done', 1]).length;
 
+          return (completedTodos / totalTodos) * 100;
         }
-        // todoProgress() {
-        //     let totalTodos = 0;
-        //     let completedTodos = 0;
-        //
-        //     if(this.todoType === "behandeling"){
-        //         totalTodos = this.behandeling.todos.length;
-        //         completedTodos = _.filter(this.behandeling.todos, ['completed', true]).length;
-        //     } else {
-        //         totalTodos = this.behandeling.length;
-        //         completedTodos = _.filter(this.behandeling, ['completed', true]).length;
-        //     }
-        //
-        //     return (completedTodos / totalTodos) * 100;
-        // }
     }
 
 }

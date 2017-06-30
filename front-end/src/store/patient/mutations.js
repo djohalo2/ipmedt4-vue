@@ -32,14 +32,14 @@ export default {
             if(behandeling.medicine_todo.length > 0 && data.type == 'medicine_todo'){
                 behandeling.medicine_todo.map(todo => {
                     if(todo.id === data.id){
-                        todo.done = !todo.done;
+                        todo.done = todo.done == 1 ? 0 : 1
                     };
                 })
             }
             if(behandeling.excercise_todo.length > 0 && data.type == 'excercise_todo'){
                 behandeling.excercise_todo.map(todo => {
                     if(todo.id === data.id){
-                        todo.done = !todo.done;
+                        todo.done = todo.done == 1 ? 0 : 1
                     };
                 })
             }
