@@ -159,6 +159,7 @@ class AppointmentController extends Controller
         $tomorrow = Carbon::tomorrow();
 
         $today_appointments = Appointment::where('start', 'like', $today->toDateString() . '%')
+            ->where('end', '>=', Carbon::now()->addHours(2)->toDateTimeString())
             ->where('doctor_id', '=', $doctor_id)
             ->with('patient')
             ->orderBy('start', 'asc')
