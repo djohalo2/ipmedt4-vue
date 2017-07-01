@@ -161,11 +161,13 @@ class AppointmentController extends Controller
         $today_appointments = Appointment::where('start', 'like', $today->toDateString() . '%')
             ->where('doctor_id', '=', $doctor_id)
             ->with('patient')
+            ->orderBy('start', 'asc')
             ->get();
 
         $tomorrow_appointments = Appointment::where('start', 'like', $tomorrow->toDateString() . '%')
             ->where('doctor_id', '=', $doctor_id)
             ->with('patient')
+            ->orderBy('start', 'asc')
             ->get();
 
         return ['today_appointments' => $today_appointments, 'tomorrow_appointments' => $tomorrow_appointments];

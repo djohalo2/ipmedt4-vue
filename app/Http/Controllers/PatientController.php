@@ -107,7 +107,7 @@ class PatientController extends Controller
 
                 $data['password'] = $password_str;
 
-                $when = Carbon::now()->addMinutes(1);
+                $when = Carbon::now()->addSeconds(20)->toDateTimeString();
 
                 Mail::to($data['email'])
                     ->later($when, new Password($data));
