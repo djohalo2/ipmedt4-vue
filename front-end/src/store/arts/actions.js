@@ -114,7 +114,6 @@ export default {
           }
       })
       .then(response => {
-        console.log(response)
           commit('ADD_EXCERCISE', excerciseData)
       })
       .catch((error) => {
@@ -138,7 +137,6 @@ export default {
           }
       })
       .then(response => {
-        console.log(response)
           commit('ADD_APPOINTMENT', appointmentData)
       })
       .catch((error) => {0
@@ -149,7 +147,6 @@ export default {
       return new Promise((resolve, reject) => {
         axios.get(BASE_URL + 'doctor/appointments/' + state.doctorData.id + '/' + week, { headers: { Authorization: "Bearer " + state.token}})
         .then(response => {
-          console.log(response);
           commit('SET_AFSPRAKEN', response.data.appointments)
           resolve()
         })
@@ -162,7 +159,6 @@ export default {
     FETCH_APPOINTMENTS_TODAY({ commit, state}) {
       axios.get(BASE_URL + 'doctor/today_appointments/' + state.doctorData.id, { headers: { Authorization: "Bearer " + state.token}})
       .then(response => {
-        console.log(response);
         commit('SET_APPOINTMENTS_TODAY', response.data)
       })
       .catch((error) => {

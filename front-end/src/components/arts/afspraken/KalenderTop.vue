@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     getDagen() {
-      console.log('Start get dagen')
       let dagen = []
       for(let i = 0; i < 5; i++) {
         dagen.push({

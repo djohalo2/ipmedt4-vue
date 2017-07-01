@@ -9,7 +9,7 @@
                 ><button class="button" v-bind:class="tomorrowButton" @click="appointmentFilter = 'tomorrow'">Morgen</button>
             </div>
             <div class="list">
-                <dashboard-afspraak-card v-for="(appointment, index) in appointments"
+                <dashboard-afspraak-card v-for="(appointment, index) in appointments" v-if="index > (appointmentPage * 5 - 6) && index < (appointmentPage * 5)"
                   :key="index"
                   :patientId="appointment.patient_id"
                   :patient="appointment.patient.firstname + ' ' + appointment.patient.lastname"
@@ -17,6 +17,8 @@
                   :therapy="appointment.title">
                 </dashboard-afspraak-card>
             </div>
+
+            <q-pagination class="patient-pagination" v-model="appointmentPage" :max="Math.ceil(appointments.length / 5)"></q-pagination>
         </div>
     </div>
 </template>
@@ -31,7 +33,8 @@ export default {
     },
     data() {
       return {
-        appointmentFilter: 'today'
+        appointmentFilter: 'today',
+        appointmentPage: 1
       }
     },
     computed: {

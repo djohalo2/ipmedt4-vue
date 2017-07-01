@@ -36,9 +36,7 @@ export default {
         }
     },
     beforeCreate(){
-        console.log("BEFORE CREATE");
         if(LocalStorage.get.item('token')){
-          console.log("Token bestaat dus fetchen patient");
             this.$store.commit('TOGGLE_IS_FETCHING');
             this.$store.dispatch('CHECK_TOKEN').then(() => {
                 this.$store.dispatch('FETCH_PATIENT').then(() => {

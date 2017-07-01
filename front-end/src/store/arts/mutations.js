@@ -27,9 +27,7 @@ export default {
       state.appointments = payload
     },
     [SET_APPOINTMENTS_TODAY](state, payload) {
-      console.log('Appointments gezet', payload)
       state.appointmentsToday = payload
-      console.log(state.appointmentsToday)
     },
     [ADD_MEDICINE](state, payload) {
       state.patientBehandelingen.map((behandeling) => {
