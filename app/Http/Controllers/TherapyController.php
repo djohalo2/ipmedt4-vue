@@ -83,7 +83,6 @@ class TherapyController extends Controller
 
         return ['success' => 0];
 
-//        return $request;
     }
 
     /**

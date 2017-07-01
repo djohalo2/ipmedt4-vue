@@ -41,7 +41,7 @@ class DoctorNoteController extends Controller
         $therapy_id = $request->therapy_id;
         $note = $request->note;
 
-        Doctor_note::insert([
+        $doctor_note = Doctor_note::insert([
             'title' => $title,
             'added_by' => $added_by,
             'therapy_id' => $therapy_id,
@@ -50,7 +50,12 @@ class DoctorNoteController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        return ['success' => 1];
+        if ($doctor_note) {
+            return ['success' => 1];
+        }
+
+        return ['success' => 0];
+
     }
 
     /**
