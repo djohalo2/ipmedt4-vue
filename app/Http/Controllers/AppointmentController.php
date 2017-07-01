@@ -48,6 +48,13 @@ class AppointmentController extends Controller
         $patient_id = $request->patient_id;
         $doctor_id = $request->doctor_id;
 
+        $start_date_time = Carbon::createFromFormat('Y-m-d H:i:s', $start)->format('Ymd\THis');
+        $end_date_time = Carbon::createFromFormat('Y-m-d H:i:s', $end)->format('Ymd\THis');
+
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $start)->format('d/m/y');
+        $start_time = Carbon::createFromFormat('Y-m-d H:i:s', $start)->format('H:i');
+        $end_time = Carbon::createFromFormat('Y-m-d H:i:s', $end)->format('H:i');
+
         $appointment = Appointment::firstOrCreate([
             'title' => $title,
             'start' => $start,
@@ -64,8 +71,6 @@ class AppointmentController extends Controller
 
             $patient = Patient::where('id', '=', $patient_id)->first();
 
-//            return "okay";
-
             if ($patient && $doctor) {
 
                 $data = array(
@@ -73,11 +78,11 @@ class AppointmentController extends Controller
                     'lastname' => $patient->lastname,
                     'email' => $patient->email,
                     'id' => $appointment->id,
-                    'start_date_time' => Carbon::createFromFormat('Y-m-d H:i', $appointment->start)->format('Ymd\THis'),
-                    'end_date_time' => Carbon::createFromFormat('Y-m-d H:i', $appointment->end)->format('Ymd\THis'),
-                    'date' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->start)->format('d/m/y'),
-                    'start' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->start)->format('H:i'),
-                    'end' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->end)->format('H:i'),
+                    'start_date_time' => $start_date_time,
+                    'end_date_time' => $end_date_time,
+                    'date' => $date,
+                    'start' => $start_time,
+                    'end' => $end_time,
                     'doctor' => $doctor->firstname . ' ' .$doctor->lastname,
                     'department' => $doctor->department->naam
 
@@ -86,9 +91,11 @@ class AppointmentController extends Controller
                 Mail::to($data['email'])
                     ->queue(new AppointmentMail($data));
 
+                return ['success' => 1];
+
             }
 
-            return ['success' => 1];
+            return ['success' => 2];
         }
 
         return ['success' => 0];
