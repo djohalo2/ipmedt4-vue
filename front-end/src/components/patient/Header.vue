@@ -1,17 +1,10 @@
 <template>
     <div class="toolbar">
-        <!-- v-if="this.$route.path !== '/behandeling' && this.$route.path !== '/patientinformatie' && this.$route.path !== '/'" -->
         <drawer></drawer>
 
         <q-toolbar-title>
             <span class="bold">mijn</span><span class="light">nazorg.nl</span>
         </q-toolbar-title>
-
-        <q-search v-on-clickaway="closeSearch" v-if="searching" v-model="searchText" placeholder="Zoeken"></q-search>
-
-        <!-- <button v-if="!searching" v-on:click="searching = !searching" class="hide-on-drawer-visible">
-            <i>search</i>
-        </button> -->
 
         <button ref="target" class="hide-on-drawer-visible">
             <i>more_vert</i>

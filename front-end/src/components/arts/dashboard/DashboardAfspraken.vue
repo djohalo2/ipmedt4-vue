@@ -3,14 +3,19 @@
         <div class="card-title">
             Afspraken
         </div>
-
         <div class="card-content">
             <div class="filters">
-                <button class="button primary">Vandaag</button
-                ><button class="primary outline">Morgen</button>
+                <button class="button" v-bind:class="todayButton" @click="appointmentFilter = 'today'">Vandaag</button
+                ><button class="button" v-bind:class="tomorrowButton" @click="appointmentFilter = 'tomorrow'">Morgen</button>
             </div>
             <div class="list">
-                <dashboard-afspraak-card v-for="(afspraak, index) in afspraken" :key="index" :patient="afspraak.patient" :date="afspraak.date" :therapy="afspraak.therapy"></dashboard-afspraak-card>
+                <dashboard-afspraak-card v-for="(appointment, index) in appointments"
+                  :key="index"
+                  :patientId="appointment.patient_id"
+                  :patient="appointment.patient.firstname + ' ' + appointment.patient.lastname"
+                  :date="appointment.start"
+                  :therapy="appointment.title">
+                </dashboard-afspraak-card>
             </div>
         </div>
     </div>
@@ -25,30 +30,27 @@ export default {
         DashboardAfspraakCard
     },
     data() {
-        return {
-            afspraken: [
-                {
-                    patient: "Djovanni Tehubijuluw",
-                    date: "Vandaag: 9:30 - 10:00",
-                    therapy: "Gebroken been"
-                },
-                {
-                    patient: "Bas van Bovene",
-                    date: "Vandaag: 10:00 - 10:45",
-                    therapy: "Gebroken pols"
-                },
-                {
-                    patient: "Sem Ekkelboom",
-                    date: "Vandaag: 10:45 - 11:30",
-                    therapy: "Gebroken teen"
-                },
-                {
-                    patient: "Jeroen de Meij",
-                    date: "Vandaag: 12:30 - 13:30",
-                    therapy: "Gebroken sleutelbeen"
-                }
-            ]
+      return {
+        appointmentFilter: 'today'
+      }
+    },
+    computed: {
+      appointments() {
+        if (this.appointmentFilter == 'today') {
+          return this.$store.getters.getAppointmentsToday.today_appointments
+        } else {
+          return this.$store.getters.getAppointmentsToday.tomorrow_appointments
         }
+      },
+      todayButton() {
+        return this.appointmentFilter == 'today' ? {primary: true} : {primary: true, outline: true}
+      },
+      tomorrowButton() {
+        return this.appointmentFilter == 'tomorrow' ? {primary: true} : {primary: true, outline: true}
+      }
+    },
+    created() {
+      this.$store.dispatch('FETCH_APPOINTMENTS_TODAY')
     }
 }
 </script>

@@ -19,7 +19,7 @@ export default new VueRouter({
     { path: '/oefeningen', component: load('patient/oefeningen/Oefeningen') },
     { path: '/afspraken', component: load('patient/afspraken/Afspraken') },
     { path: '/login', component: load('Login') },
-    { path: '/patientinformatie', component: load('PatientInformatie') },
+    { path: '/patientinformatie', component: load('patient/PatientInformatie') },
     { path: '/behandeling/:typeBehandeling', component: load('BehandelingPage') },
     { path: '/behandeling/:typeBehandeling/notities', component: load('NotitiesPage') },
     { path: '/behandeling/:typeBehandeling/medicatie', component: load('Medicatie') },

@@ -1,4 +1,4 @@
-import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, ADD_MEDICINE, ADD_EXCERCISE, ADD_APPOINTMENT, LOG_DOCTOR_OUT } from './mutation-types';
+import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, SET_APPOINTMENTS_TODAY, ADD_MEDICINE, ADD_EXCERCISE, ADD_APPOINTMENT, LOG_DOCTOR_OUT } from './mutation-types';
 import { LocalStorage, SessionStorage } from 'quasar';
 
 export default {
@@ -25,6 +25,11 @@ export default {
     },
     [SET_AFSPRAKEN](state, payload) {
       state.appointments = payload
+    },
+    [SET_APPOINTMENTS_TODAY](state, payload) {
+      console.log('Appointments gezet', payload)
+      state.appointmentsToday = payload
+      console.log(state.appointmentsToday)
     },
     [ADD_MEDICINE](state, payload) {
       state.patientBehandelingen.map((behandeling) => {

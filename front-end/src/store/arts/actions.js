@@ -141,7 +141,7 @@ export default {
         console.log(response)
           commit('ADD_APPOINTMENT', appointmentData)
       })
-      .catch((error) => {
+      .catch((error) => {0
           console.log(error);
       });
     },
@@ -157,6 +157,16 @@ export default {
           reject()
           console.log(error)
         })
+      })
+    },
+    FETCH_APPOINTMENTS_TODAY({ commit, state}) {
+      axios.get(BASE_URL + 'doctor/today_appointments/' + state.doctorData.id, { headers: { Authorization: "Bearer " + state.token}})
+      .then(response => {
+        console.log(response);
+        commit('SET_APPOINTMENTS_TODAY', response.data)
+      })
+      .catch((error) => {
+        console.log(error)
       })
     }
 }

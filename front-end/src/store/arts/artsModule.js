@@ -11,7 +11,9 @@ const artsModule = {
         isFetching: false,
         medicines: [],
         excercises: [],
-        appointments: []
+        appointments: [],
+        appointmentsToday: [],
+        appointmentsTomorrow: []
     },
     actions,
     mutations,

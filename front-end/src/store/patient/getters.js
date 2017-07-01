@@ -25,7 +25,7 @@ export default {
     },
     getAllAppointsments(state) {
       let appointments = [];
-      if(state.patientData.appointments.length > 0){
+      if(state.patientData.appointments){
           state.patientData.appointments.map(appointment =>{
               appointments.push(appointment);
           });

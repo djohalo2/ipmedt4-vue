@@ -59,8 +59,12 @@ export default {
     openPopover() {
       this.$refs['appointmentPopover' + this.xPos + this.yPos].open()
     },
+    closePopover() {
+      this.$refs['appointmentPopover' + this.xPos + this.yPos].close()
+    },
     addAppointment() {
       this.$store.dispatch('ADD_APPOINTMENT', this.appointment)
+      this.closePopover()
     },
     searchPatient (patientTerms, done) {
       let results = [];
