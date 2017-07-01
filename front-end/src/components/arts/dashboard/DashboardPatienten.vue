@@ -45,7 +45,6 @@
                         placeholder="2017-6-13"
                         min="1900-3-10"
                     ></q-datetime>
-                    <!-- Violet Brown <3 -->
                 </div>
             </div>
             <div class="row small-gutter">
@@ -141,7 +140,12 @@ export default {
     },
     methods: {
         addPatient(){
-            this.$store.dispatch("ADD_PATIENT", this.newPatient);
+            this.$store.dispatch("ADD_PATIENT", this.newPatient).then(() => {
+              console.log('REMOVING PATIENT DATA')
+              for(let item in this.newPatient) {
+                this.newPatient[item] = ''
+              }
+            })
             this.$refs.addPatientModal.close();
         }
     },

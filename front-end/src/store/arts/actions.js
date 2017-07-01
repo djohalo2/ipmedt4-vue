@@ -20,6 +20,7 @@ export default {
         });
     },
     ADD_PATIENT({ commit, state }, patient){
+      return new Promise((resolve, reject) => {
         axios({
             method: "post",
             url: BASE_URL + "patient",
@@ -40,11 +41,14 @@ export default {
             }
         })
         .then(response => {
-            commit('ADD_PATIENT', patient);
+          commit('ADD_PATIENT', response.data.patient);
+          resolve()
         })
         .catch((error) => {
-            console.log(error);
-        });
+          console.log(error);
+          reject()
+        })
+      })
     },
     FETCH_PATIENT_DATA({ commit, state}, patientId) {
       axios.get(BASE_URL + 'therapy/' + patientId, { headers: { Authorization: "Bearer " + state.token}})
@@ -121,6 +125,7 @@ export default {
       });
     },
     ADD_APPOINTMENT({ commit, state }, appointmentData) {
+      console.log("APPOINTMENT DATA", appointmentData)
       axios({
           method: "post",
           url: BASE_URL + "appointment",

@@ -18,7 +18,7 @@
                 </dashboard-afspraak-card>
             </div>
 
-            <q-pagination class="patient-pagination" v-model="appointmentPage" :max="Math.ceil(appointments.length / 5)"></q-pagination>
+            <q-pagination class="patient-pagination" v-model="appointmentPage" :max="maxPagination"></q-pagination>
         </div>
     </div>
 </template>
@@ -50,6 +50,9 @@ export default {
       },
       tomorrowButton() {
         return this.appointmentFilter == 'tomorrow' ? {primary: true} : {primary: true, outline: true}
+      },
+      maxPagination() {
+        return this.appointments ? Math.ceil(this.appointments.length / 5) : 0
       }
     },
     created() {
