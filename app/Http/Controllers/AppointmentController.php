@@ -64,6 +64,8 @@ class AppointmentController extends Controller
 
             $patient = Patient::where('id', '=', $patient_id)->first();
 
+//            return "okay";
+
             if ($patient && $doctor) {
 
                 $data = array(
@@ -71,8 +73,8 @@ class AppointmentController extends Controller
                     'lastname' => $patient->lastname,
                     'email' => $patient->email,
                     'id' => $appointment->id,
-                    'start_date_time' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->start)->format('Ymd\THis'),
-                    'end_date_time' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->end)->format('Ymd\THis'),
+                    'start_date_time' => Carbon::createFromFormat('Y-m-d H:i', $appointment->start)->format('Ymd\THis'),
+                    'end_date_time' => Carbon::createFromFormat('Y-m-d H:i', $appointment->end)->format('Ymd\THis'),
                     'date' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->start)->format('d/m/y'),
                     'start' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->start)->format('H:i'),
                     'end' => Carbon::createFromFormat('Y-m-d H:i:s', $appointment->end)->format('H:i'),

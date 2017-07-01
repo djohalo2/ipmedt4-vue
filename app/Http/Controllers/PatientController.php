@@ -93,6 +93,8 @@ class PatientController extends Controller
                 'user_id' => $user->id
             ]);
 
+            $patient = Patient::where('id', '=', $patient->id)->first();
+
             if ($patient) {
 
                 $data = array(
