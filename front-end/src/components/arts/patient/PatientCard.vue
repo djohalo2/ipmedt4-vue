@@ -1,17 +1,18 @@
 <template>
-        <div class="card">
+        <div class="card" v-on:click="cardClick">
             <div class="float-right">
               <!-- <img class="profile-img" :src="{{avatar}}"> -->
             </div>
             <div class="card-title">
                 {{firstname}} {{lastname}}
             </div>
+            <button class="primary small float-right" >Bekijken</button>
             <div class="card-content">
                 Geboortedatum: {{birthday}}<br>
                 Telefoon: {{phone}}<br>
                 Email: {{email}}<br>
             </div>
-            <button class="primary clear" v-on:click="cardClick">Bekijk</button>
+
         </div>
 </template>
 
@@ -56,6 +57,11 @@ export default {
     .card {
         padding: 0rem 1rem;
         box-shadow: 0 1px 3px rgba(0,0,0,0.22), 0 3px 2px rgba(0,0,0,0.05);
+        cursor: pointer;
+
+        &:hover {
+          background-color: #fafafa;
+        }
 
         .card-title {
             font-size: 1rem;
@@ -71,7 +77,7 @@ export default {
         }
 
         button {
-            padding: 0;
+          padding: 0 2rem;
         }
     }
 

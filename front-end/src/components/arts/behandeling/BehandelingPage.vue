@@ -6,7 +6,7 @@
       </div>
       <div class="row medium-gutter sm-column">
         <div class="width-1of2">
-          <behandeling-informatie></behandeling-informatie>
+          <behandeling-informatie :name="behandeling.name" :start="behandeling.start_date" :end="behandeling.end_date" :bodyparts="behandeling.bodyparts"></behandeling-informatie>
         </div>
 
         <div class="width-1of2">
