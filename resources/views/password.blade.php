@@ -60,7 +60,7 @@
 
     <div class="message" style="font-family:sans-serif;margin-top:3vh;margin-bottom:3vh;margin-right:auto;margin-left:auto;width:80%;font-weight:100;" >
         <p class="name" style="font-size:1.5rem;" >
-            Beste Bas van Bovene,<br>
+            Beste {{ $data['firstname'] }} {{ $data['lastname'] }},<br>
         </p>
         <p>
             Dit is een vervolg op de mail over uw account voor Mijn nazorg.<br>
