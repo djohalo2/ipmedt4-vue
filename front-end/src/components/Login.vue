@@ -48,13 +48,16 @@ export default {
         }
     },
     methods: {
-        login() {
+        login(e) {
+            e.preventDefault();
+            console.log("Trying to log you in");
             let payload = {
                 username: this.username,
                 password: this.password
             };
             this.$store.dispatch('FETCH_TOKEN', payload).then(() => {
                 if(this.token !== "unauthorized"){
+                    console.log("Authorized! :)");
                     this.$store.dispatch('FETCH_PATIENT');
                 }
             });
