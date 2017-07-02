@@ -2,37 +2,52 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">{{patient.firstname + " " + patient.lastname}}</p>
-
             <div class="card">
-                <div class="card-title">
-                    <p class="text-primary">Gegevens</p>
-                    <img class="profile-img" :src="patient.avatar">
-                    <ul class="patientinfo-list">
-                      <li>Voornaam: {{patient.firstname}}</li>
-                      <li>Achternaam: {{patient.lastname}}</li>
-                      <li>Telefoon: {{patient.phone}}</li>
-                      <li>Email: {{patient.email}}</li>
-                    </ul>
-                </div>
+              <div class="card-title">
+                <p class="text-primary">Gegevens</p>
+                <img class="profile-img" :src="patient.avatar">
+                <ul class="patientinfo-list">
+                  <li>Voornaam: {{patient.firstname}}</li>
+                  <li>Achternaam: {{patient.lastname}}</li>
+                  <li>Telefoon: {{patient.phone}}</li>
+                  <li>Email: {{patient.email}}</li>
+                </ul>
+              </div>
             </div>
             <div class="card">
-                <div class="card-title">
-                    <p class="text-primary">Behandelingen</p>
-                    <div class="list">
-                      <div class="item three-lines" @click="clickBehandeling(behandeling.id)" v-for="behandeling in behandelingen" :key="behandeling.id">
-                          <i class="item-primary">{{behandelingStatus(behandeling.end_date)}}</i>
-                          <div class="item-content has-secondary">
-                                  <div class="item-title">{{behandeling.name}}</div>
-                                  <div class="item-label item-smaller">
-                                      Loopt sinds {{behandeling.start_date}}<br>
-                                      <p v-for="(bodypart, index) in behandeling.bodyparts" :key="index">{{bodypart.name}}</p>
-                                  </div>
-                          </div>
-                          <button class="primary small item-secondary text-white">Bekijken</button>
+              <div class="card-title">
+                <i class="float-right add-icon" @click="$refs.addTherapyModal.open()">add_circle</i>
+                <p class="text-primary">Behandelingen</p>
+                <div class="list">
+                  <div class="item three-lines" @click="clickBehandeling(behandeling.id)" v-for="behandeling in behandelingen" :key="behandeling.id">
+                    <i class="item-primary">{{behandelingStatus(behandeling.end_date)}}</i>
+                    <div class="item-content has-secondary">
+                      <div class="item-title">{{behandeling.name}}</div>
+                      <div class="item-label item-smaller">
+                        Loopt sinds {{behandeling.start_date}}<br>
+                        <p v-for="(bodypart, index) in behandeling.bodyparts" :key="index">{{bodypart.name}}</p>
                       </div>
                     </div>
+                    <button class="primary small item-secondary text-white">Bekijken</button>
+                  </div>
                 </div>
+              </div>
             </div>
+
+            <q-modal ref="addTherapyModal" class="minimized patient-modal" :content-css="{padding: '50px'}">
+              <p>Behandeling toevoegen</p>
+              <div class="row small-gutter">
+                <div class="width-1of2">
+                  <input v-model="newTherapy.name" placeholder="Behandeling naam">
+                </div>
+              </div>
+              <div class="row small-gutter">
+                <div class="width-1of2">
+                  <input v-model="newTherapy.bodyparts" placeholder="Categorie">
+                </div>
+              </div>
+              <button class="red" @click="addTherapy()">Toevoegen</button>
+            </q-modal>
         </div>
     </div>
 </template>
@@ -44,9 +59,16 @@ import moment from 'moment';
 export default {
     name: 'patienten-page',
     data() {
-        return {
-            patientId: 0
+      return {
+        patientId: 0,
+        newTherapy: {
+          patient_id: '',
+          name: '',
+          department_id: '',
+          created_by: '',
+          bodyparts: ''
         }
+      }
     },
     methods: {
       behandelingStatus(date) {
@@ -54,9 +76,23 @@ export default {
       },
       clickBehandeling(behandelingId) {
         this.$router.push({path: this.patient.id + '/behandelingen/' + behandelingId})
+      },
+      addTherapy() {
+        this.newTherapy.patient_id = this.patient.id
+        this.newTherapy.department_id = this.doctorInfo.department_id
+        this.newTherapy.created_by = this.doctorInfo.id
+        this.$store.dispatch('ADD_THERAPY', this.newTherapy).then(() => {
+          this.$refs.addTherapyModal.close()
+          for(let item in this.newTherapy) {
+            this.newTherapy[item] = ''
+          }
+        })
       }
     },
     computed: {
+        doctorInfo() {
+          return this.$store.getters.getDoctorInfo
+        },
         patients() {
           return this.$store.getters.getPatients
         },

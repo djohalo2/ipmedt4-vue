@@ -20,11 +20,17 @@
 
       <div class="row medium-gutter sm-column">
         <div class="width-1of2">
-          <behandeling-medicatie :medicatie="behandeling.medicines"></behandeling-medicatie>
+          <behandeling-medicatie :medicatie="behandeling.medicines" :state="behandeling.end_date == null"></behandeling-medicatie>
         </div>
 
         <div class="width-1of2">
-          <behandeling-oefeningen :oefeningen="behandeling.excercises"></behandeling-oefeningen>
+          <behandeling-oefeningen :oefeningen="behandeling.excercises" :state="behandeling.end_date == null"></behandeling-oefeningen>
+        </div>
+      </div>
+
+      <div class="row medium-gutter sm-column">
+        <div class="width-2of2">
+          <button class="button primary full-width" @click="finishTherapy()" v-if="behandeling.end_date == null">Behandeling afronden</button>
         </div>
       </div>
     </div>
@@ -36,6 +42,7 @@ import ListItem from './ListItem';
 import BehandelingMedicatie from './BehandelingMedicatie'
 import BehandelingOefeningen from './BehandelingOefeningen'
 import BehandelingInformatie from './BehandelingInformatie'
+import router from 'vue-router'
 
 export default {
     name: 'behandeling-page',
@@ -55,6 +62,13 @@ export default {
             return this.behandelingen[behandeling]
           }
         }
+      }
+    },
+    methods: {
+      finishTherapy() {
+        this.$store.dispatch('FINISH_THERAPY', this.behandeling.id).then(() => {
+          window.history.back()
+        })
       }
     }
 }

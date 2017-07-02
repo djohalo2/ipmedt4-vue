@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-title">
         Oefeningen
-        <i class="float-right add-icon" @click="$refs.addExerciseModal.open()">add_circle</i>
+        <i class="float-right add-icon" @click="$refs.addExerciseModal.open()" v-if="state">add_circle</i>
       </div>
       <div class="card-content">
         <div class="list">
@@ -50,7 +50,7 @@ import ListItem from './ListItem';
 
 export default {
     name: 'behandeling-oefeningen',
-    props: ['oefeningen'],
+    props: ['oefeningen', 'state'],
     components: {
       ListItem
     },
