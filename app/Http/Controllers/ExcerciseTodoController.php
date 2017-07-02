@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Excercise;
 use App\Excercise_todo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class ExcerciseTodoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
@@ -69,6 +70,23 @@ class ExcerciseTodoController extends Controller
                 $date->addHours($hours_between);
             }
         }
+
+        $excercise = Excercise::where('id', '=', $excercise_id)->first();
+
+        return [
+            'excercise' =>
+                [
+                    'name' => $excercise->title,
+                ],
+            'todo_info' =>
+                [
+                    'sets' => $sets,
+                    'amount_per_set' => $sets_amount,
+                    'per_day' => $per_day,
+                    'start_date' => $start_date,
+                    'end_date' => $end_date
+                ]
+        ];
 
     }
 

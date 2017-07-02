@@ -82,50 +82,6 @@ class TableSeeder extends Seeder
         ]);
 
 
-
-        $therapy1 = Therapy::firstOrCreate([
-            'name' => 'test_therapy_1',
-            'patient_id' => 1,
-            'start_date' => '2017-06-30',
-            'end_date' => '2017-07-30',
-            'department_id' => $department->id,
-            'created_by' => 1,
-            'last_update_by' => 1
-        ]);
-
-        $therapy2 = Therapy::firstOrCreate([
-            'name' => 'test_therapy_2',
-            'patient_id' => 1,
-            'start_date' => '2017-06-27',
-            'end_date' => '2017-07-10',
-            'department_id' => $department->id,
-            'created_by' => 1,
-            'last_update_by' => 1
-        ]);
-
-
-
-        $bodypart1 = Bodypart::firstOrCreate([
-            'name' => 'been rechts'
-        ]);
-
-        $bodypart2 = Bodypart::firstOrCreate([
-            'name' => 'been links'
-        ]);
-
-        DB::table('therapy_bodypart')->insert([
-            [
-                'therapy_id' => $therapy1->id,
-                'bodypart_id' => $bodypart1->id
-            ],
-            [
-                'therapy_id' => $therapy2->id,
-                'bodypart_id' => $bodypart2->id
-            ],
-        ]);
-
-
-
         $excercise_type = Type::firstOrCreate([
             'type' => 'been'
         ]);

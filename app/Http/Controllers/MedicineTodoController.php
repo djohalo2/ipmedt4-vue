@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Medicine;
 use App\Medicine_todo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class MedicineTodoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
@@ -69,6 +70,22 @@ class MedicineTodoController extends Controller
                 $date->addHours($hours_between);
             }
         }
+
+        $medicine = Medicine::where('id', '=', $medicine_id)->first();
+
+        return [
+            'medication' =>
+                [
+                    'name' => $medicine->name,
+                ],
+            'todo_info' =>
+                [
+                    'dosis' => $amount,
+                    'per_day' => $per_day,
+                    'start_date' => $start_date,
+                    'end_date' => $end_date
+                ]
+        ];
     }
 
     /**

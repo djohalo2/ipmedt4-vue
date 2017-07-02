@@ -102,7 +102,10 @@ class TherapyController extends Controller
      */
     public function show($patient_id)
     {
-        return Therapy::where('patient_id', '=', $patient_id)->with('doctor_notes', 'excercises', 'medicines', 'bodyparts')->get();
+        return Therapy::where('patient_id', '=', $patient_id)
+            ->with('doctor_notes', 'excercises', 'medicines', 'bodyparts')
+            ->orderBy('end_date', 'asc')
+            ->get();
     }
 
     /**
