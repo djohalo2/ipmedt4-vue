@@ -37,15 +37,14 @@
                 </div>
             </div>
             <div class="row">
-                <div>
-                    <q-datetime
-                        class="patient-datepicker"
-                        v-model="newPatient.birthday"
-                        type="date"
-                        placeholder="2017-6-13"
-                        min="1900-3-10"
-                    ></q-datetime>
-                </div>
+              <q-datetime
+                  class="patient-datepicker full-width"
+                  v-model="newPatient.birthday"
+                  type="date"
+                  placeholder="Geboortedatum"
+                  min="1900-3-10"
+                  :max="maxDate"
+              ></q-datetime>
             </div>
             <div class="row small-gutter">
                 <div class="width-3of4">
@@ -113,7 +112,8 @@ export default {
                 postalcode: "",
                 city: ""
             },
-            patientPage: 1
+            patientPage: 1,
+            maxDate: moment().format()
         }
     },
     computed: {
