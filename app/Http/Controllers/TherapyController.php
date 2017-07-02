@@ -49,13 +49,12 @@ class TherapyController extends Controller
         $bodyparts_string = $request->bodyparts;
         $bodyparts = explode(',', $bodyparts_string);
 
-        if($end_date >= $start_date) {
+        if($start_date) {
 
             $therapy = Therapy::firstOrCreate([
                 'name' => $name,
                 'patient_id' => $patient_id,
                 'start_date' => $start_date,
-                'end_date' => $end_date,
                 'department_id' => $department_id,
                 'created_by' => $created_by,
                 'last_update_by' => $created_by
