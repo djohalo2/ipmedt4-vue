@@ -51,7 +51,7 @@ class DoctorNoteController extends Controller
         ]);
 
         if ($doctor_note) {
-            return ['success' => 1];
+            return $doctor_note;
         }
 
         return ['success' => 0];
@@ -101,7 +101,7 @@ class DoctorNoteController extends Controller
         $save = $doctor_note->save();
 
         if ($save) {
-            return ['success' => 1];
+            return $doctor_note;
         } else {
             return ['success' => 0];
         }

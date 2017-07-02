@@ -40,7 +40,7 @@ class PatientNoteController extends Controller
         $patient_id = $request->patient_id;
         $note = $request->note;
 
-        Patient_note::insert([
+        $patient_note = Patient_note::insert([
             'title' => $title,
             'patient_id' => $patient_id,
             'note' => $note,
@@ -48,7 +48,11 @@ class PatientNoteController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        return ['success' => 1];
+        if ($patient_note) {
+            return $patient_note;
+        }
+
+        return ['success' => 0];
     }
 
     /**

@@ -74,7 +74,12 @@ class TherapyController extends Controller
             }
 
             if ($therapy) {
-                return ['success' => 1];
+
+                $created_therapy = Therapy::where('id', '=', $therapy->id)
+                    ->with('bodyparts')
+                    ->get();
+
+                return $created_therapy;
             }
 
             return ['success' => 0];

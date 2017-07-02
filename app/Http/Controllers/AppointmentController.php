@@ -91,7 +91,7 @@ class AppointmentController extends Controller
                 Mail::to($data['email'])
                     ->queue(new AppointmentMail($data));
 
-                return ['success' => 1];
+                return $appointment;
 
             }
 
