@@ -20,19 +20,19 @@
           </q-autocomplete>
         </div>
         <div class="row medium-gutter">
-          <q-datetime class="patient-datepicker" v-model="excerciseData.start_date" type="date" placeholder="Startdatum" :min="now"></q-datetime>
+          <q-datetime class="patient-datepicker full-width" v-model="excerciseData.start_date" type="date" placeholder="Startdatum" :min="now"></q-datetime>
         </div>
         <div class="row medium-gutter">
-          <q-datetime class="patient-datepicker" v-model="excerciseData.end_date" type="date" placeholder="Einddatum" :min="now"></q-datetime>
+          <q-datetime class="patient-datepicker full-width" v-model="excerciseData.end_date" type="date" placeholder="Einddatum" :min="now"></q-datetime>
         </div>
         <div class="row medium-gutter">
-          <input v-model="excerciseData.sets" placeholder="Hoeveel sets">
+          <input class="full-width" v-model="excerciseData.sets" placeholder="Hoeveel sets">
         </div>
         <div class="row medium-gutter">
-          <input v-model="excerciseData.sets_amount" placeholder="Aantal per set">
+          <input class="full-width" v-model="excerciseData.sets_amount" placeholder="Aantal per set">
         </div>
         <div class="row medium-gutter">
-          <input v-model="excerciseData.per_day" placeholder="Hoeveelheid per dag">
+          <input class="full-width" v-model="excerciseData.per_day" placeholder="Hoeveel keer per dag">
         </div>
         <button class="red" @click="addExercise()">Toevoegen</button>
     </q-modal>
@@ -61,10 +61,10 @@ export default {
           sets: '',
           sets_amount: '',
           per_day: '',
-          therapy_id: this.$route.params.behandelingId,
-          id: 0,
+          therapy_id: '',
+          id: '',
           start_date: moment().format(),
-          end_date: moment().format(),
+          end_date: '',
           title: ''
         },
         now: moment().format()
@@ -94,8 +94,14 @@ export default {
         this.excerciseData.title = item.label
       },
       addExercise() {
-        this.$store.dispatch('ADD_EXCERCISE', this.excerciseData)
-        this.$refs.addExerciseModal.close()
+        this.excerciseData.therapy_id = this.$route.params.behandelingId
+        this.$store.dispatch('ADD_EXCERCISE', this.excerciseData).then(() => {
+          for(let item in this.excerciseData) {
+            this.excerciseData[item] = ''
+          }
+          this.$refs.addExerciseModal.close()
+        })
+
       }
     },
     created () {
@@ -107,5 +113,15 @@ export default {
 <style lang="scss" scoped>
   .layout-padding {
     padding-top: 1rem;
+  }
+  .minimized {
+    button {
+      margin: 0 auto;
+      display: block;
+    }
+
+    .row div, input {
+      margin-bottom: 1rem;
+    }
   }
 </style>

@@ -20,16 +20,16 @@
           </q-autocomplete>
         </div>
         <div class="row medium-gutter">
-          <q-datetime class="patient-datepicker" v-model="medicineData.start_date" type="date" placeholder="Startdatum" :min="now"></q-datetime>
+          <q-datetime class="patient-datepicker full-width" v-model="medicineData.start_date" type="date" placeholder="Startdatum" :min="now"></q-datetime>
         </div>
         <div class="row medium-gutter">
-          <q-datetime class="patient-datepicker" v-model="medicineData.end_date" type="date" placeholder="Einddatum" :min="now"></q-datetime>
+          <q-datetime class="patient-datepicker full-width" v-model="medicineData.end_date" type="date" placeholder="Einddatum" :min="now"></q-datetime>
         </div>
         <div class="row medium-gutter">
-          <input v-model="medicineData.amount" placeholder="Dosering">
+          <input v-model="medicineData.amount" class="full-width" placeholder="Dosering">
         </div>
         <div class="row medium-gutter">
-          <input v-model="medicineData.amount_per_day" placeholder="Hoeveelheid per dag">
+          <input v-model="medicineData.amount_per_day" class="full-width" placeholder="Hoeveelheid per dag">
         </div>
         <button class="red" @click="addMedicine()">Toevoegen</button>
     </q-modal>
@@ -57,10 +57,10 @@ export default {
         medicineData: {
           amount: '',
           amount_per_day: '',
-          therapy_id: this.$route.params.behandelingId,
-          id: 0,
+          therapy_id: '',
+          id: '',
           start_date: moment().format(),
-          end_date: moment().format(),
+          end_date: '',
           name: ''
         },
         now: moment().format()
@@ -90,8 +90,13 @@ export default {
         this.medicineData.name = item.label
       },
       addMedicine() {
-        this.$store.dispatch('ADD_MEDICINE', this.medicineData)
-        this.$refs.addMedicineModal.close()
+        this.medicineData.therapy_id = this.$route.params.behandelingId
+        this.$store.dispatch('ADD_MEDICINE', this.medicineData).then(() => {
+          this.$refs.addMedicineModal.close()
+          for(let item in this.medicineData) {
+            this.medicineData[item] = ''
+          }
+        })
       }
     },
     created () {
@@ -103,5 +108,16 @@ export default {
 <style lang="scss" scoped>
   .layout-padding {
     padding-top: 1rem;
+  }
+
+  .minimized {
+    button {
+      margin: 0 auto;
+      display: block;
+    }
+
+    .row div, input {
+      margin-bottom: 1rem;
+    }
   }
 </style>

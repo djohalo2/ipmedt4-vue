@@ -78,51 +78,60 @@ export default {
       })
     },
     ADD_MEDICINE({ commit, state }, medicineData) {
-      axios({
-        method: "post",
-        url: BASE_URL + "medicine_todo",
-        data: qs.stringify({
-          amount: medicineData.amount,
-          amount_per_day: medicineData.amount_per_day,
-          therapy_id: medicineData.therapy_id,
-          medicine_id: medicineData.id,
-          start_date: moment(medicineData.start_date).format('YYYY-MM-DD'),
-          end_date: moment(medicineData.end_date).format('YYYY-MM-DD'),
-        }),
-        headers: {
-            Authorization: "Bearer " + state.token,
-        }
-      })
-      .then(response => {
+      return new Promise((resolve, reject) => {
+        axios({
+          method: "post",
+          url: BASE_URL + "medicine_todo",
+          data: qs.stringify({
+            amount: medicineData.amount,
+            amount_per_day: medicineData.amount_per_day,
+            therapy_id: medicineData.therapy_id,
+            medicine_id: medicineData.id,
+            start_date: moment(medicineData.start_date).format('YYYY-MM-DD'),
+            end_date: moment(medicineData.end_date).format('YYYY-MM-DD'),
+          }),
+          headers: {
+              Authorization: "Bearer " + state.token,
+          }
+        })
+        .then(response => {
+          console.log(response)
           commit('ADD_MEDICINE', medicineData)
+          resolve()
+        })
+        .catch((error) => {
+            console.log(error);
+            reject()
+        });
       })
-      .catch((error) => {
-          console.log(error);
-      });
     },
     ADD_EXCERCISE({ commit, state }, excerciseData) {
-      axios({
-        method: "post",
-        url: BASE_URL + "excercise_todo",
-        data: qs.stringify({
-          sets: excerciseData.sets,
-          sets_amount: excerciseData.sets_amount,
-          per_day: excerciseData.per_day,
-          therapy_id: excerciseData.therapy_id,
-          excercise_id: excerciseData.id,
-          start_date: moment(excerciseData.start_date).format('YYYY-MM-DD'),
-          end_date: moment(excerciseData.end_date).format('YYYY-MM-DD'),
-        }),
-        headers: {
-          Authorization: "Bearer " + state.token,
-        }
+      return new Promise((resolve, reject) => {
+        axios({
+          method: "post",
+          url: BASE_URL + "excercise_todo",
+          data: qs.stringify({
+            sets: excerciseData.sets,
+            sets_amount: excerciseData.sets_amount,
+            per_day: excerciseData.per_day,
+            therapy_id: excerciseData.therapy_id,
+            excercise_id: excerciseData.id,
+            start_date: moment(excerciseData.start_date).format('YYYY-MM-DD'),
+            end_date: moment(excerciseData.end_date).format('YYYY-MM-DD'),
+          }),
+          headers: {
+            Authorization: "Bearer " + state.token,
+          }
+        })
+        .then(response => {
+            commit('ADD_EXCERCISE', excerciseData)
+            resolve()
+        })
+        .catch((error) => {
+            console.log(error);
+            reject()
+        });
       })
-      .then(response => {
-          commit('ADD_EXCERCISE', excerciseData)
-      })
-      .catch((error) => {
-          console.log(error);
-      });
     },
     ADD_APPOINTMENT({ commit, state }, appointmentData) {
       console.log("APPOINTMENT DATA", appointmentData)

@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="item-content">
-      <div class="item-title">{{title}}</div>
+            <div class="item-title">{{title}}</div>
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 
 export default {
     name: 'list-item',
-    props: ['title', 'subtitle']
+    props: ['title']
 }
 </script>
 
