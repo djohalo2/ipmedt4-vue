@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bodypart;
 use App\Therapy;
 use App\Type;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,8 +42,7 @@ class TherapyController extends Controller
 
         $patient_id = $request->patient_id;
         $name = $request->name;
-        $start_date = $request->start_date;
-        $end_date = $request->end_date;
+        $start_date = Carbon::today()->toDateString();
         $department_id = $request->department_id;
         $created_by = $request->created_by;
 
@@ -133,5 +133,28 @@ class TherapyController extends Controller
     public function destroy(Therapy $therapy)
     {
         //
+    }
+
+
+    public function finish($id) {
+        $therapy = Therapy::where('id', '=', $id)->first();
+
+        if ($therapy) {
+
+            $therapy->end_date = Carbon::now()->toDateString();
+
+            $save = $therapy->save();
+
+            if ($save) {
+                return ['success' => 1];
+            }
+
+            return ['success' => 0];
+
+        }
+
+
+        return ['success' => 0];
+
     }
 }
