@@ -13,7 +13,7 @@
         <div class="calendar">
           <kalender-top :week="huidigeWeek"></kalender-top>
           <afspraak-tijd-rij v-for="n in 18" :rowNumber="n" :week="huidigeWeek" :key="n"></afspraak-tijd-rij>
-          <afspraak-card v-if="!isFetching" v-for="(appointment, index) in appointments" :key="index" :start="appointment.start" :eind="appointment.end" :name="appointment.title"></afspraak-card>
+          <afspraak-card v-if="!isFetching" v-for="(appointment, index) in appointments" :key="index" :start="appointment.start" :eind="appointment.end" :name="appointment.title" :patientId="appointment.patient_id"></afspraak-card>
           <spinner class="loading-spinner" color="#e74c3c" v-if="isFetching"></spinner>
         </div>
       </div>

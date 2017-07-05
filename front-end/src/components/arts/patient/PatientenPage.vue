@@ -18,6 +18,7 @@
               <div class="card-title">
                 <i class="float-right add-icon" @click="$refs.addTherapyModal.open()">add_circle</i>
                 <p class="text-primary">Behandelingen</p>
+                <spinner class="loading-spinner" color="#e74c3c" v-if="isFetching"></spinner>
                 <div class="list">
                   <div class="item three-lines" @click="clickBehandeling(behandeling.id)" v-for="behandeling in behandelingen" :key="behandeling.id">
                     <i class="item-primary">{{behandelingStatus(behandeling.end_date)}}</i>
@@ -67,7 +68,8 @@ export default {
           department_id: '',
           created_by: '',
           bodyparts: ''
-        }
+        },
+        isFetching: false
       }
     },
     methods: {
@@ -111,7 +113,10 @@ export default {
         }
     },
     created() {
-      this.$store.dispatch('FETCH_PATIENT_DATA', this.patient.id)
+      this.isFetching = true;
+      this.$store.dispatch('FETCH_PATIENT_DATA', this.patient.id).then(() => {
+        this.isFetching = false;
+      })
     }
 }
 </script>
@@ -156,6 +161,11 @@ export default {
       font-size: 13px;
       margin-top: 25px;
       text-align: center;
+    }
+
+    .loading-spinner {
+      margin: 0 auto;
+      display: block;
     }
 
 </style>

@@ -51,12 +51,16 @@ export default {
       })
     },
     FETCH_PATIENT_DATA({ commit, state}, patientId) {
-      axios.get(BASE_URL + 'therapy/' + patientId, { headers: { Authorization: "Bearer " + state.token}})
-      .then(response => {
-        commit('SET_PATIENT_DATA', response.data.therapies)
-      })
-      .catch((error) => {
-        console.log(error)
+      return new Promise((resolve, reject) => {
+        axios.get(BASE_URL + 'therapy/' + patientId, { headers: { Authorization: "Bearer " + state.token}})
+        .then(response => {
+          commit('SET_PATIENT_DATA', response.data.therapies)
+          resolve()
+        })
+        .catch((error) => {
+          console.log(error)
+          reject()
+        })
       })
     },
     FETCH_ALL_MEDICINES({ commit, state }) {
@@ -123,7 +127,8 @@ export default {
           }
         })
         .then(response => {
-            commit('ADD_EXCERCISE', excerciseData)
+            console.log(response.data)
+            commit('ADD_EXCERCISE', response.data.excercise)
             resolve()
         })
         .catch((error) => {
