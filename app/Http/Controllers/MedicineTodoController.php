@@ -160,6 +160,11 @@ class MedicineTodoController extends Controller
             ->where('time_date', '>=', $now)
             ->delete();
 
+        DB::table('therapy_medicine')
+            ->where('therapy_id', '=', $therapy_id)
+            ->where('medicine_id', '=', $medicine_id)
+            ->delete();
+
         return ['success' => 1];
     }
 }

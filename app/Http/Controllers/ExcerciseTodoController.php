@@ -162,6 +162,11 @@ class ExcerciseTodoController extends Controller
             ->where('time_date', '>=', $now)
             ->delete();
 
+        DB::table('therapy_excercise')
+            ->where('therapy_id', '=', $therapy_id)
+            ->where('excercise_id', '=', $excercise_id)
+            ->delete();
+
         return ['success' => 1];
     }
 }
