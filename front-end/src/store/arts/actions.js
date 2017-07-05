@@ -95,8 +95,7 @@ export default {
           }
         })
         .then(response => {
-          console.log(response)
-          commit('ADD_MEDICINE', medicineData)
+          commit('ADD_MEDICINE', response.data)
           resolve()
         })
         .catch((error) => {

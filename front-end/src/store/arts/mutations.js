@@ -31,8 +31,8 @@ export default {
     },
     [ADD_MEDICINE](state, payload) {
       state.patientBehandelingen.map((behandeling) => {
-        if(behandeling.id == payload.therapy_id) {
-          behandeling.medicines.push(payload)
+        if(behandeling.id == payload.medication.therapy_id) {
+          behandeling.medicines.push(payload.medication)
         }
       })
     },
