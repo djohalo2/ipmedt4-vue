@@ -77,6 +77,7 @@ class MedicineTodoController extends Controller
             'medication' =>
                 [
                     'name' => $medicine->name,
+                    'therapy_id' => $therapy_id,
                 ],
             'todo_info' =>
                 [

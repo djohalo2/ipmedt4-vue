@@ -77,6 +77,7 @@ class ExcerciseTodoController extends Controller
             'excercise' =>
                 [
                     'name' => $excercise->title,
+                    'therapy_id' => $therapy_id,
                 ],
             'todo_info' =>
                 [
