@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AppointmentMail extends Mailable implements ShouldQueue
+class EditAppointment extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,6 @@ class AppointmentMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-
         $ical = '';
 
         $ical .= 'BEGIN:VCALENDAR' . "\xA";
@@ -83,9 +82,9 @@ class AppointmentMail extends Mailable implements ShouldQueue
         $ical .= 'END:VCALENDAR' . "\xA";
 
 
-        return $this->view('appointment')
+        return $this->view('edit_appointment')
             ->from('no-reply@mijnnazorg.nl')
-            ->subject('Nieuwe afspraak | mijn nazorg')
+            ->subject('Gewijzigde afspraak | mijn nazorg')
             ->attachData($ical, 'afspraak.ics', [
                 'mime' => 'text/calendar',
             ])

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AppointmentMail;
 use App\Appointment;
 use App\Doctor;
+use App\Mail\EditAppointment;
 use App\Patient;
 use App\User;
 use Carbon\Carbon;
@@ -105,11 +106,11 @@ class AppointmentController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Appointment  $appointment
-     * @return \Illuminate\Http\Response
+     * @return Appointment
      */
     public function show(Appointment $appointment)
     {
-        //
+        return $appointment;
     }
 
     /**
@@ -128,11 +129,76 @@ class AppointmentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Appointment  $appointment
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        $select = Appointment::find($appointment)->first();
+
+        if ($select) {
+
+            $id = $select->id;
+
+            $title = $request->title;
+            $start = $request->start;
+            $end = $request->end;
+            $patient_id = $request->patient_id;
+            $doctor_id = $request->doctor_id;
+
+            $start_date_time = Carbon::createFromFormat('Y-m-d H:i:s', $start)->format('Ymd\THis');
+            $end_date_time = Carbon::createFromFormat('Y-m-d H:i:s', $end)->format('Ymd\THis');
+
+            $date = Carbon::createFromFormat('Y-m-d H:i:s', $start)->format('d/m/y');
+            $start_time = Carbon::createFromFormat('Y-m-d H:i:s', $start)->format('H:i');
+            $end_time = Carbon::createFromFormat('Y-m-d H:i:s', $end)->format('H:i');
+
+
+            $select->title = $title;
+            $select->start = $start;
+            $select->end = $end;
+            $select->doctor_id = $doctor_id;
+
+            $save = $select->save();
+
+            if ($save) {
+
+                $doctor = Doctor::where('id', '=', $doctor_id)->first();
+
+                $patient = Patient::where('id', '=', $patient_id)->first();
+
+                if ($patient && $doctor) {
+
+                    $data = array(
+                        'firstname' => $patient->firstname,
+                        'lastname' => $patient->lastname,
+                        'email' => $patient->email,
+                        'id' => $id,
+                        'start_date_time' => $start_date_time,
+                        'end_date_time' => $end_date_time,
+                        'date' => $date,
+                        'start' => $start_time,
+                        'end' => $end_time,
+                        'doctor' => $doctor->firstname . ' ' .$doctor->lastname,
+                        'department' => $doctor->department->naam
+
+                    );
+
+                    Mail::to($data['email'])
+                        ->queue(new EditAppointment($data));
+
+                    return $select;
+
+                }
+
+                return ['success' => 0];
+
+            }
+
+            return ['success' => 0];
+
+        }
+
+        return ['success' => 0];
     }
 
     /**
@@ -170,12 +236,14 @@ class AppointmentController extends Controller
         $today_appointments = Appointment::where('start', 'like', $today->toDateString() . '%')
             ->where('end', '>=', Carbon::now()->addHours(2)->toDateTimeString())
             ->where('doctor_id', '=', $doctor_id)
+            ->where('status', '=', 'planned')
             ->with('patient')
             ->orderBy('start', 'asc')
             ->get();
 
         $tomorrow_appointments = Appointment::where('start', 'like', $tomorrow->toDateString() . '%')
             ->where('doctor_id', '=', $doctor_id)
+            ->where('status', '=', 'planned')
             ->with('patient')
             ->orderBy('start', 'asc')
             ->get();

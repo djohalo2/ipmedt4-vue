@@ -38,12 +38,13 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
         $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class);
 
         $api->post('therapy/finish/{id}', ['as' => 'therapy.finish',  'uses' => '\App\Http\Controllers\TherapyController@finish']);
+        $api->post('delete/excercise_todo', ['as' => 'excercise_todo.delete',  'uses' => '\App\Http\Controllers\ExcerciseTodoController@destroy']);
+        $api->post('delete/medicine_todo', ['as' => 'medicine_todo.delete',  'uses' => '\App\Http\Controllers\MedicineTodoController@destroy']);
 
         $api->get('authenticate/checkuser', ['as' => 'authenticate.checkuser',  'uses' => '\App\Http\Controllers\AuthenticateController@authenticateCheck']);
 
         $api->get('patient/user/{user_id}', ['as' => 'patient.user_id',  'uses' => '\App\Http\Controllers\PatientController@patient_user_id']);
         $api->get('doctor/user/{user_id}', ['as' => 'doctor.user_id',  'uses' => '\App\Http\Controllers\DoctorController@doctor_user_id']);
-
 
         $api->get('doctor/appointments/{doctor_id}/{week_of_year}', ['as' => 'doctor.appointments',  'uses' => '\App\Http\Controllers\AppointmentController@doctor_appointments']);
         $api->get('doctor/today_appointments/{doctor_id}/', ['as' => 'doctor.appointments',  'uses' => '\App\Http\Controllers\AppointmentController@today_appointments']);

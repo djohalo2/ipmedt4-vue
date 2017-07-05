@@ -53,7 +53,7 @@ class PatientController extends Controller
         $postal_code = $request->postal_code;
         $city = $request->city;
 
-        $username = strtolower($firstname . '_' . $lastname . '_' . rand(1000, 9999));
+        $username = str_replace(' ', '_', strtolower($firstname . '_' . $lastname . '_' . rand(1000, 9999)));
         $name = $firstname . ' ' . $lastname;
         $password_str = str_random(8);
         $password = $password_str;
@@ -155,11 +155,59 @@ class PatientController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Patient  $patient
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $select = Patient::find($patient)->first();
+
+        if ($select) {
+
+            $gender = $request->gender;
+            $firstname = $request->firstname;
+            $lastname = $request->lastname;
+            $email = $request->email;
+            $phone = $request->phone;
+            $birthday = $request->birthday;
+            $street = $request->street;
+            $street_number = $request->street_number;
+            $postal_code = $request->postal_code;
+            $city = $request->city;
+
+            $user_id = $select->user_id;
+
+            $select->gender = $gender;
+            $select->firstname = $firstname;
+            $select->lastname = $lastname;
+            $select->email = $email;
+            $select->phone = $phone;
+            $select->birthday = $birthday;
+            $select->street = $street;
+            $select->street_number = $street_number;
+            $select->postal_code = $postal_code;
+            $select->city = $city;
+
+            $save = $select->save();
+
+            if ($save) {
+                $user = User::where('id', '=', $user_id)->first();
+
+                $user->email = $email;
+
+                $save = $user->save();
+
+                if ($save) {
+                    return ['patient' => $select];
+                }
+
+                return ['success' => 0];
+            }
+
+            return ['success' => 0];
+
+        }
+
+        return ['success' => 0];
     }
 
     /**

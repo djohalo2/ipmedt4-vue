@@ -145,11 +145,21 @@ class MedicineTodoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Medicine_todo  $medicine_todo
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return array
+     * @internal param Medicine_todo $medicine_todo
      */
-    public function destroy(Medicine_todo $medicine_todo)
+    public function destroy(Request $request)
     {
-        //
+        $therapy_id = $request->therapy_id;
+        $medicine_id = $request->medicine_id;
+        $now = Carbon::now();
+
+        Medicine_todo::where('therapy_id', '=', $therapy_id)
+            ->where('medicine_id', '=', $medicine_id)
+            ->where('time_date', '>=', $now)
+            ->delete();
+
+        return ['success' => 1];
     }
 }

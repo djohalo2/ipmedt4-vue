@@ -76,7 +76,7 @@ class ExcerciseTodoController extends Controller
         return [
             'excercise' =>
                 [
-                    'name' => $excercise->title,
+                    'title' => $excercise->title,
                     'therapy_id' => $therapy_id,
                 ],
             'todo_info' =>
@@ -147,11 +147,21 @@ class ExcerciseTodoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Excercise_todo  $excercise_todo
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return array
+     * @internal param Excercise_todo $excercise_todo
      */
-    public function destroy(Excercise_todo $excercise_todo)
+    public function destroy(Request $request)
     {
-        //
+        $therapy_id = $request->therapy_id;
+        $excercise_id = $request->excercise_id;
+        $now = Carbon::now();
+
+        Excercise_todo::where('therapy_id', '=', $therapy_id)
+            ->where('excercise_id', '=', $excercise_id)
+            ->where('time_date', '>=', $now)
+            ->delete();
+
+        return ['success' => 1];
     }
 }
