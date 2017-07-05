@@ -9,7 +9,6 @@
     <q-modal ref="appointmentModal" class="minimized appointment-modal">
       <div class="modal-image">
         <i class="close-btn" @click="$refs.appointmentModal.close()">close</i>
-        <img src="http://via.placeholder.com/450x250" alt="">
       </div>
       <div class="modal-title">
         <h4>{{name}}</h4>
@@ -18,7 +17,7 @@
       <div class="modal-text">
         <ul>
           <li><i>access_time</i>{{startTijd}} - {{eindTijd}}</li>
-          <li><i>person</i>{{patient}}</li>
+          <li class="patient-list-item" @click="clickPatient()"><i>person</i>{{patient}}</li>
         </ul>
       </div>
     </q-modal>
@@ -54,6 +53,9 @@ export default {
       let verschil = moment(this.start).diff(moment(this.start).startOf('week').add(1, 'day'), 'days')
       let offset = verschil * 20 + '%'
       this.leftOffset = offset
+    },
+    clickPatient() {
+      this.$router.push({path: '/arts/patienten/' + this.patientId})
     }
   },
   computed: {
@@ -99,7 +101,13 @@ export default {
   }
 
   .modal-image {
-    max-height: 250px;
+    height: 250px;
+    width: 600px;
+    overflow: hidden;
+    background-image: url('../../../statics/appointment-background.png');
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
 
     .close-btn {
       font-size:20px;
@@ -138,6 +146,14 @@ export default {
 
       li {
         margin-bottom: 1rem;
+      }
+
+      .patient-list-item {
+        cursor: pointer;
+
+        &:hover {
+          color: #e74c3c;
+        }
       }
 
     }

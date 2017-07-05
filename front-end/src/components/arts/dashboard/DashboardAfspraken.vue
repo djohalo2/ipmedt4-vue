@@ -8,6 +8,7 @@
                 <button class="button" v-bind:class="todayButton" @click="appointmentFilter = 'today'">Vandaag</button
                 ><button class="button" v-bind:class="tomorrowButton" @click="appointmentFilter = 'tomorrow'">Morgen</button>
             </div>
+            <p v-if="appointments.length == 0" class="no-entries-msg">Er zijn geen afspraken geplanned.</p>
             <div class="list">
                 <dashboard-afspraak-card v-for="(appointment, index) in appointments" v-if="index > (appointmentPage * 5 - 6) && index < (appointmentPage * 5)"
                   :key="index"
@@ -62,7 +63,6 @@ export default {
 </script>
 
 <style lang="scss">
-
     .list {
         border-bottom: none;
     }
@@ -83,6 +83,10 @@ export default {
             border-radius: 0 30px 30px 0;
             border-left: 0;
         }
+    }
+
+    .no-entries-msg {
+      padding: 1rem 0;
     }
 
 </style>
