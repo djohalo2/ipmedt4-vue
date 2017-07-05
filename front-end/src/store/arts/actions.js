@@ -64,12 +64,16 @@ export default {
       })
     },
     FETCH_ALL_MEDICINES({ commit, state }) {
-      axios.get(BASE_URL + 'medicine', { headers: { Authorization: "Bearer " + state.token}})
-      .then(response => {
-        commit('SET_ALL_MEDICINES', response.data.medicines)
-      })
-      .catch((error) => {
-        console.log(error)
+      return new Promise((resolve, reject) => {
+        axios.get(BASE_URL + 'medicine', { headers: { Authorization: "Bearer " + state.token}})
+        .then(response => {
+          commit('SET_ALL_MEDICINES', response.data.medicines)
+          resolve()
+        })
+        .catch((error) => {
+          console.log(error)
+          reject()
+        })
       })
     },
     FETCH_ALL_EXERCISES({ commit, state }) {

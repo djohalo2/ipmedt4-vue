@@ -4,6 +4,7 @@
             <p class="page-title">Medicatie</p>
             <q-search v-model="medicijnSearch" placeholder="Zoek medicijn..." class="searchbar"></q-search>
 
+            <spinner class="loading-spinner" color="#e74c3c" v-if="isFetching"></spinner>
             <div class="list bg-white striped">
               <div class="item"  v-for="(medicijn, index) in searchedMedicijnen" :key="index">
                 <div class="item-content">
@@ -22,7 +23,8 @@ export default {
     name: 'medicatie',
     data() {
       return {
-        medicijnSearch: ''
+        medicijnSearch: '',
+        isFetching: false
       }
     },
     computed: {
@@ -44,7 +46,10 @@ export default {
       }
     },
     created () {
-      this.$store.dispatch('FETCH_ALL_MEDICINES')
+      this.isFetching = true
+      this.$store.dispatch('FETCH_ALL_MEDICINES').then(() => {
+        this.isFetching = false
+      })
     }
 }
 
@@ -58,5 +63,8 @@ export default {
         margin: 0.5rem 0;
     }
 
-
+    .loading-spinner {
+      margin: 1rem auto;
+      display: block;
+    }
 </style>
