@@ -22,7 +22,7 @@
           <input class="full-width" v-model="noteData.title" placeholder="Titel">
         </div>
         <div class="row medium-gutter">
-          <input class="full-width" v-model="noteData.note" placeholder="Notitie">
+          <textarea  class="full-width" v-model="noteData.note" placeholder="Notitie"></textarea>
         </div>
         <button class="red" @click="addNote()">Toevoegen</button>
     </q-modal>

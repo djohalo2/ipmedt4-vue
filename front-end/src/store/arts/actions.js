@@ -50,6 +50,40 @@ export default {
         })
       })
     },
+    UPDATE_PATIENT({ commit, state }, patientData){
+      console.log(patientData)
+      return new Promise((resolve, reject) => {
+        axios({
+          method: "put",
+          url: BASE_URL + "patient/" + patientData.id,
+          data: qs.stringify({
+            id: patientData.id,
+            gender: patientData.gender,
+            firstname: patientData.firstname,
+            lastname: patientData.lastname,
+            email: patientData.email,
+            phone: patientData.phone,
+            birthday: moment(patientData.birthday).format('YYYY-MM-DD'),
+            street: patientData.street,
+            street_number: patientData.street_number,
+            postal_code: patientData.postal_code,
+            city: patientData.city
+          }),
+          headers: {
+              Authorization: "Bearer " + state.token,
+          }
+        })
+        .then(response => {
+          console.log(response)
+          commit('UPDATE_PATIENT', response.data.patient);
+          resolve()
+        })
+        .catch((error) => {
+          console.log(error);
+          reject()
+        })
+      })
+    },
     FETCH_PATIENT_DATA({ commit, state}, patientId) {
       return new Promise((resolve, reject) => {
         axios.get(BASE_URL + 'therapy/' + patientId, { headers: { Authorization: "Bearer " + state.token}})
