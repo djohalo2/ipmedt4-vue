@@ -9,6 +9,14 @@
                     </div>
                 </div>
                 <div class="card-content">
+                  <div class="error-msg bg-warning" v-if="errorMsg">
+                    <div class="error-icon">
+                      <i>warning</i>
+                    </div>
+                    <div class="error-text">
+                      Je hebt een onjuiste combinatie van gebruikersnaam/wachtwoord ingevuld.
+                    </div>
+                  </div>
                   <form class="login">
                       <div v-if="token === 'unauthorized'" class="card bg-warning">
                           <div class="card-title">Het ingevulde gebruikersnaam/wachtwoord klopt niet.</div>
@@ -21,7 +29,7 @@
                       <input v-model="password" type="password" required class="full-width">
                       <label>Wachtwoord</label>
                     </div>
-                    <button class="primary" v-on:submit.prevent @click="login">
+                    <button class="primary full-width" v-on:submit.prevent @click="login">
                       Log in
                     </button>
                   </form>
@@ -39,7 +47,8 @@ export default {
     data(){
         return {
             username: "",
-            password: ""
+            password: "",
+            errorMsg: false
         }
     },
     computed: {
@@ -60,6 +69,9 @@ export default {
                     console.log("Authorized! :)");
                     this.$store.dispatch('FETCH_PATIENT');
                 }
+            })
+            .catch(() => {
+              this.errorMsg = true
             });
         }
     }
@@ -72,7 +84,7 @@ export default {
     }
 
     .layout-view {
-        background-image: url('./../assets/loginscreen.png');
+        background-image: url('./../assets/loginscreen.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
@@ -97,10 +109,14 @@ export default {
 
     .card {
       background-color: rgba(255, 255, 255, 0.95);
-      max-width: 400px;
-      margin: 2rem auto;
-      position: relative;
+      max-width: 500px;
       overflow: visible;
+      position: absolute;
+      border-radius: 6px;
+      left: 50%;
+      margin: auto;
+      top: 50%;
+      transform: translate(-50%,-50%);
     }
 
     .card-title {
@@ -109,13 +125,16 @@ export default {
       font-weight: 300;
     }
 
+    .card-content {
+      padding: 2rem 4rem;
+    }
+
     .card-title p {
       color:#666;
     }
 
     #logo {
       width:80px;
-      opacity: 1;
     }
 
     .page-title {
@@ -127,7 +146,6 @@ export default {
 
     .floating-label label {
       font-size:16px;
-      opacity: 1;
     }
 
     form {
@@ -140,5 +158,19 @@ export default {
 
     form button {
       margin: 20px 20px 20px 20px;
+    }
+
+    .error-msg {
+      font-size: 14px;
+      text-align: center;
+      color: #fff;
+      padding: 1rem;
+
+      .error-icon {
+        float: left;
+        margin-left: 1rem;
+        margin-top: 4px;
+        font-size: 20px;
+      }
     }
 </style>

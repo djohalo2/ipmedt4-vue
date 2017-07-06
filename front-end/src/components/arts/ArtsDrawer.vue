@@ -5,7 +5,6 @@
                   Hallo {{doctorData.firstname}}
               </q-toolbar-title>
             </div>
-
             <div class="list no-border platform-delimiter">
               <q-drawer-link icon="home" to="/arts" exact>
                 Dashboard
@@ -21,6 +20,9 @@
               <q-drawer-link icon="assignment" :to="'/arts/medicatie'">
                 Medicatie
               </q-drawer-link>
+              <q-drawer-link icon="accessibility" :to="'/arts/oefeningen'">
+                Oefeningen
+              </q-drawer-link>
               <q-drawer-link icon="info" :to="'/arts/informatie'">
                 Informatie
               </q-drawer-link>
@@ -30,7 +32,6 @@
                   Uitloggen
                 </div>
               </div>
-
             </div>
         </q-drawer>
 </template>

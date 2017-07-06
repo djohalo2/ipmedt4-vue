@@ -5,11 +5,9 @@
             <q-search v-model="medicijnSearch" placeholder="Zoek medicijn..." class="searchbar"></q-search>
 
             <spinner class="loading-spinner" color="#e74c3c" v-if="isFetching"></spinner>
-            <div class="list bg-white striped">
+            <div class="list bg-white">
               <div class="item"  v-for="(medicijn, index) in searchedMedicijnen" :key="index">
-                <div class="item-content">
-                  {{medicijn.name}}
-                </div>
+                <medicatie-list-item :medicine="medicijn"></medicatie-list-item>
               </div>
             </div>
         </div>
@@ -18,9 +16,13 @@
 
 <script>
 import _ from 'lodash';
+import MedicatieListItem from './MedicatieListItem.vue'
 
 export default {
     name: 'medicatie',
+    components: {
+      MedicatieListItem
+    },
     data() {
       return {
         medicijnSearch: '',
