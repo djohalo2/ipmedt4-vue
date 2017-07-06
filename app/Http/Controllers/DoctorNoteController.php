@@ -41,7 +41,7 @@ class DoctorNoteController extends Controller
         $therapy_id = $request->therapy_id;
         $note = $request->note;
 
-        $doctor_note = Doctor_note::insert([
+        $doctor_note = Doctor_note::create([
             'title' => $title,
             'added_by' => $added_by,
             'therapy_id' => $therapy_id,
