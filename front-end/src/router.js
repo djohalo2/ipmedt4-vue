@@ -30,6 +30,7 @@ export default new VueRouter({
     { path: '/arts/patienten/:patientId/behandelingen/:behandelingId', component: load('arts/behandeling/BehandelingPage') },
     { path: '/arts/informatie', component: load('arts/ArtsInfo') },
     { path: '/arts/medicatie', component: load('arts/medicatie/Medicatie') },
+    { path: '/arts/oefeningen', component: load('arts/oefeningen/Oefeningen') },
     // { path: '/arts/medicatie/:typeMedicijn', component: load('ArtsMedicatiePage') }, // Path later toevoegen voor doorklikken in medicatie, in overleg met Djo
     { path: '/arts/afspraken', component: load('arts/afspraken/Afspraken') },
      // Not found

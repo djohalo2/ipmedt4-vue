@@ -104,7 +104,7 @@ export default {
     height: 250px;
     width: 600px;
     overflow: hidden;
-    background-image: url('../../../statics/appointment-background.png');
+    background-image: url('../../../statics/appointment-background.jpg');
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center;

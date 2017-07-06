@@ -9,6 +9,7 @@
                     </div>
                 </div>
                 <div class="card-content">
+                  <h4>Login</h4>
                   <div class="error-msg bg-warning" v-if="errorMsg">
                     <div class="error-icon">
                       <i>warning</i>
@@ -153,7 +154,7 @@ export default {
     }
 
     form * {
-      margin-top:10px;
+      margin-top:4px;
     }
 
     form button {

@@ -1,20 +1,20 @@
 <template>
-  <div class="item-content" @click="$refs.medicineModal.open()">
-    {{medicine.name}}
+  <div class="item-content" @click="$refs.excerciseModal.open()">
+    {{excercise.title}}
 
-    <q-modal ref="medicineModal" class="minimized appointment-modal">
-      <div class="modal-image">
-        <i class="close-btn" @click="$refs.medicineModal.close()">close</i>
-      </div>
+    <q-modal ref="excerciseModal" class="minimized appointment-modal">
+      <q-video
+        :src="excercise.video.url"
+        style="width: 853px; height: 480px"
+      >
+      </q-video>
       <div class="modal-title">
-        <h4>{{medicine.name}}</h4>
+        <h4>{{excercise.title}}</h4>
       </div>
 
       <div class="modal-text">
         <ul>
-          <li>Belangrijk: {{medicine.important}}</li>
-          <li>Mogelijke bijwerkingen: {{medicine.side_effects}}</li>
-          <li>Hoe gebruiken: {{medicine.usage}}</li>
+          <li>Omschrijving: {{excercise.description}}</li>
         </ul>
       </div>
     </q-modal>
@@ -26,7 +26,7 @@ import _ from 'lodash';
 
 export default {
     name: 'oefening-list-item',
-    props: ['medicine']
+    props: ['excercise']
 }
 
 </script>
@@ -39,25 +39,6 @@ export default {
 
       &:hover {
         background-color: #f6f6f6;
-        cursor: pointer;
-      }
-    }
-
-    .modal-image {
-      height: 300px;
-      overflow: hidden;
-      background-image: url('../../../statics/medicines-background.jpg');
-      -webkit-background-size: cover;
-      background-size: cover;
-      background-position: center;
-
-      .close-btn {
-        font-size:20px;
-        position: absolute;
-        font-weight: 700;
-        color: #fff;
-        top: 15px;
-        right:15px;
         cursor: pointer;
       }
     }
