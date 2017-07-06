@@ -27,21 +27,6 @@
                             <i>smartphone</i>
                             <p>{{doctorData.phone}}</p>
                         </li>
-
-                        <li>
-                            <i>today</i>
-                            <p>Rip geen birthday</p>
-                        </li>
-
-                        <li>
-                            <i>today</i>
-                            <p>Ripgeenstraat 69</p>
-                        </li>
-
-                        <li>
-                            <i>today</i>
-                            <p>Engeenstad</p>
-                        </li>
                     </ul>
 
                 </div>
