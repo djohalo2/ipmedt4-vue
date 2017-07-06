@@ -2,16 +2,31 @@
     <div class="layout-view">
         <div class="layout-padding">
             <p class="page-title">{{patient.firstname + " " + patient.lastname}}</p>
-            <div class="card">
+            <div class="card patient-info">
               <div class="card-title">
                 <p class="text-primary">Gegevens</p>
-                <img class="profile-img" :src="patient.avatar">
-                <ul class="patientinfo-list">
-                  <li>Voornaam: {{patient.firstname}}</li>
-                  <li>Achternaam: {{patient.lastname}}</li>
-                  <li>Telefoon: {{patient.phone}}</li>
-                  <li>Email: {{patient.email}}</li>
-                </ul>
+                <div class="row">
+                  <div class="offset-1of4 width-1of2">
+                    <div class="card">
+                      <div class="card-title">
+                        <div class="row medium-gutter sm-column">
+                          <div class="width1of2">
+                            <img class="profile-img" :src="patient.avatar">
+                          </div>
+
+                          <div class="width1of2">
+                            <ul class="patientinfo-list">
+                              <li>Voornaam: {{patient.firstname}}</li>
+                              <li>Achternaam: {{patient.lastname}}</li>
+                              <li>Telefoon: {{patient.phone}}</li>
+                              <li>Email: {{patient.email}}</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="card">
@@ -124,8 +139,7 @@ export default {
 <style lang="scss" scoped>
     .profile-img {
       margin: 0 auto;
-      border-radius: 50%;
-      width:100px;
+      width:200px;
       display: block;
     }
 
@@ -166,6 +180,10 @@ export default {
     .loading-spinner {
       margin: 0 auto;
       display: block;
+    }
+
+    .patient-info {
+      background-image: url('../../../statics/patient-background.jpg');
     }
 
 </style>

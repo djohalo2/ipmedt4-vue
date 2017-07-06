@@ -7,6 +7,7 @@ const artsModule = {
         doctorData: {},
         patients: {},
         patientBehandelingen: {},
+        doctorNotes: [],
         token: "",
         isFetching: false,
         medicines: [],

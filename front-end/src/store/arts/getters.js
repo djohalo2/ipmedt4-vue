@@ -25,5 +25,8 @@ export default {
     },
     getAppointmentsToday(state) {
       return state.appointmentsToday
+    },
+    getDoctorNotes(state) {
+      return state.doctorNotes
     }
 }

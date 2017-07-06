@@ -76,6 +76,19 @@ export default {
         })
       })
     },
+    FETCH_ALL_NOTES({ commit, state }, id) {
+      return new Promise((resolve, reject) => {
+        axios.get(BASE_URL + 'doctor/notes/' + id, { headers: { Authorization: "Bearer " + state.token}})
+        .then(response => {
+          // commit('', response.data.medicines)
+          resolve()
+        })
+        .catch((error) => {
+          console.log(error)
+          reject()
+        })
+      })
+    },
     FETCH_ALL_EXERCISES({ commit, state }) {
       axios.get(BASE_URL + 'excercise', { headers: { Authorization: "Bearer " + state.token}})
       .then(response => {
@@ -103,7 +116,34 @@ export default {
           }
         })
         .then(response => {
+          console.log("MADE IT")
           commit('ADD_MEDICINE', response.data)
+          resolve()
+        })
+        .catch((error) => {
+            console.log(error);
+            reject()
+        });
+      })
+    },
+    ADD_DOCTOR_NOTE({ commit, state }, noteData) {
+      console.log(noteData)
+      return new Promise((resolve, reject) => {
+        axios({
+          method: "post",
+          url: BASE_URL + "doctor_note",
+          data: qs.stringify({
+            title: noteData.title,
+            added_by: noteData.added_by,
+            therapy_id: noteData.therapy_id,
+            note: noteData.note
+          }),
+          headers: {
+              Authorization: "Bearer " + state.token,
+          }
+        })
+        .then(response => {
+          commit('ADD_DOCTOR_NOTE', response.data)
           resolve()
         })
         .catch((error) => {
@@ -232,6 +272,40 @@ export default {
       })
       .catch((error) => {
         console.log(error)
+      })
+    },
+    DELETE_ITEM({ commit, state}, item) {
+      return new Promise((resolve, reject) => {
+        let urlType = item.type == 'medicine' ? 'delete/medicine_todo' : 'delete/excercise_todo'
+        let data = {
+          therapy_id: item.therapy_id
+        }
+
+        if(item.type == 'medicine') {
+          data['medicine_id'] = item.id
+        } else if (item.type == 'excercise') {
+          data['excercise_id'] = item.id
+        }
+
+        console.log('DATA', data)
+
+        axios({
+            method: "post",
+            url: BASE_URL + urlType,
+            data: qs.stringify(data),
+            headers: {
+              Authorization: "Bearer " + state.token,
+            }
+        })
+        .then(response => {
+          console.log(response)
+          commit('DELETE_ITEM', item)
+          resolve()
+        })
+        .catch((error) => {0
+          console.log(error);
+          reject()
+        })
       })
     }
 }

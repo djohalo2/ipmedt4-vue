@@ -7,7 +7,7 @@
       </div>
       <div class="card-content">
         <div class="list">
-          <list-item v-for="excercise in oefeningen" :key="excercise.id" :title="excercise.title"></list-item>
+          <list-item v-for="excercise in oefeningen" :key="excercise.id" type="excercise" :id="excercise.id" :therapyId="excercise.pivot.therapy_id" :title="excercise.title"></list-item>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@ export default {
         this.excerciseData.title = item.label
       },
       addExercise() {
-        this.excerciseData.therapy_id = this.$route.params.behandelingId
+        this.excerciseData.therapy_id = parseInt(this.$route.params.behandelingId)
         this.$store.dispatch('ADD_EXCERCISE', this.excerciseData).then(() => {
           for(let item in this.excerciseData) {
             this.excerciseData[item] = ''

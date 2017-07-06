@@ -10,11 +10,7 @@
         </div>
 
         <div class="width-1of2">
-          <div class="card">
-            <div class="card-title">
-              Notities
-            </div>
-          </div>
+          <behandeling-notities :notes="behandeling.doctor_notes" :state="behandeling.end_date == null"></behandeling-notities>
         </div>
       </div>
 
@@ -42,6 +38,8 @@ import ListItem from './ListItem';
 import BehandelingMedicatie from './BehandelingMedicatie'
 import BehandelingOefeningen from './BehandelingOefeningen'
 import BehandelingInformatie from './BehandelingInformatie'
+import BehandelingNotities from './BehandelingNotities'
+
 import router from 'vue-router'
 
 export default {
@@ -50,7 +48,8 @@ export default {
       ListItem,
       BehandelingMedicatie,
       BehandelingOefeningen,
-      BehandelingInformatie
+      BehandelingInformatie,
+      BehandelingNotities
     },
     computed: {
       behandelingen () {

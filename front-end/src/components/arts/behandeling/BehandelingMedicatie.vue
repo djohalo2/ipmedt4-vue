@@ -7,7 +7,7 @@
       </div>
       <div class="card-content">
         <div class="list">
-          <list-item v-for="medicijn in medicatie" :key="medicijn.id" :title="medicijn.name"></list-item>
+          <list-item v-for="medicijn in medicatie" :key="medicijn.id" type="medicine" :id="medicijn.id" :therapyId="medicijn.pivot.therapy_id" :title="medicijn.name"></list-item>
         </div>
       </div>
     </div>

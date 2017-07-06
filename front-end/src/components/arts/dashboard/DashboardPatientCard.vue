@@ -11,7 +11,6 @@
         <div class="item-secondary stamp">
             Nr. {{patient.id}}
         </div>
-        <i class="item-secondary">edit</i>
     </div>
 </template>
 

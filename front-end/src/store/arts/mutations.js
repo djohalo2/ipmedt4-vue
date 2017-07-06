@@ -1,4 +1,4 @@
-import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, SET_APPOINTMENTS_TODAY, ADD_MEDICINE, ADD_EXCERCISE, ADD_APPOINTMENT, ADD_THERAPY, LOG_DOCTOR_OUT } from './mutation-types';
+import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, SET_APPOINTMENTS_TODAY, ADD_MEDICINE, ADD_EXCERCISE, ADD_DOCTOR_NOTE, ADD_APPOINTMENT, ADD_THERAPY, LOG_DOCTOR_OUT, DELETE_ITEM } from './mutation-types';
 import { LocalStorage, SessionStorage } from 'quasar';
 
 export default {
@@ -30,9 +30,17 @@ export default {
       state.appointmentsToday = payload
     },
     [ADD_MEDICINE](state, payload) {
+      console.log(payload)
       state.patientBehandelingen.map((behandeling) => {
-        if(behandeling.id == payload.medication.therapy_id) {
-          behandeling.medicines.push(payload.medication)
+        if(behandeling.id == payload.pivot.therapy_id) {
+          behandeling.medicines.push(payload)
+        }
+      })
+    },
+    [ADD_DOCTOR_NOTE](state, payload) {
+      state.patientBehandelingen.map((behandeling) => {
+        if(behandeling.id == payload.doctor_note.therapy_id) {
+          behandeling.doctor_notes.push(payload.doctor_note)
         }
       })
     },
@@ -56,5 +64,27 @@ export default {
     [LOG_DOCTOR_OUT](state, payload) {
       state = {};
       LocalStorage.clear("token");
+    },
+    [DELETE_ITEM](state, payload) {
+      state.patientBehandelingen.map((behandeling) => {
+        if(behandeling.id == payload.therapy_id) {
+          let index = 0
+          if(payload.type == 'medicine') {
+            for(let medicine in behandeling.medicines) {
+              if(behandeling.medicines[medicine].id == payload.id) {
+                index = medicine
+              }
+            }
+            behandeling.medicines.splice(index, 1)
+          } else if(payload.type == 'excercise') {
+            for(let excercise in behandeling.excercises) {
+              if(behandeling.excercises[excercise].id == payload.id) {
+                index = excercise
+              }
+            }
+            behandeling.excercises.splice(index, 1)
+          }
+        }
+      })
     }
 }
