@@ -154,13 +154,14 @@ class PatientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param $id
+     * @param Patient $patient
      * @return array
+     * @internal param $id
      * @internal param Patient $patient
      */
-    public function update(Request $request)
+    public function update(Request $request, Patient $patient)
     {
-        $select = Patient::where('id', '=', $request->id)->first();
+        $select = Patient::find($patient)->first();
 
         if ($select) {
 
