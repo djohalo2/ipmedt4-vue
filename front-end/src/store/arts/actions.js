@@ -187,6 +187,7 @@ export default {
       })
     },
     ADD_EXCERCISE({ commit, state }, excerciseData) {
+      console.log(excerciseData)
       return new Promise((resolve, reject) => {
         axios({
           method: "post",
@@ -206,7 +207,7 @@ export default {
         })
         .then(response => {
             console.log(response.data)
-            commit('ADD_EXCERCISE', response.data.excercise)
+            commit('ADD_EXCERCISE', response.data)
             resolve()
         })
         .catch((error) => {

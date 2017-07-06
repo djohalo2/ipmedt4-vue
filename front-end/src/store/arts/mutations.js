@@ -55,7 +55,7 @@ export default {
     },
     [ADD_EXCERCISE](state, payload) {
       state.patientBehandelingen.map((behandeling) => {
-        if(behandeling.id == payload.therapy_id) {
+        if(behandeling.id == payload.pivot.therapy_id) {
           behandeling.excercises.push(payload)
         }
       })
