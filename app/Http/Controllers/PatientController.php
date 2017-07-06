@@ -53,7 +53,7 @@ class PatientController extends Controller
         $postal_code = $request->postal_code;
         $city = $request->city;
 
-        $username = str_replace(' ', '_', strtolower($firstname . '_' . $lastname . '_' . rand(1000, 9999)));
+        $username = str_slug(strtolower($firstname . ' ' . $lastname . ' ' . rand(1000, 9999)), '_');
         $name = $firstname . ' ' . $lastname;
         $password_str = str_random(8);
         $password = $password_str;
@@ -157,9 +157,9 @@ class PatientController extends Controller
      * @param  \App\Patient  $patient
      * @return array
      */
-    public function update(Request $request, Patient $patient)
+    public function update(Request $request, $id)
     {
-        $select = Patient::find($patient)->first();
+        $select = Patient::where('id', '=', $request->id)->first();
 
         if ($select) {
 
