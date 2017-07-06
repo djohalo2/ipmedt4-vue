@@ -28,9 +28,6 @@
               <q-drawer-link icon="date_range" :to="'/afspraken'">
                 Afspraken
               </q-drawer-link>
-              <q-drawer-link disabled icon="subdirectory_arrow_right" :to="'/verwijzingen'">
-                Verwijzingen
-              </q-drawer-link>
             </div>
         </q-drawer>
         <button class="hide-on-drawer-visible" @click="$refs.drawer.open()">
