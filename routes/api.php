@@ -43,6 +43,8 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
 
         $api->get('authenticate/checkuser', ['as' => 'authenticate.checkuser',  'uses' => '\App\Http\Controllers\AuthenticateController@authenticateCheck']);
 
+        $api->get('doctor/notes/{therapy_id}', ['as' => 'doctor.notes',  'uses' => '\App\Http\Controllers\DoctorNoteController@show']);
+
         $api->get('patient/user/{user_id}', ['as' => 'patient.user_id',  'uses' => '\App\Http\Controllers\PatientController@patient_user_id']);
         $api->get('doctor/user/{user_id}', ['as' => 'doctor.user_id',  'uses' => '\App\Http\Controllers\DoctorController@doctor_user_id']);
 

@@ -61,12 +61,13 @@ class DoctorNoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Doctor_note  $doctor_note
+     * @param $therapy_id
      * @return Doctor_note
+     * @internal param Doctor_note $doctor_note
      */
-    public function show(Doctor_note $doctor_note)
+    public function show($therapy_id)
     {
-        return $doctor_note;
+        return Doctor_note::where('therapy_id', '=', $therapy_id)->get();
     }
 
     /**

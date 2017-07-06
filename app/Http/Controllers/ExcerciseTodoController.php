@@ -82,7 +82,7 @@ class ExcerciseTodoController extends Controller
                 'excercise_id' => $excercise_id,
                 'therapy_id' => $therapy_id
             ]
-        ];;
+        ];
 
     }
 
