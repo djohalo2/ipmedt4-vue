@@ -1,8 +1,14 @@
 <template>
     <div class="layout-view">
-        <div class="layout-padding">
-            <p class="page-title">Medicatie</p>
-            <q-search v-model="medicijnSearch" placeholder="Zoek medicijn..." class="searchbar"></q-search>
+          <div class="card medicine-search">
+            <div class="card-title">
+              <p class="page-title">Medicatie</p>
+
+              <q-search v-model="medicijnSearch" placeholder="Zoek medicijn..." class="searchbar"></q-search>
+            </div>
+          </div>
+
+      <div class="layout-padding">
 
             <spinner class="loading-spinner" color="#e74c3c" v-if="isFetching"></spinner>
             <div class="list bg-white">
@@ -10,7 +16,7 @@
                 <medicatie-list-item :medicine="medicijn"></medicatie-list-item>
               </div>
             </div>
-        </div>
+      </div>
     </div>
 </template>
 
@@ -58,15 +64,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  .layout-padding {
+    padding-top: 1rem;
+  }
+
     .page-title {
-        font-size:0.85rem;
-        font-weight: 500;
-        color: #a8a8a8;
-        margin: 0.5rem 0;
+        color: #e74c3c !important;
+    }
+
+  .medicine-search {
+    background-image: url('../../../statics/medicines-background.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+
+      .searchbar {
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 15vh;
+        background: none;
+        padding-bottom: 2.5vh;
+      }
     }
 
     .loading-spinner {
-      margin: 1rem auto;
+      margin: 0 auto;
       display: block;
     }
 </style>
