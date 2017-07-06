@@ -74,18 +74,15 @@ class MedicineTodoController extends Controller
         $medicine = Medicine::where('id', '=', $medicine_id)->first();
 
         return [
-            'medication' =>
-                [
-                    'name' => $medicine->name,
-                    'therapy_id' => $therapy_id,
-                ],
-            'todo_info' =>
-                [
-                    'dosis' => $amount,
-                    'per_day' => $per_day,
-                    'start_date' => $start_date,
-                    'end_date' => $end_date
-                ]
+            'id' => $medicine_id,
+            'important' => $medicine->important,
+            'name' => $medicine->name,
+            'side_effects' => $medicine->side_effects,
+            'usage' => $medicine->usage,
+            'pivot' => [
+                'medicine_id' => $medicine_id,
+                'therapy_id' => $therapy_id
+            ]
         ];
     }
 

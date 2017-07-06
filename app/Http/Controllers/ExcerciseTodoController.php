@@ -74,20 +74,15 @@ class ExcerciseTodoController extends Controller
         $excercise = Excercise::where('id', '=', $excercise_id)->first();
 
         return [
-            'excercise' =>
-                [
-                    'title' => $excercise->title,
-                    'therapy_id' => $therapy_id,
-                ],
-            'todo_info' =>
-                [
-                    'sets' => $sets,
-                    'amount_per_set' => $sets_amount,
-                    'per_day' => $per_day,
-                    'start_date' => $start_date,
-                    'end_date' => $end_date
-                ]
-        ];
+            'id' => $excercise_id,
+            'title' => $excercise->title,
+            'description' => $excercise->description,
+            'video_id' => $excercise->video_id,
+            'pivot' => [
+                'excercise_id' => $excercise_id,
+                'therapy_id' => $therapy_id
+            ]
+        ];;
 
     }
 
