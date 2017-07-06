@@ -43,15 +43,15 @@ class PatientController extends Controller
     {
 
         $gender = $request->gender;
-        $firstname = $request->firstname;
+        $firstname = ucfirst($request->firstname);
         $lastname = $request->lastname;
         $email = $request->email;
         $phone = $request->phone;
         $birthday = $request->birthday;
-        $street = $request->street;
+        $street = ucfirst($request->street);
         $street_number = $request->street_number;
         $postal_code = $request->postal_code;
-        $city = $request->city;
+        $city = ucfirst($request->city);
 
         $username = str_slug(strtolower($firstname . ' ' . $lastname . ' ' . rand(1000, 9999)), '_');
         $name = $firstname . ' ' . $lastname;
@@ -166,15 +166,15 @@ class PatientController extends Controller
         if ($select) {
 
             $gender = $request->gender;
-            $firstname = $request->firstname;
+            $firstname = ucfirst($request->firstname);
             $lastname = $request->lastname;
             $email = $request->email;
             $phone = $request->phone;
             $birthday = $request->birthday;
-            $street = $request->street;
+            $street = ucfirst($request->street);
             $street_number = $request->street_number;
             $postal_code = $request->postal_code;
-            $city = $request->city;
+            $city = ucfirst($request->city);
 
             $user_id = $select->user_id;
 
