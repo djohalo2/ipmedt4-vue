@@ -8,7 +8,7 @@
                 <button class="button" v-bind:class="todayButton" @click="appointmentFilter = 'today'">Vandaag</button
                 ><button class="button" v-bind:class="tomorrowButton" @click="appointmentFilter = 'tomorrow'">Morgen</button>
             </div>
-            <p v-if="appointments.length == 0" class="no-entries-msg">Er zijn geen afspraken geplanned.</p>
+            <p v-if="appointments && appointments.length == 0" class="no-entries-msg">Er zijn geen afspraken geplanned.</p>
             <div class="list">
                 <dashboard-afspraak-card v-for="(appointment, index) in appointments" v-if="index > (appointmentPage * 5 - 6) && index < (appointmentPage * 5)"
                   :key="index"
@@ -40,11 +40,14 @@ export default {
     },
     computed: {
       appointments() {
-        if (this.appointmentFilter == 'today') {
-          return this.$store.getters.getAppointmentsToday.today_appointments
-        } else {
-          return this.$store.getters.getAppointmentsToday.tomorrow_appointments
-        }
+          if (this.$store.getters.getAppointmentsToday) {
+            if (this.appointmentFilter == 'today') {
+              return this.$store.getters.getAppointmentsToday.today_appointments
+            } else {
+              return this.$store.getters.getAppointmentsToday.tomorrow_appointments
+            }
+          }
+          return [];
       },
       todayButton() {
         return this.appointmentFilter == 'today' ? {primary: true} : {primary: true, outline: true}
