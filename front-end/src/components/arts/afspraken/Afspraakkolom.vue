@@ -6,7 +6,7 @@
         <span class="afspraak-date"></span>
         <input v-model="appointment.title" placeholder="Afspraak omschrijving">
         <div class="stacked-label">
-          <q-autocomplete v-model="patientTerms" @selected="selected" @search="searchPatient"></q-autocomplete>
+          <q-autocomplete v-model="patientTerms" @selected="selected" @search="searchPatient" ></q-autocomplete>
           <label>Patient</label>
         </div>
         <div class="stacked-label">
@@ -61,7 +61,7 @@ export default {
           }
         }
       }
-      //After this point you will be save of ugly, inefficient code
+      //After this point you will be save from ugly, inefficient code
       //Have a nice day.
       this.isCreating = false
       this.isCreating = true
@@ -73,8 +73,9 @@ export default {
     },
     addAppointment() {
       console.log(this.appointment)
-      this.$store.dispatch('ADD_APPOINTMENT', this.appointment)
-      this.closePopover()
+      this.$store.dispatch('ADD_APPOINTMENT', this.appointment).then(() => {
+        this.isCreating = false
+      })
     },
     searchPatient (patientTerms, done) {
       let results = [];
@@ -112,7 +113,6 @@ export default {
       } else {
         this.appointment.therapy_id = item.id
         this.appointment.therapyName = item.label
-        console.log(this.appointment)
       }
     }
   },

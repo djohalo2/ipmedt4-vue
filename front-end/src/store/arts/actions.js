@@ -187,7 +187,6 @@ export default {
       })
     },
     ADD_EXCERCISE({ commit, state }, excerciseData) {
-      console.log(excerciseData)
       return new Promise((resolve, reject) => {
         axios({
           method: "post",
@@ -217,29 +216,31 @@ export default {
       })
     },
     ADD_APPOINTMENT({ commit, state }, appointmentData) {
-      console.log("APPOINTMENT DATA", appointmentData)
-      axios({
-        method: "post",
-        url: BASE_URL + "appointment",
-        data: qs.stringify({
-          title: appointmentData.title,
-          start: appointmentData.start,
-          end: appointmentData.end,
-          therapy_id: appointmentData.therapy_id,
-          patient_id: appointmentData.patient_id,
-          doctor_id: appointmentData.doctor_id
-        }),
-        headers: {
-            Authorization: "Bearer " + state.token,
-        }
-      })
-      .then(response => {
-        console.log('GELUKG!', response)
+      return new Promise((resolve, reject) => {
+        axios({
+          method: "post",
+          url: BASE_URL + "appointment",
+          data: qs.stringify({
+            title: appointmentData.title,
+            start: appointmentData.start,
+            end: appointmentData.end,
+            therapy_id: appointmentData.therapy_id,
+            patient_id: appointmentData.patient_id,
+            doctor_id: appointmentData.doctor_id
+          }),
+          headers: {
+              Authorization: "Bearer " + state.token,
+          }
+        })
+        .then(response => {
           commit('ADD_APPOINTMENT', response.data.appointment)
+          resolve()
+        })
+        .catch((error) => {0
+            console.log(error);
+            reject()
+        });
       })
-      .catch((error) => {0
-          console.log(error);
-      });
     },
     CANCEL_APPOINTMENT({ commit, state }, id) {
       return new Promise((resolve, reject) => {
