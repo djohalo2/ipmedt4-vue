@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="item-content">
-      <i class="float-right" @click="deleteItem()">delete_forever</i>
+      <i v-if="state" class="float-right" @click="deleteItem()">delete_forever</i>
       <div class="item-title">{{title}}</div>
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 export default {
     name: 'list-item',
-    props: ['title', 'type', 'id', 'therapyId'],
+    props: ['title', 'type', 'id', 'therapyId', 'state'],
     methods: {
       deleteItem() {
         let item = {
