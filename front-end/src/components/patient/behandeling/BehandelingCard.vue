@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .card-title, .card-content {
         padding: 0.7rem 0rem;
     }

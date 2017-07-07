@@ -24,10 +24,8 @@ export default {
 
 <style lang="scss" scoped>
     .card {
-
         .card-content {
-            padding: 0;
-
+          padding: 0 1rem;
             p {
                 font-size: 14px;
             }
