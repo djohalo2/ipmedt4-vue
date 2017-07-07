@@ -4,7 +4,7 @@
       <i>{{afspraakStatus}}</i>
     </div>
     <div class="timeline-title">
-      {{title}}
+      {{title}} <span v-if="status == 'canceled'">(Geannuleerd)</span>
     </div>
     <div class="timeline-date text-italic">
       <div>{{tijdstip}}</div>
@@ -37,10 +37,16 @@ export default {
       return moment(this.date).format("HH:mm")
     },
     afspraakStatus () {
-      return moment(this.date).diff(moment()) < 0 ? 'check' : 'alarm';
+      if(this.status != 'canceled') {
+        return moment(this.date).diff(moment()) < 0 ? 'check' : 'alarm';
+      }
+      return 'close'
     },
     getBadge() {
-      return this.afspraakStatus == 'check' ? 'bg-positive' : 'bg-warning'
+      if(this.status != 'canceled') {
+        return this.afspraakStatus == 'check' ? 'bg-positive' : 'bg-warning'
+      }
+      return 'bg-primary'
     }
   }
 }
