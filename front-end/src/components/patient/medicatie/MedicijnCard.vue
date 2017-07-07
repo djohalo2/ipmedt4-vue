@@ -5,26 +5,47 @@
             </div>
             <div class="card-date">
                 <i>access_time</i>
-                Medicijn genomen sinds {{date}}
+                Medicijn genomen sinds {{startDate}}
             </div>
             <div class="card-content">
                 <span class="chip label bg-primary text-white">
-                    {{aantal}}x per dag innemen
+                    {{medicineCount}}x per dag innemen
                 </span>
             </div>
         </div>
 </template>
 
 <script>
-import router from 'vue-router';
+import router from 'vue-router'
+import moment from 'moment'
 
 export default {
     name: 'medicijn-card',
     props: ['id', 'behandeling', 'title', 'aantal', 'date'],
+    data() {
+      return {
+        startDate: ''
+      }
+    },
     methods: {
         cardClick() {
             this.$router.push({path: '/behandeling/' + this.id + '/medicatie/' + this.id});
         }
+    },
+    computed: {
+      medicineCount() {
+        let allTodos = this.$store.getters.getAllTodos
+        let medicineTodoCount = 0
+        allTodos.map((todo) => {
+          if(todo.medicine_id) {
+            if(todo.medicine_id == this.id) {
+              medicineTodoCount++
+              this.startDate = moment(todo.created_at).format('DD-MM-YYYY')
+            }
+          }
+        })
+        return medicineTodoCount
+      }
     }
 }
 </script>
