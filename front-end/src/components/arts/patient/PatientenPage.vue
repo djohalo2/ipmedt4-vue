@@ -79,7 +79,7 @@
             <spinner class="loading-spinner" color="#e74c3c" v-if="isFetching"></spinner>
             <div class="list">
               <div class="item three-lines" @click="clickBehandeling(behandeling.id)" v-for="behandeling in behandelingen" :key="behandeling.id">
-                <i class="item-primary">{{behandelingStatus(behandeling.end_date)}}</i>
+                <i class="item-primary" v-bind:class="{ 'text-positive': isBehandelingCompleted(behandeling.end_date) }">{{behandelingStatus(behandeling.end_date)}}</i>
                 <div class="item-content has-secondary">
                   <div class="item-title">{{behandeling.name}}</div>
                   <div class="item-label item-smaller">
@@ -145,6 +145,9 @@ export default {
       }
     },
     methods: {
+      isBehandelingCompleted(date) {
+        return moment(date).diff(moment()) < 0;
+      },
       behandelingStatus(date) {
         return moment(date).diff(moment()) < 0 ? 'check_circle' : 'cached';
       },

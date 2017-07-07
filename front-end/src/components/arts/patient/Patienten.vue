@@ -1,8 +1,14 @@
 <template>
     <div class="layout-view">
-        <div class="layout-padding">
+
+      <div class="card patient-search">
+        <div class="card-title">
             <p class="page-title">Geregistreerde patienten</p>
             <q-search v-model="patientSearch" placeholder="Zoek patiënten..." class="searchbar"></q-search><br>
+        </div>
+      </div>
+
+        <div class="layout-padding">
             <patient-card v-for="patient in searchedPatients" :key="patient.id" :id="patient.id" :firstname="patient.firstname" :lastname="patient.lastname" :email="patient.email" :phone="patient.phone" :birthday="patient.birthday" :avatar="patient.avatar"></patient-card>
         </div>
     </div>
@@ -51,10 +57,31 @@ export default {
         background-color: #F6F6F6;
     }
 
+    .layout-padding {
+      padding-top: 1rem;
+    }
+
     .page-title {
-        font-size:0.85rem;
-        font-weight: 500;
-        color: #a8a8a8;
-        margin: 0.5rem 0;
+      color: #e74c3c !important;
+    }
+
+    .patient-search {
+      background-image: url('../../../statics/patienten.jpg');
+      -webkit-background-size: cover;
+      background-size: cover;
+      background-position: center;
+
+    .searchbar {
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 15vh;
+      background: none;
+      padding-bottom: 2.5vh;
+    }
+    }
+
+    .loading-spinner {
+      margin: 0 auto;
+      display: block;
     }
 </style>
