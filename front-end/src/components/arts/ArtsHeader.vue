@@ -46,11 +46,6 @@
           <span class="bold">mijn</span><span class="light">nazorg.nl</span>
       </q-toolbar-title>
 
-      <q-search v-on-clickaway="closeSearch" v-if="searching" v-model="searchText" placeholder="Zoeken"></q-search>
-
-      <button v-if="!searching" v-on:click="searching = !searching" class="hide-on-drawer-visible">
-          <i>search</i>
-      </button>
     </div>
 </template>
 
