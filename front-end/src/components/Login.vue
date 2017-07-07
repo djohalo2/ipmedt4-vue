@@ -174,4 +174,14 @@ export default {
         font-size: 20px;
       }
     }
+
+    @media screen and (max-width: 480px) {
+      .error-msg {
+        font-size: 12px;
+      }
+
+      .card-content {
+        padding: 1rem 2rem;
+      }
+    }
 </style>
