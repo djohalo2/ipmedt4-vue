@@ -180,7 +180,6 @@ export default {
           this.editPatient.city = this.patient.city
         }
         this.editMode = !this.editMode
-        console.log(this.editMode)
       },
       updatePatient() {
         this.$store.dispatch('UPDATE_PATIENT', this.editPatient).then(() => {

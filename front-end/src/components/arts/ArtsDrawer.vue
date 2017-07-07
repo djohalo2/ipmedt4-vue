@@ -46,7 +46,6 @@ export default {
     },
     methods: {
       logOut(){
-        console.log('CLICKED')
         this.$store.commit('LOG_DOCTOR_OUT');
         this.$router.push({path: '/login'});
       }

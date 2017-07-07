@@ -48,7 +48,6 @@ export default {
       }
     },
     [ADD_MEDICINE](state, payload) {
-      console.log(payload)
       state.patientBehandelingen.map((behandeling) => {
         if(behandeling.id == payload.pivot.therapy_id) {
           behandeling.medicines.push(payload)
@@ -80,7 +79,6 @@ export default {
       }
     },
     [ADD_THERAPY](state, payload) {
-      console.log(payload)
       if(!state.patientBehandelingen) {
         state.patientBehandelingen = [payload]
       } else {

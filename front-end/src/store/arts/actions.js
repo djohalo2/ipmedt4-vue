@@ -51,7 +51,6 @@ export default {
       })
     },
     UPDATE_PATIENT({ commit, state }, patientData){
-      console.log(patientData)
       return new Promise((resolve, reject) => {
         axios({
           method: "put",
@@ -74,7 +73,6 @@ export default {
           }
         })
         .then(response => {
-          console.log(response)
           commit('UPDATE_PATIENT', response.data.patient);
           resolve()
         })
@@ -150,7 +148,6 @@ export default {
           }
         })
         .then(response => {
-          console.log("MADE IT")
           commit('ADD_MEDICINE', response.data)
           resolve()
         })
@@ -161,7 +158,6 @@ export default {
       })
     },
     ADD_DOCTOR_NOTE({ commit, state }, noteData) {
-      console.log(noteData)
       return new Promise((resolve, reject) => {
         axios({
           method: "post",
@@ -205,7 +201,6 @@ export default {
           }
         })
         .then(response => {
-            console.log(response.data)
             commit('ADD_EXCERCISE', response.data)
             resolve()
         })
@@ -278,7 +273,6 @@ export default {
             }
         })
         .then(response => {
-          console.log(response)
           commit('ADD_THERAPY', response.data.therapies[0])
           resolve()
         })
@@ -298,8 +292,6 @@ export default {
             }
         })
         .then(response => {
-          console.log(response)
-          // commit('ADD_THERAPY', response.data.therapies[0])
           resolve()
         })
         .catch((error) => {0
@@ -336,15 +328,11 @@ export default {
         let data = {
           therapy_id: item.therapy_id
         }
-
         if(item.type == 'medicine') {
           data['medicine_id'] = item.id
         } else if (item.type == 'excercise') {
           data['excercise_id'] = item.id
         }
-
-        console.log('DATA', data)
-
         axios({
             method: "post",
             url: BASE_URL + urlType,
@@ -354,7 +342,6 @@ export default {
             }
         })
         .then(response => {
-          console.log(response)
           commit('DELETE_ITEM', item)
           resolve()
         })

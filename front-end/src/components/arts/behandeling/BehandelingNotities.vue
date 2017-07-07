@@ -63,7 +63,6 @@ export default {
     },
     methods: {
       addNote() {
-        console.log(this.noteData)
         this.noteData.therapy_id = parseInt(this.$route.params.behandelingId)
         this.noteData.added_by = this.doctorId
         this.$store.dispatch('ADD_DOCTOR_NOTE', this.noteData).then(() => {

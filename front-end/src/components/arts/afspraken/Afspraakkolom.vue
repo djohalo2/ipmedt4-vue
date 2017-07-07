@@ -72,7 +72,6 @@ export default {
       }
     },
     addAppointment() {
-      console.log(this.appointment)
       this.$store.dispatch('ADD_APPOINTMENT', this.appointment).then(() => {
         this.isCreating = false
       })

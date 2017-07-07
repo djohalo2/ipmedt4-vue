@@ -29,8 +29,7 @@ import router from 'vue-router';
 export default {
     name: 'oefening-page',
     created() {
-      this.$store.commit('CHANGE_CURRENT_OEFENING', this.$route.params.typeOefening);
-      console.log(this.oefeningTodo)
+      this.$store.commit('CHANGE_CURRENT_OEFENING', this.$route.params.typeOefening)
     },
     computed: {
         oefening() {

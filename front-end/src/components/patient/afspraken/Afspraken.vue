@@ -29,9 +29,6 @@ export default {
     appointments () {
       return this.$store.getters.getAllAppointsments
     }
-  },
-  created() {
-    console.log(this.appointments)
   }
 }
 

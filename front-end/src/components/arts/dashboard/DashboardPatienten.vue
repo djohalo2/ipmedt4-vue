@@ -141,7 +141,6 @@ export default {
     methods: {
         addPatient(){
             this.$store.dispatch("ADD_PATIENT", this.newPatient).then(() => {
-              console.log('REMOVING PATIENT DATA')
               for(let item in this.newPatient) {
                 this.newPatient[item] = ''
               }

@@ -43,7 +43,6 @@ import router from 'vue-router';
 export default {
     name: 'medicatie-page',
     created() {
-        console.log("hello");
         this.$store.commit('CHANGE_CURRENT_MEDICIJN', this.$route.params.typeMedicijn);
     },
     methods: {

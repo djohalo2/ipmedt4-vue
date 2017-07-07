@@ -36,10 +36,10 @@ export default {
                     commit('TOGGLE_IS_FETCHING');
                 }
             })
-            .catch((error) => console.log('error2 ' + error));
+            .catch((error) => console.log('error ' + error));
         })
         .catch((error) => {
-            console.log('error1 ' + error);
+            console.log('error ' + error);
         });
     },
     FETCH_TOKEN({ commit, state }, payload){
@@ -70,7 +70,6 @@ export default {
             headers: { Authorization: "Bearer " + state.token}
         })
         .then(response => {
-          console.log(response)
           commit('TOGGLE_TODO', data);
         })
         .catch((error) => {
