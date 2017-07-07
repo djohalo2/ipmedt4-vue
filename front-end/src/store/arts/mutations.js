@@ -80,7 +80,12 @@ export default {
       }
     },
     [ADD_THERAPY](state, payload) {
-      state.patientBehandelingen.push(payload)
+      console.log(payload)
+      if(!state.patientBehandelingen) {
+        state.patientBehandelingen = [payload]
+      } else {
+        state.patientBehandelingen.push(payload)
+      }
     },
     [LOG_DOCTOR_OUT](state, payload) {
       state = {};
