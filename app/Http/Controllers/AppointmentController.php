@@ -62,7 +62,8 @@ class AppointmentController extends Controller
             'end' => $end,
             'therapy_id' => $therapy_id,
             'patient_id' => $patient_id,
-            'doctor_id' => $doctor_id
+            'doctor_id' => $doctor_id,
+            'status' => 'planned'
         ]);
 
 
@@ -226,6 +227,7 @@ class AppointmentController extends Controller
 
         return Appointment::whereBetween('start', [$start_of_week, $end_of_week])
             ->where('doctor_id', '=', $doctor_id)
+            ->where('status', '=', 'planned')
             ->get();
     }
 
@@ -249,6 +251,24 @@ class AppointmentController extends Controller
             ->get();
 
         return ['today_appointments' => $today_appointments, 'tomorrow_appointments' => $tomorrow_appointments];
+    }
+
+    public function cancel($id) {
+        $appointment = Appointment::where('id', '=', $id)->first();
+
+        if($appointment) {
+            $appointment->status = 'canceled';
+
+            $save = $appointment->save();
+
+            if ($save) {
+                return ['success' => 1];
+            }
+
+            return ['success' => 0];
+        }
+
+        return ['success' => 0];
     }
 
 

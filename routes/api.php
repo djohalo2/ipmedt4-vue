@@ -37,6 +37,8 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 10000, 'expires'
         $api->resource('doctor', \App\Http\Controllers\DoctorController::class);
         $api->resource('doctor_note', \App\Http\Controllers\DoctorNoteController::class);
 
+        $api->post('appointment/cancel/{id}', ['as' => 'appointment.cancel',  'uses' => '\App\Http\Controllers\AppointmentController@cancel']);
+
         $api->post('therapy/finish/{id}', ['as' => 'therapy.finish',  'uses' => '\App\Http\Controllers\TherapyController@finish']);
         $api->post('delete/excercise_todo', ['as' => 'excercise_todo.delete',  'uses' => '\App\Http\Controllers\ExcerciseTodoController@destroy']);
         $api->post('delete/medicine_todo', ['as' => 'medicine_todo.delete',  'uses' => '\App\Http\Controllers\MedicineTodoController@destroy']);
