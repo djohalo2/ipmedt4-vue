@@ -29,6 +29,14 @@ class TableSeeder extends Seeder
      */
     public function run()
     {
+
+        $department = Department::firstOrCreate([
+            'naam' => 'breuken',
+            'phone' => '0711231239',
+            'location' => 'leiden'
+        ]);
+
+
         $doctor_user = User::insert([
             'username'      => 'boris_reuk',
             'name'          => 'Boris Reuk',
@@ -38,39 +46,6 @@ class TableSeeder extends Seeder
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now()
         ]);
-
-        $patient_user = User::insert([
-            'username'      => 'bas',
-            'name'          => 'Bas van Bovene',
-            'email'         => 'bas@bovene.nl',
-            'password'      => Hash::make(env('USER_PASSWORD', 'secret')),
-            'type'          => 'patient',
-            'created_at'    => Carbon::now(),
-            'updated_at'    => Carbon::now()
-        ]);
-
-
-
-        $patient = Patient::firstOrCreate([
-            'gender' => 'Hr',
-            'firstname' => 'Bas',
-            'lastname' => 'van Gebrokene',
-            'email' => 'bas@bovene.nl',
-            'phone' => '0613239346',
-            'birthday' => '1998-10-08',
-            'street' => 'nassaulaan',
-            'street_number' => '104',
-            'postal_code' => '2332GP',
-            'city' => 'zoeterwoude',
-            'user_id' => 2
-        ]);
-
-        $department = Department::firstOrCreate([
-            'naam' => 'breuken',
-            'phone' => '0711231239',
-            'location' => 'leiden'
-        ]);
-
         $doctor = Doctor::firstOrCreate([
             'user_id' => 1,
             'gender' => 'Dr',
@@ -79,6 +54,70 @@ class TableSeeder extends Seeder
             'department_id' => $department->id,
             'email' => 'boris_reuk@lumc.nl',
             'phone' => '0612312345'
+        ]);
+
+
+        $doctor_user = User::insert([
+            'username'      => 'robbert_winkel',
+            'name'          => 'Robbert Winkel',
+            'email'         => 'winkel.robbert@hsleiden.nl',
+            'password'      => Hash::make('hsleiden'),
+            'type'          => 'doctor',
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now()
+        ]);
+        $doctor = Doctor::firstOrCreate([
+            'user_id' => 2,
+            'gender' => 'Dr',
+            'firstname' => 'Robbert',
+            'lastname' => 'Winkel',
+            'department_id' => $department->id,
+            'email' => 'winkel.robbert@hsleiden.nl',
+            'phone' => '0612312345'
+        ]);
+
+
+        $doctor_user = User::insert([
+            'username'      => 'arts',
+            'name'          => 'Test Arts',
+            'email'         => 'test@mijnnazorg.nl',
+            'password'      => Hash::make('hsleiden'),
+            'type'          => 'doctor',
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now()
+        ]);
+        $doctor = Doctor::firstOrCreate([
+            'user_id' => 3,
+            'gender' => 'Dr',
+            'firstname' => 'Test',
+            'lastname' => 'Arts',
+            'department_id' => $department->id,
+            'email' => 'test@mijnnazorg.nl',
+            'phone' => '0612312345'
+        ]);
+
+
+        $patient_user = User::insert([
+            'username'      => 'patient',
+            'name'          => 'Test Patient',
+            'email'         => 'test_patient@mijnnazorg.nl',
+            'password'      => Hash::make('hsleiden'),
+            'type'          => 'patient',
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now()
+        ]);
+        $patient = Patient::firstOrCreate([
+            'gender' => 'Hr',
+            'firstname' => 'Test',
+            'lastname' => 'Patient',
+            'email' => 'test_patient@mijnnazorg.nl',
+            'phone' => '0613239346',
+            'birthday' => '1990-01-01',
+            'street' => 'Teststraat',
+            'street_number' => '420',
+            'postal_code' => '1337HH',
+            'city' => 'Teststad',
+            'user_id' => 4
         ]);
 
 
