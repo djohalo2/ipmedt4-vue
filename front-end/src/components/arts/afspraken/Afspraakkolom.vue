@@ -1,22 +1,20 @@
 <template>
   <div class="width-1of5">
     <div class="box-event" @click="openAppointmentCreator()" v-bind:class="{'box-creating': isCreating}">
-      <q-popover class="popover" @close="closeAppointmentCreator()" :ref="'appointmentPopover' + xPos + yPos">
-        <div class="create-appointment">
-          <p>Afspraak maken</p>
-          <span class="afspraak-date"></span>
-          <input v-model="appointment.title" placeholder="Afspraak omschrijving">
-          <div class="stacked-label">
-            <q-autocomplete v-model="patientTerms" @selected="selected" @close="openPopover()" @search="searchPatient"></q-autocomplete>
-            <label>Patient</label>
-          </div>
-          <div class="stacked-label">
-            <q-autocomplete v-model="therapyTerms" @selected="selected" @close="openPopover()" @search="searchTherapy"></q-autocomplete>
-            <label>Behandeling</label>
-          </div>
-          <button class="primary small outline float-right" @click="addAppointment()">Toevoegen</button>
+      <div class="appointment-popover card" v-if="isCreating" :ref="'appointmentPopover' + xPos + yPos">
+        <p class="text-black">Afspraak maken</p>
+        <span class="afspraak-date"></span>
+        <input v-model="appointment.title" placeholder="Afspraak omschrijving">
+        <div class="stacked-label">
+          <q-autocomplete v-model="patientTerms" @selected="selected" @search="searchPatient"></q-autocomplete>
+          <label>Patient</label>
         </div>
-      </q-popover>
+        <div class="stacked-label">
+          <q-autocomplete v-model="therapyTerms" @selected="selected" @search="searchTherapy"></q-autocomplete>
+          <label>Behandeling</label>
+        </div>
+        <button class="primary small outline float-right" @click="addAppointment()">Toevoegen</button>
+      </div>
     </div>
   </div>
 </template>
@@ -51,16 +49,27 @@ export default {
   },
   methods: {
     openAppointmentCreator() {
+      //TODO: Fix deze code
+      //This code is dangerous for humanities existance, please ignore this code for the sake of your own life.
+      //I repeat this code is dangerous, run!
+      let root = this.$root.$children[0].$children[0].$children[2].$children
+      for(let child in root) {
+        let rootChild = root[child].$children
+        if(rootChild.length == 5) {
+          for(let column in rootChild) {
+            rootChild[column].isCreating = false
+          }
+        }
+      }
+      //After this point you will be save of ugly, inefficient code
+      //Have a nice day.
+      this.isCreating = false
       this.isCreating = true
     },
     closeAppointmentCreator() {
-      this.isCreating = false
-    },
-    openPopover() {
-      this.$refs['appointmentPopover' + this.xPos + this.yPos].open()
-    },
-    closePopover() {
-      this.$refs['appointmentPopover' + this.xPos + this.yPos].close()
+      if(this.isCreating) {
+        this.isCreating = false
+      }
     },
     addAppointment() {
       console.log(this.appointment)
@@ -134,8 +143,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .appointment-popover {
+    position: absolute;
+    overflow: visible;
+    width: 150%;
+    padding: 1rem;
+    top: 40px;
+    left: 0;
+    z-index: 1;
+  }
+
   .box-event {
     min-height: 40px;
+    position: relative;
   }
 
   .box-day {

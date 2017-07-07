@@ -70,12 +70,7 @@ export default {
       })
     },
     [ADD_APPOINTMENT](state, payload) {
-      console.log(state.appointments)
-      state.appointments.push({
-        title: payload.title,
-        start: payload.start,
-        end: payload.end
-      })
+      state.appointments.push(payload)
     },
     [ADD_THERAPY](state, payload) {
       state.patientBehandelingen.push(payload)
