@@ -262,6 +262,7 @@ class AppointmentController extends Controller
             $save = $appointment->save();
 
             if ($save) {
+
                 return ['success' => 1];
             }
 
