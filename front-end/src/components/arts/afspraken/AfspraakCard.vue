@@ -17,6 +17,7 @@
           <li><i>access_time</i>{{startTijd}} - {{eindTijd}}</li>
           <li class="patient-list-item" @click="clickPatient()"><i>person</i>{{patient}}</li>
         </ul>
+        <button class="primary float-right outline" @click="cancelAppointment()">Afspraak annuleren</button>
       </div>
     </q-modal>
   </div>
@@ -27,7 +28,7 @@ import moment from 'moment'
 
 export default {
   name: 'afspraak-card',
-  props: ['start', 'eind', 'name', 'patientId'],
+  props: ['id', 'start', 'eind', 'name', 'patientId'],
   data () {
     return {
       topOffset: '',
@@ -54,6 +55,11 @@ export default {
     },
     clickPatient() {
       this.$router.push({path: '/arts/patienten/' + this.patientId})
+    },
+    cancelAppointment () {
+      this.$store.dispatch('CANCEL_APPOINTMENT', this.id).then(() => {
+        this.$refs.appointmentModal.close()
+      })
     }
   },
   computed: {
@@ -131,6 +137,10 @@ export default {
 
   .modal-text {
     padding: 1rem;
+
+    button {
+      margin-bottom: 1rem;
+    }
 
     ul {
       list-style-type: none;

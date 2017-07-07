@@ -1,4 +1,4 @@
-import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, UPDATE_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, SET_APPOINTMENTS_TODAY, ADD_MEDICINE, ADD_EXCERCISE, ADD_DOCTOR_NOTE, ADD_APPOINTMENT, ADD_THERAPY, LOG_DOCTOR_OUT, DELETE_ITEM } from './mutation-types';
+import { FETCH_DOCTOR, CHECK_TOKEN, FETCH_PATIENTS, ADD_PATIENT, UPDATE_PATIENT, SET_PATIENT_DATA, SET_ALL_MEDICINES, SET_ALL_EXERCISES, SET_AFSPRAKEN, SET_APPOINTMENTS_TODAY, ADD_MEDICINE, ADD_EXCERCISE, ADD_DOCTOR_NOTE, CANCEL_APPOINTMENT, ADD_APPOINTMENT, ADD_THERAPY, LOG_DOCTOR_OUT, DELETE_ITEM } from './mutation-types';
 import { LocalStorage, SessionStorage } from 'quasar';
 
 export default {
@@ -71,6 +71,13 @@ export default {
     },
     [ADD_APPOINTMENT](state, payload) {
       state.appointments.push(payload)
+    },
+    [CANCEL_APPOINTMENT](state, payload) {
+      for(let appointment in state.appointments) {
+        if(state.appointments[appointment].id == payload) {
+          state.appointments.splice(appointment, 1)
+        }
+      }
     },
     [ADD_THERAPY](state, payload) {
       state.patientBehandelingen.push(payload)

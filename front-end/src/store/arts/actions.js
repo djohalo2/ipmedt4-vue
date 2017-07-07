@@ -241,6 +241,25 @@ export default {
           console.log(error);
       });
     },
+    CANCEL_APPOINTMENT({ commit, state }, id) {
+      return new Promise((resolve, reject) => {
+        axios({
+            method: "post",
+            url: BASE_URL + "appointment/cancel/" + id,
+            headers: {
+              Authorization: "Bearer " + state.token,
+            }
+        })
+        .then(response => {
+          commit('CANCEL_APPOINTMENT', id)
+          resolve()
+        })
+        .catch((error) => {0
+          console.log(error);
+          reject()
+        })
+      })
+    },
     ADD_THERAPY({ commit, state }, therapyData) {
       return new Promise((resolve, reject) => {
         axios({
