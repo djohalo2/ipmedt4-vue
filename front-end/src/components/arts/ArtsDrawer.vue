@@ -58,6 +58,7 @@ export default {
 
   #drawer {
     color: #333;
+    z-index: 3;
   }
 
 </style>
