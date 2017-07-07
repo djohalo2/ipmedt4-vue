@@ -8,7 +8,7 @@
                     <count-card title="Patienten" :number="patientCount" description="Actuele patienten" icon="people"></count-card>
                 </div>
                 <div class="gt-sm-width-1of2">
-                    <count-card title="Afspraken" number="7" description="Afspraken vandaag" icon="date_range"></count-card>
+                    <count-card title="Afspraken" :number="appointmentCount" description="Afspraken vandaag" icon="date_range"></count-card>
                 </div>
             </div>
 
@@ -47,7 +47,10 @@ export default {
     },
     computed: {
         patientCount(){
-            return this.$store.getters.getTotalPatientCount;
+          return this.$store.getters.getTotalPatientCount
+        },
+        appointmentCount() {
+          return this.$store.getters.getTotalAppointmentCount
         }
     }
 }

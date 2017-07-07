@@ -37,8 +37,8 @@ export default {
       isCreating: false,
       appointment: {
         title: '',
-        start: this.startDate,
-        end: this.endDate,
+        start: '',
+        end: '',
         therapy_id: 1,
         patient_id: 1,
         doctor_id: this.doctorId,
@@ -63,6 +63,7 @@ export default {
       this.$refs['appointmentPopover' + this.xPos + this.yPos].close()
     },
     addAppointment() {
+      console.log(this.appointment)
       this.$store.dispatch('ADD_APPOINTMENT', this.appointment)
       this.closePopover()
     },
@@ -123,7 +124,7 @@ export default {
       return this.$store.getters.getPatientBehandelingen
     }
   },
-  created() {
+  updated() {
     this.appointment.start = this.startDate
     this.appointment.end = this.endDate
     this.appointment.doctor_id = this.doctorId

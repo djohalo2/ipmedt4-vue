@@ -38,6 +38,7 @@ export default {
           state.patientData.therapys.map(behandeling => {
             if(behandeling.medicine_todo.length > 0){
               behandeling.medicine_todo.map(todo =>{
+                todo.medicine.name += ' innemen'
                 todos.push(todo);
               });
             }

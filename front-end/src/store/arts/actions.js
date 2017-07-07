@@ -234,7 +234,8 @@ export default {
         }
       })
       .then(response => {
-          commit('ADD_APPOINTMENT', appointmentData)
+        console.log('GELUKG!', response)
+          commit('ADD_APPOINTMENT', response.data.appointment)
       })
       .catch((error) => {0
           console.log(error);

@@ -2,8 +2,6 @@
   <div>
     <button class="card primary afspraak-card" v-bind:style="{top: topOffset, height: height, left: leftOffset}" @click="$refs.appointmentModal.open()">
       {{name}}
-
-
     </button>
 
     <q-modal ref="appointmentModal" class="minimized appointment-modal">

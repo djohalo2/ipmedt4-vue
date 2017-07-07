@@ -1,15 +1,23 @@
 export default {
     getTokenArts(state) {
-      return state.token;
+      return state.token
     },
     getPatients(state) {
-      return state.patients;
+      return state.patients
     },
     getTotalPatientCount(state) {
-      return state.patients.length;
+      return state.patients.length
+    },
+    getTotalAppointmentCount(state) {
+      if(state.appointmentsToday.today_appointments) {
+        return state.appointmentsToday.today_appointments.length
+      } else {
+        return 0
+      }
+
     },
     getDoctorInfo(state) {
-      return state.doctorData;
+      return state.doctorData
     },
     getPatientBehandelingen(state) {
       return state.patientBehandelingen

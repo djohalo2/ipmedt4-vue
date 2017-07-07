@@ -1,5 +1,5 @@
 <template>
-        <div class="card" v-on:click="cardClick">
+        <div class="card">
             <span class="chip label bg-primary text-white float-right">
                 <i>group</i>
                 {{bodyparts}}
@@ -12,7 +12,7 @@
                 Behandeling loopt vanaf {{date}}
             </div>
             <div class="card-content">
-                
+
             </div>
             <!-- <button class="primary clear">Bekijk</button> -->
         </div>

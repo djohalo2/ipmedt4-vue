@@ -33,10 +33,19 @@ export default {
       state.excercises = payload
     },
     [SET_AFSPRAKEN](state, payload) {
-      state.appointments = payload
+      if(payload) {
+        state.appointments = payload
+      } else {
+        state.appointments = []
+      }
+
     },
     [SET_APPOINTMENTS_TODAY](state, payload) {
-      state.appointmentsToday = payload
+      if(payload) {
+        state.appointmentsToday = payload
+      } else {
+        state.appointmentsToday = {}
+      }
     },
     [ADD_MEDICINE](state, payload) {
       console.log(payload)
@@ -61,6 +70,7 @@ export default {
       })
     },
     [ADD_APPOINTMENT](state, payload) {
+      console.log(state.appointments)
       state.appointments.push({
         title: payload.title,
         start: payload.start,
