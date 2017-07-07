@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style lang="styl">
+<style lang="styl" scoped>
   .card-title, .card-content {
       padding: 0.7rem 0rem;
   }
