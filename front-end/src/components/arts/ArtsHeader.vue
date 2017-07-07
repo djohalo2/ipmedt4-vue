@@ -1,54 +1,56 @@
 <template>
     <div class="toolbar">
         <!-- v-if="this.$route.path !== '/behandeling' && this.$route.path !== '/patientinformatie' && this.$route.path !== '/'" -->
-        <q-drawer id="drawer" ref="drawer">
-            <div class="toolbar light">
-              <q-toolbar-title :padding="1">
-                  Hallo {{doctorData.firstname}}
-              </q-toolbar-title>
+      <q-drawer id="drawer" ref="drawer">
+          <div class="toolbar light">
+            <q-toolbar-title :padding="1">
+                Hallo {{doctorData.firstname}}
+            </q-toolbar-title>
+          </div>
+
+          <div class="list no-border platform-delimiter">
+            <q-drawer-link icon="home" to="/arts" exact>
+              Dashboard
+            </q-drawer-link>
+            <hr>
+            <div class="list-label">Opties</div>
+            <q-drawer-link icon="person" :to="'/arts/patienten'">
+              Patienten
+            </q-drawer-link>
+            <q-drawer-link icon="event" :to="'/arts/afspraken'">
+              Afspraken
+            </q-drawer-link>
+            <q-drawer-link icon="assignment" :to="'/arts/medicatie'">
+              Medicatie
+            </q-drawer-link>
+            <q-drawer-link icon="accessibility" :to="'/arts/oefeningen'">
+              Oefeningen
+            </q-drawer-link>
+            <q-drawer-link icon="info" :to="'/arts/informatie'">
+              Informatie
+            </q-drawer-link>
+            <div class="item item-link drawer-closer" @click="logOut()">
+              <i class="item-primary">exit_to_app</i>
+              <div class="item-content">
+                Uitloggen
+              </div>
             </div>
+          </div>
+      </q-drawer>
 
-            <div class="list no-border platform-delimiter">
-              <q-drawer-link icon="home" to="/arts" exact>
-                Home
-              </q-drawer-link>
-              <hr>
-              <div class="list-label">Opties</div>
-              <!-- <q-drawer-link icon="view_list" :to="'/behandeling/' + behandelingType">
-                Overzicht
-              </q-drawer-link> -->
-              <q-drawer-link icon="assignment" :to="'/arts/Patienten'">
-                Patienten
-              </q-drawer-link>
-              <q-drawer-link icon="event" :to="'/arts/Afspraken'">
-                Afspraken
-              </q-drawer-link>
-              <q-drawer-link icon="assignment" :to="'/arts/medicatie'">
-                Medicatie
-              </q-drawer-link>
-              <q-drawer-link icon="insert_drive_file" :to="'/arts/Informatie'">
-                Informatie
-              </q-drawer-link>
-            </div>
-        </q-drawer>
+      <button class="drawer-button hide-on-drawer-visible" @click="$refs.drawer.open()">
+          <i>menu</i>
+      </button>
 
-        <button class="drawer-button hide-on-drawer-visible" @click="$refs.drawer.open()">
-            <i>menu</i>
-        </button>
+      <q-toolbar-title class="header-title">
+          <span class="bold">mijn</span><span class="light">nazorg.nl</span>
+      </q-toolbar-title>
 
-        <q-toolbar-title class="header-title">
-            <span class="bold">mijn</span><span class="light">nazorg.nl</span>
-        </q-toolbar-title>
+      <q-search v-on-clickaway="closeSearch" v-if="searching" v-model="searchText" placeholder="Zoeken"></q-search>
 
-        <q-search v-on-clickaway="closeSearch" v-if="searching" v-model="searchText" placeholder="Zoeken"></q-search>
-
-        <button v-if="!searching" v-on:click="searching = !searching" class="hide-on-drawer-visible">
-            <i>search</i>
-        </button>
-
-        <!-- <button class="hide-on-drawer-visible">
-            <i>more_vert</i>
-        </button> -->
+      <button v-if="!searching" v-on:click="searching = !searching" class="hide-on-drawer-visible">
+          <i>search</i>
+      </button>
     </div>
 </template>
 
@@ -71,6 +73,11 @@ export default {
     methods: {
         closeSearch(){
             this.searching = false;
+        },
+        logOut(){
+          console.log('CLICKED')
+          this.$store.commit('LOG_DOCTOR_OUT');
+          this.$router.push({path: '/login'});
         }
     },
     computed: {
